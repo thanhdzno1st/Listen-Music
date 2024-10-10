@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Fragment_music"
-    android:background="#FF7979">
+   >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rotate"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/rotate_noinaycoanh">
+    </de.hdodenhof.circleimageview.CircleImageView>
+    <RelativeLayout
+        android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/music_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rotate"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:id="@+id/name_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nơi này có anh"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sơn tùng MTP"
+            android:textColor="#80FFFFFF"
+            android:layout_below="@+id/name_music"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            android:layout_centerHorizontal="true">
+        </TextView>
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/uil_share"
+            android:layout_marginLeft="20dp" />
+        <ImageView
+            android:id="@+id/btn_heart"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/heart" />
+    </RelativeLayout>
 
-</FrameLayout>
+
+
+</RelativeLayout>

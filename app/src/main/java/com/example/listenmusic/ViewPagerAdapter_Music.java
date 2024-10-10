@@ -16,9 +16,9 @@ public class ViewPagerAdapter_Music extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new Fragment_music();
-            case 1:
                 return new Fragment_info();
+            case 1:
+                return new Fragment_music();
             case 2:
                 return new Fragment_lyrics();
             default:
@@ -35,9 +35,9 @@ public class ViewPagerAdapter_Music extends FragmentStateAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Bài hát gợi ý";
-            case 1:
                 return "Thông tin";
+            case 1:
+                return "Bài hát gợi ý";
             case 2:
                 return "Lời bài hát";
             default:

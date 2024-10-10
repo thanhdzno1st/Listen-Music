@@ -405,7 +405,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/buttonplay" />
+            app:srcCompat="@drawable/button_pause" />
         <ImageView
             android:id="@+id/btn_repeat"
             android:layout_width="wrap_content"

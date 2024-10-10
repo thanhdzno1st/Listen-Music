@@ -5,143 +5,171 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Lyric_activity"
+    tools:context=".Music_Activity"
     android:background="@drawable/music_bg">
+
+
     <RelativeLayout
         android:id="@+id/layout_menu"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="30dp">
-        <RelativeLayout
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/btn_back"
+        android:layout_height="140dp">
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/muitendixuong" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            >
+            <TextView
+                android:id="@+id/phattu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/muitendixuong" />
+                android:text="Phát từ"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:textColor="#B3FFFFFF">
+            </TextView>
+            <TextView
+                android:id="@+id/tab_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bài hát gợi ý"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_below="@+id/phattu"
+                android:layout_centerHorizontal="true">
+            </TextView>
+            <!-- Thanh chứa các hình chữ nhật (indicators) -->
             <LinearLayout
+                android:id="@+id/indicator_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:id="@+id/loibaihat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lời bài hát"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#B3FFFFFF"
-                    android:layout_below="@+id/phattu"
-                    android:layout_centerHorizontal="true">
-                </TextView>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/goiybaihat"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/slider_3"
-                    android:layout_gravity="center">
-                </ImageView>
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                >
+
+                <!-- Hình chữ nhật thứ nhất (xám, ngắn) -->
+                <View
+                    android:id="@+id/indicator_1"
+                    android:layout_width="5dp"
+                    android:layout_height="2dp"
+                    android:layout_margin="1dp"
+                    android:background="#80FFFFFF" />
+
+                <!-- Hình chữ nhật thứ hai (trắng, dài hơn) -->
+                <View
+                    android:id="@+id/indicator_2"
+                    android:layout_width="10dp"
+                    android:layout_height="2dp"
+                    android:layout_margin="1dp"
+                    android:background="#FFFFFF" />
+
+                <!-- Hình chữ nhật thứ ba (xám, ngắn) -->
+                <View
+                    android:id="@+id/indicator_3"
+                    android:layout_width="5dp"
+                    android:layout_height="2dp"
+                    android:layout_margin="1dp"
+                    android:background="#80FFFFFF" />
             </LinearLayout>
-            <ImageView
-                android:id="@+id/btn_ketnoi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/btn_caidat"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_outline_cast" />
-            <ImageView
-                android:id="@+id/btn_caidat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="15dp"
-                app:srcCompat="@drawable/more_vertical" />
-        </RelativeLayout>
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/btn_ketnoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/btn_caidat"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_outline_cast" />
+        <ImageView
+            android:id="@+id/btn_caidat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/more_vertical" />
     </RelativeLayout>
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/rotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_menu"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/rotate_noinaycoanh">
+    </de.hdodenhof.circleimageview.CircleImageView>
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/layout_menu">
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/rotate"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="29dp"
-            app:shapeAppearance="@style/circular"
-            app:srcCompat="@drawable/noinaycoanh_retangle">
-        </com.google.android.material.imageview.ShapeableImageView>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/rotate"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/name_music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nơi này có anh"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sơn tùng MTP"
-                android:textColor="#80FFFFFF"
-                android:layout_below="@+id/name_music"
-                android:textSize="16sp"
-                android:layout_centerHorizontal="true">
-            </TextView>
-        </LinearLayout>
-    </RelativeLayout>
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="550dp"
-        android:layout_below="@+id/layout_title"
-        android:scrollbars="none">
+        android:layout_below="@+id/rotate"
+        android:layout_marginTop="20dp">
         <TextView
-            android:id="@+id/lyric"
+            android:id="@+id/name_music"
             android:layout_width="wrap_content"
-            android:layout_marginHorizontal="37dp"
             android:layout_height="wrap_content"
-            android:textColor="#B3FFFFFF"
+            android:text="Nơi này có anh"
+            android:textColor="#FFFFFF"
             android:textSize="27sp"
             android:textStyle="bold"
-            android:text="Em là ai từ đâu bước đến nơi đây dịu dàng chân phương\n\nEm là ai tựa như ánh nắng ban mai ngọt ngào trong sương\n\nNgắm em thật lâu con tim anh yếu mềm\n\nĐắm say từ phút đó từng giây trôi yêu thêm.\n\nBao ngày qua bình minh đánh thức xua tan bộn bề nơi anh\n\nBao ngày qua niềm thương nỗi nhớ bay theo bầu trời trong xanh\n\nLiếc đôi hàng mi mong manh anh thẫn thờ\n\nMuốn hôn nhẹ mái tóc bờ môi em, anh mơ.\n\n[ĐK:]\n\nCầm tay anh, dựa vai anh\n\nKề bên anh nơi này có anh\n\nGió mang câu tình ca\n\nNgàn ánh sao vụt qua nhẹ ôm lấy em\n\n(Yêu em thương em con tim anh chân thành).\n\nCầm tay anh, dựa vai anh\n\nKề bên anh nơi này có anh\n\nKhép đôi mi thật lâu\n\nNguyện mãi bên cạnh nhau\n\nYêu say đắm như ngày đầu.\n\nMùa xuân đến bình yên cho anh những giấc mơ\n\nHạ lưu giữ ngày mưa ngọt ngào nên thơ\n\nMùa thu lá vàng rơi đông sang anh nhớ em\n\nTình yêu bé nhỏ xin dành tặng riêng em.\n\n[Rap:]\n\nCòn đó tiếng nói ấy bên tai vấn vương bao ngày qua\n\nÁnh mắt bối rối nhớ thương bao ngày qua\n\nYêu em anh thẫn thờ, con tim bâng khuâng đâu có ngờ\n\nChẳng bao giờ phải mong chờ\n\nĐợi ai trong chiều hoàng hôn mờ\n\nĐắm chìm hòa vào vần thơ\n\nNgắm nhìn khờ dại mộng mơ\n\nĐừng bước vội vàng rồi làm ngơ\n\nLạnh lùng đó làm bộ dạng thờ ơ\n\nNhìn anh đi em nha\n\nHướng nụ cười cho riêng anh nha\n\nĐơn giản là yêu con tim anh lên tiếng thôi.\n\n* Uhhhhhhhh nhớ thương em\n\nUhhhhhhhh nhớ thương em lắm\n\nAhhhhhhh phía sau chân trời\n\nCó ai băng qua lối về cùng em đi trên đoạn đường dài.">
+            android:layout_centerHorizontal="true">
         </TextView>
-    </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/layout_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/scrollView">
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_random"
+            android:text="Sơn tùng MTP"
+            android:textColor="#80FFFFFF"
+            android:layout_below="@+id/name_music"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true">
+        </TextView>
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="26dp">
-        </ImageView>
+            app:srcCompat="@drawable/uil_share"
+            android:layout_marginLeft="26dp" />
+        <ImageView
+            android:id="@+id/btn_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/heart" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_seekbar"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/layout_title">
+        <TextView
+            android:id="@+id/durationPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4:23"
+            android:layout_marginStart="26dp"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/seekbar">
+        </TextView>
         <SeekBar
             android:id="@+id/seekbar"
-            android:layout_width="260dp"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -149,16 +177,21 @@
             android:progressBackgroundTint="#99E0E0E0"
             android:thumbTint="#FFFFFF">
         </SeekBar>
-        <ImageView
+        <TextView
+            android:id="@+id/durationTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/repeat"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="26dp">
-        </ImageView>
+            android:layout_alignParentEnd="true"
+            android:text="5:34"
+            android:layout_marginEnd="26dp"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_below="@+id/seekbar">
+        </TextView>
     </RelativeLayout>
+
     <RelativeLayout
+        android:layout_marginTop="40dp"
         android:layout_below="@+id/layout_seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -167,7 +200,7 @@
             android:id="@+id/btn_random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/tabler_checkbox"
+            app:srcCompat="@drawable/icon_random"
             android:layout_marginLeft="26dp"
             android:layout_centerVertical="true"
             />
@@ -192,7 +225,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/buttonplay" />
+            app:srcCompat="@drawable/button_pause" />
         <ImageView
             android:id="@+id/btn_repeat"
             android:layout_width="wrap_content"
@@ -200,9 +233,78 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="26dp"
-            app:srcCompat="@drawable/ph_playlist" />
+            app:srcCompat="@drawable/repeat" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_control">
+        <ImageView
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="26dp"
+            app:srcCompat="@drawable/comment" />
+        <ImageView
+            android:id="@+id/btn_add_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/btn_Kbps"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/add_music" />
+
+        <Button
+            android:id="@+id/btn_Kbps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#33BD9AC9"
+            android:text="128Kpbs"
+            android:layout_centerVertical="true"
+            android:textColor="#B3FFFFFF"
+            android:textSize="15sp"></Button>
+        <ImageView
+            android:id="@+id/btn_dowload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/btn_Kbps"
+            app:srcCompat="@drawable/dowload" />
+        <ImageView
+            android:id="@+id/btn_danhsachphat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="26dp"
+            app:srcCompat="@drawable/ph_playlist" />
+    </RelativeLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_music"
+        app:tabSelectedTextColor="#00000000"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        app:tabIndicatorHeight="4dp"
+        app:tabTextColor="#00000000"
+        android:visibility="invisible"
+        android:layout_height="wrap_content">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_below="@+id/layout_menu"
+        android:id="@+id/view_pager2_music"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.viewpager2.widget.ViewPager2>
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.listenmusic;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment_music extends Fragment {
+    private CircleImageView circle_img;
+    private ImageView bt_pause,bt_play;
+    private MediaPlayer mediaPlayer;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,12 +61,76 @@ public class Fragment_music extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false);
+        View view = inflater.inflate(R.layout.fragment_music, container, false);
+        circle_img = view.findViewById(R.id.rotate);
+        startAnimation();
+        // Khởi tạo MediaPlayer
+        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bachnguyequangvanotchusa); // Thay your_music_file bằng tên tệp nhạc của bạn
+        playMusic();
+        bt_pause = getActivity().findViewById(R.id.btn_pause);
+        bt_play = getActivity().findViewById(R.id.btn_play);
+
+        bt_pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopAnimation();
+                pauseMusic(); // Gọi hàm tạm dừng nhạc
+                bt_pause.setVisibility(View.INVISIBLE); // Ẩn nút pause
+                bt_play.setVisibility(View.VISIBLE); // Hiện nút play
+            }
+        });
+        bt_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startAnimation();
+                playMusic(); // Gọi hàm phát nhạc
+                bt_play.setVisibility(View.INVISIBLE); // Ẩn nút play
+                bt_pause.setVisibility(View.VISIBLE); // Hiện nút pause
+
+
+            }
+        });
+        return view;
     }
+    private void startAnimation(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                circle_img.animate().rotationBy(360).withEndAction(this).setDuration(10000)
+                        .setInterpolator(new LinearInterpolator()).start();
+            }
+        };
+        circle_img.animate().rotationBy(360).withEndAction(runnable).setDuration(10000)
+                .setInterpolator(new LinearInterpolator()).start();
+    }
+    private void stopAnimation(){
+        circle_img.animate().cancel();
+    }
+    private void playMusic() {
+        if (!mediaPlayer.isPlaying()) {
+            mediaPlayer.start(); // Phát nhạc
+        }
+    }
+
+    private void pauseMusic() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause(); // Tạm dừng nhạc
+        }
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release(); // Giải phóng MediaPlayer khi không sử dụng
+            mediaPlayer = null; // Đặt mediaPlayer thành null để tránh lỗi
+        }
+    }
+
 }

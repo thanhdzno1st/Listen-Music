@@ -18,7 +18,9 @@
         </activity>
         <activity
             android:name=".Lyric_activity"
-            android:exported="false" />
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".Music_Activity"
             android:exported="true" >
