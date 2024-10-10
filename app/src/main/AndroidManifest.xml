@@ -15,16 +15,17 @@
 
         <activity
             android:name=".leftMenu"
-            android:exported="false"> <!-- Đóng thẻ activity ở đây -->
+            android:exported="false">
+        </activity> <!-- Đóng thẻ activity ở đây -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
 
     </application>
 
