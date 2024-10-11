@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_follow"
         android:title="Follow"
-        android:icon="@drawable/menu_follow_ic" />
+        android:icon="@drawable/menu_follow_ic"
+        android:enabled="false" />
     <item
         android:id="@+id/menu_vip"
         android:title="Vip"
-        android:icon="@drawable/menu_vip_ic" />
+        android:icon="@drawable/menu_vip_ic"
+        android:enabled="false" />
     <item
         android:id="@+id/menu_home"
         android:title="Home"
@@ -16,9 +17,9 @@
         android:id="@+id/menu_trend"
         android:title="Trend"
         android:icon="@drawable/menu_trend_ic" />
-
     <item
         android:id="@+id/menu_storage"
         android:title="Storage"
-        android:icon="@drawable/menu_storage_ic" />
+        android:icon="@drawable/menu_storage_ic"
+        android:enabled="false" />
 </menu>
