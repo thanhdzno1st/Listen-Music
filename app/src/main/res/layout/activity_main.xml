@@ -1,36 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#6DFF60">
+    tools:context=".MainActivity">
 
-    <!-- Hình ảnh logo ở trên cùng -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="220dp"
-        android:layout_height="114dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/logobtp" />
-
-    <!-- TextView chào mừng bên dưới logo -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <!-- Toolbar với các biểu tượng -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:text="Welcome"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:background="#16B608"
+        android:elevation="4dp">
 
+        <!-- Icon menu -->
+        <ImageView
+            android:id="@+id/icon_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:contentDescription="Menu"
+            android:padding="10dp"
+            android:layout_gravity="start"/>
 
+        <!-- Tiêu đề: Nhạc lưu trong máy -->
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhạc lưu trong máy"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"/>
 
-</RelativeLayout>
+        <!-- Icon tải xuống -->
+        <ImageView
+            android:id="@+id/icon_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_download"
+            android:contentDescription="Download"
+            android:padding="10dp"
+            android:layout_gravity="end"/>
 
+        <!-- Icon Wi-Fi -->
+        <ImageView
+            android:id="@+id/icon_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_wifi"
+            android:contentDescription="Wi-Fi"
+            android:padding="10dp"
+            android:layout_gravity="end"/>
+
+        <!-- Icon tìm kiếm -->
+        <ImageView
+            android:id="@+id/icon_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search"
+            android:contentDescription="Search"
+            android:padding="10dp"
+            android:layout_gravity="end"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- TabLayout để chứa các tab (Playlist, Album, Yêu Thích) -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@android:color/darker_gray"/>
+
+    <!-- ViewPager2 để hiển thị nội dung của các fragment -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

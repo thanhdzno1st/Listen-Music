@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.musicbtp"
+    namespace = "com.example.baitaphuy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.musicbtp"
+        applicationId = "com.example.baitaphuy"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

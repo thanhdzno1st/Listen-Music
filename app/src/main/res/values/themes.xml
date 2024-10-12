@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MusicBTP" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Baitaphuy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.MusicBTP" parent="Base.Theme.MusicBTP" />
+    <style name="Theme.Baitaphuy" parent="Base.Theme.Baitaphuy" />
 </resources>
