@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#F0F2E4">
 
     <!-- Toolbar với các biểu tượng -->
     <androidx.appcompat.widget.Toolbar
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#16B608"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:elevation="4dp">
 
         <!-- Icon menu -->
@@ -24,9 +26,8 @@
             android:padding="10dp"
             android:layout_gravity="start"/>
 
-        <!-- Tiêu đề: Nhạc lưu trong máy -->
+        <!-- TextView "Nhạc lưu trong máy" -->
         <TextView
-            android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhạc lưu trong máy"
@@ -64,7 +65,7 @@
             android:layout_gravity="end"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- TabLayout để chứa các tab (Playlist, Album, Yêu Thích) -->
+    <!-- TabLayout để chứa các tab -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
