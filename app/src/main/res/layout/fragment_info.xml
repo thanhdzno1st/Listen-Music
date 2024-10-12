@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:text="Nơi này có anh"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_centerHorizontal="true">
                     </TextView>
@@ -54,28 +54,32 @@
                         android:text="Sơn tùng MTP"
                         android:textColor="#80FFFFFF"
                         android:layout_below="@+id/name_music"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_centerHorizontal="true">
                     </TextView>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
                             android:src="@drawable/heart">
                         </ImageView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#80FFFFFF"
+                            android:textSize="14sp"
                             android:layout_marginLeft="5dp"
                             android:text="6M">
                         </TextView>
                         <ImageView
                             android:layout_marginLeft="20dp"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:textSize="14sp"
                             android:src="@drawable/earphones">
                         </ImageView>
                         <TextView
@@ -88,7 +92,7 @@
                     </LinearLayout>
                 </LinearLayout>
                 <View
-                    android:layout_width="340dp"
+                    android:layout_width="263dp"
                     android:layout_height="1dp"
                     android:id="@+id/line_1"
                     android:layout_centerHorizontal="true"
@@ -114,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:text="Albumn"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#B3FFFFFF"/>
                         <TextView
                             android:id="@+id/nhacsi"
@@ -123,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:text="Nhạc sĩ"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#B3FFFFFF"/>
                         <TextView
                             android:id="@+id/theloai"
@@ -132,7 +136,7 @@
                             android:layout_height="wrap_content"
                             android:text="Thể loại"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#B3FFFFFF"/>
                         <TextView
                             android:id="@+id/phathanh"
@@ -141,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:text="Phát hành"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#B3FFFFFF"/>
                         <TextView
                             android:id="@+id/cungcap"
@@ -150,7 +154,7 @@
                             android:layout_height="wrap_content"
                             android:text="Cung cấp"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#B3FFFFFF"/>
                     </LinearLayout>
                     <LinearLayout
@@ -164,7 +168,7 @@
                             android:layout_height="wrap_content"
                             android:text="Nơi này có anh (Single)"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#FFFFFF"/>
                         <TextView
                             android:layout_marginBottom="15dp"
@@ -172,7 +176,7 @@
                             android:layout_height="wrap_content"
                             android:text="Sơn Tùng MTP"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#FFFFFF"/>
                         <TextView
                             android:layout_marginBottom="15dp"
@@ -180,7 +184,7 @@
                             android:layout_height="wrap_content"
                             android:text="Việt Nam, V-Pop"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#FFFFFF"/>
                         <TextView
                             android:layout_marginBottom="15dp"
@@ -188,7 +192,7 @@
                             android:layout_height="wrap_content"
                             android:text="13/02/2017"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#FFFFFF"/>
                         <TextView
                             android:layout_marginBottom="15dp"
@@ -196,7 +200,7 @@
                             android:layout_height="wrap_content"
                             android:text="VIVI ENM"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="#FFFFFF"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -277,7 +281,7 @@
                 android:layout_below="@+id/layout_video"
                 android:text="Có thể bạn muốn nghe"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="#FFFFFF"/>
             <ListView
                 android:id="@+id/list_dsbaihat"

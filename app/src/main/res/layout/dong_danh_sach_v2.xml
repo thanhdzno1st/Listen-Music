@@ -6,7 +6,7 @@
     <RelativeLayout
         android:background="@drawable/black_rounded_background"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="26dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="10dp"
         android:layout_height="wrap_content">
         <com.google.android.material.imageview.ShapeableImageView
@@ -39,20 +39,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/btn_add_music"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/btn_caidat"
-            android:layout_marginRight="10dp"
-            app:srcCompat="@drawable/add_danhsachphat" />
+
         <ImageView
             android:id="@+id/btn_caidat"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/more_vertical" />
+            app:srcCompat="@drawable/menuchovui" />
     </RelativeLayout>
 </RelativeLayout>

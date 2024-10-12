@@ -13,13 +13,8 @@
         android:theme="@style/Theme.ListenMusic"
         tools:targetApi="31" >
         <activity
-            android:name=".info_activity"
-            android:exported="false" >
-        </activity>
-        <activity
-            android:name=".Lyric_activity"
-            android:exported="false">
-
+            android:name=".TestActivity"
+            android:exported="true">
         </activity>
         <activity
             android:name=".Music_Activity"
