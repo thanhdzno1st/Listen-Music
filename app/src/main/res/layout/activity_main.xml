@@ -16,7 +16,7 @@
         <include
             layout="@menu/top_menu" />
     </LinearLayout>
-    <androidx.viewpager.widget.ViewPager
+    <com.example.musicbtp.fragment.CustomViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
