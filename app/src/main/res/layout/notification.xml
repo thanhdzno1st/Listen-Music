@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2E4"
+    android:padding="8dp"
+    tools:ignore="ExtraText">
+
+    <!-- Logo bên cạnh tiêu đề -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="24dp"
+        android:layout_marginTop="80dp"
+        android:layout_height="24dp"
+        android:src="@drawable/notifications"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/title" />
+
+    <!-- Tiêu đề trang -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hôm nay nghe gì"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"
+        android:paddingStart="8dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imgLogo"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Mục 1 -->
+    <ImageView
+        android:id="@+id/imgIcon1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image5"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Song Ca V-Pop"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon1"
+        app:layout_constraintTop_toTopOf="@id/imgIcon1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 giờ"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle1"
+        app:layout_constraintStart_toEndOf="@id/imgIcon1" />
+
+    <TextView
+        android:id="@+id/tvDescription1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Trang Pháp nhắn 'Gửi Chồng Tương Lai' cùng JSOL và những màn kết hợp đỉnh nhất"
+        android:layout_marginLeft="20dp"
+
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon1"
+        app:layout_constraintTop_toBottomOf="@id/tvTime1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Mục 2 -->
+    <ImageView
+        android:id="@+id/imgIcon2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image6"
+        app:layout_constraintTop_toBottomOf="@id/imgIcon1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="K PoP"
+
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon2"
+        app:layout_constraintTop_toTopOf="@id/imgIcon2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 giờ"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="20dp"
+
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle2"
+        app:layout_constraintStart_toEndOf="@id/imgIcon2" />
+
+    <TextView
+        android:id="@+id/tvDescription2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tuyển tập những màn song ca Kpop khiến bao con tim rung động"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon2"
+        app:layout_constraintTop_toBottomOf="@id/tvTime2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Mục 3 -->
+    <ImageView
+        android:id="@+id/imgIcon3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image7"
+        app:layout_constraintTop_toBottomOf="@id/imgIcon2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Indie Việt Tháng 10"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon3"
+        app:layout_constraintTop_toTopOf="@id/imgIcon3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 giờ"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle3"
+        app:layout_constraintStart_toEndOf="@id/imgIcon3" />
+
+    <TextView
+        android:id="@+id/tvDescription3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Không thể bỏ qua những hit indie Việt tiềm năng nhất trong tháng"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon3"
+        app:layout_constraintTop_toBottomOf="@id/tvTime3"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Mục 4 -->
+    <ImageView
+        android:id="@+id/imgIcon4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image8"
+        app:layout_constraintTop_toBottomOf="@id/imgIcon3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="EDM Hay Nhất"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon4"
+        app:layout_constraintTop_toTopOf="@id/imgIcon4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 giờ"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle4"
+        app:layout_constraintStart_toEndOf="@id/imgIcon4" />
+
+    <TextView
+        android:id="@+id/tvDescription4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Lắc lư cùng Alok, Gryffin trong 'Never Letting Go'"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon4"
+        app:layout_constraintTop_toBottomOf="@id/tvTime4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Mục 5 -->
+    <ImageView
+        android:id="@+id/imgIcon5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image9"
+        app:layout_constraintTop_toBottomOf="@id/imgIcon4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="V-Pop Gây Bão"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon5"
+        app:layout_constraintTop_toTopOf="@id/imgIcon5"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8 giờ"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle5"
+        app:layout_constraintStart_toEndOf="@id/imgIcon5" />
+
+    <TextView
+        android:id="@+id/tvDescription5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tất tần tật loạt hit V-Pop làm mưa làm gió ngay từ ngày đầu ra mắt"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon5"
+        app:layout_constraintTop_toBottomOf="@id/tvTime5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Mục 6 -->
+    <ImageView
+        android:id="@+id/imgIcon6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image10"
+        app:layout_constraintTop_toBottomOf="@id/imgIcon5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mới Phát Hành"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@id/imgIcon6"
+        app:layout_constraintTop_toTopOf="@id/imgIcon6"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21 giờ"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle6"
+        app:layout_constraintStart_toEndOf="@id/imgIcon6" />
+
+    <TextView
+        android:id="@+id/tvDescription6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ca khúc bắt hũ 'Cô Úa' được làm mới qua giọng hát Tố Mỹ và Quốc Thiên"
+        android:layout_marginLeft="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgIcon6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/imgIcon6"
+        app:layout_constraintTop_toBottomOf="@id/tvTime6"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
