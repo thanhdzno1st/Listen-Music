@@ -18,6 +18,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 return new HomeFragment();
             case 1:
                 return new TrendFragment();
+            case 2:
+                return new FollowFragment();
             default:
                 return new HomeFragment();
         }
@@ -25,6 +27,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

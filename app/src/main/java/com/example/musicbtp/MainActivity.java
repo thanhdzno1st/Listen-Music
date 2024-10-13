@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.menu_trend) {
                     viewpager.setCurrentItem(1);
                 }
+                else if (id == R.id.menu_follow) {
+                    viewpager.setCurrentItem(2);
+                }
                 return true;
             }
         });
