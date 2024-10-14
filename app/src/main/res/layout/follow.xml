@@ -21,7 +21,7 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:padding="8dp"
-        android:background="@drawable/title_background"/>
+        />
 
     <!-- Nội dung thông tin -->
     <TextView
