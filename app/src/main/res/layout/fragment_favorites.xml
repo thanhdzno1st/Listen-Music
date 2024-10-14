@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#F0F2E4">
+    android:background="#F0F2E4"
+    android:layout_marginTop="70dp"
+    >
 
     <!-- Thông tin về số lượng bài hát -->
     <TextView

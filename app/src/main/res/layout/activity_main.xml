@@ -76,9 +76,64 @@
         app:tabTextColor="@android:color/darker_gray"/>
 
     <!-- ViewPager2 để hiển thị nội dung của các fragment -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
+
+    <!-- Thêm các nút button bên dưới ViewPager2 -->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="top">
+
+        <!-- Button 1 -->
+        <Button
+            android:id="@+id/btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playist"
+            android:layout_weight="1"
+            android:backgroundTint="#F0F2E4"
+            android:textColor="@color/black"
+          />
+
+        <!-- Button 2 -->
+        <Button
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Album"
+            android:layout_weight="1"
+            android:backgroundTint="#F0F2E4"
+            android:textColor="#746E6E"/>
+
+        <!-- Button 3 -->
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yêu thích"
+            android:layout_weight="1"
+            android:backgroundTint="#F0F2E4"
+            android:textColor="#746E6E"/>
+        <ImageView
+            android:id="@+id/icon_menu_3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/cham"
+            android:contentDescription="Search"
+            android:padding="10dp"
+            android:layout_gravity="end"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

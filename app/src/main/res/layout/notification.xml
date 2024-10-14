@@ -39,8 +39,8 @@
     <!-- Mục 1 -->
     <ImageView
         android:id="@+id/imgIcon1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
@@ -92,8 +92,8 @@
     <!-- Mục 2 -->
     <ImageView
         android:id="@+id/imgIcon2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
@@ -145,8 +145,8 @@
     <!-- Mục 3 -->
     <ImageView
         android:id="@+id/imgIcon3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
@@ -196,8 +196,8 @@
     <!-- Mục 4 -->
     <ImageView
         android:id="@+id/imgIcon4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
@@ -247,8 +247,8 @@
     <!-- Mục 5 -->
     <ImageView
         android:id="@+id/imgIcon5"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
@@ -298,8 +298,8 @@
     <!-- Mục 6 -->
     <ImageView
         android:id="@+id/imgIcon6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
