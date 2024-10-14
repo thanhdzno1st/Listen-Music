@@ -1,0 +1,129 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2E4"
+    android:padding="16dp">
+
+    <!-- Tiêu đề "Trợ giúp" -->
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trợ giúp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Mục Trợ giúp -->
+    <LinearLayout
+        android:id="@+id/help_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_below="@id/toolbar_title">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_support"
+            android:contentDescription="Trợ giúp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trợ giúp"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Mục Góp ý, báo lỗi -->
+    <LinearLayout
+        android:id="@+id/report_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_below="@id/help_section">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_report"
+            android:contentDescription="Góp ý, báo lỗi"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Góp ý, báo lỗi"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Mục Gửi QoS -->
+    <LinearLayout
+        android:id="@+id/qos_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_below="@id/report_section">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_report2"
+            android:contentDescription="Gửi QoS"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gửi QoS"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Câu hỏi và thông tin ở dưới -->
+    <TextView
+        android:id="@+id/footer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tại sao trình phát nhạc trên thanh thông báo không thể tắt được."
+        android:textSize="18sp"
+        android:textColor="#9C27B0"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/qos_section"/>
+
+    <TextView
+        android:id="@+id/footer_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tại sao nhạc dừng khi vào ứng dụng thứ 3."
+        android:textSize="18sp"
+        android:textColor="#9C27B0"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/footer_text"/>
+
+    <TextView
+        android:id="@+id/footer_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nếu bạn gặp vấn đề khác, vui lòng liên hệ với chúng tôi."
+        android:textSize="18sp"
+        android:textColor="#666666"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/footer_text1"/>
+
+</RelativeLayout>
