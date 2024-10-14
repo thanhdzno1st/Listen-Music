@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Back Button -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/eva"/> <!-- Your back arrow icon here -->
+
+
+    <!-- Xác minh OTP title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xác minh OTP"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_toEndOf="@id/btnBack"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"/>
+
+    <!-- Image for OTP Illustration -->
+    <ImageView
+        android:id="@+id/ivOTPImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/otp" /> <!-- Your OTP illustration image here -->
+
+    <!-- Nhập OTP text -->
+    <TextView
+        android:id="@+id/tvInputOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhập OTP"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_below="@id/ivOTPImage"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Mã OTP hướng dẫn -->
+    <TextView
+        android:id="@+id/tvOTPInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mã OTP 4 số đã được gửi đến số 0962980230"
+        android:textSize="15dp"
+        android:textColor="#7D7D7D"
+        android:layout_below="@id/tvInputOTP"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"/>
+
+    <!-- OTP Input Boxes -->
+    <LinearLayout
+        android:id="@+id/otpInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/tvOTPInstruction"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp">
+
+        <!-- OTP Digit 1 -->
+        <EditText
+            android:id="@+id/etOTP1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="9"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:background="#EDEDED"/> <!-- Drawable for the box -->
+
+
+        <!-- OTP Digit 2 -->
+        <EditText
+            android:id="@+id/etOTP2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#EDEDED"
+            android:inputType="number"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:maxLength="1"
+            android:textColor="#000000"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:text="9"
+            android:textStyle="bold"/>
+
+        <!-- OTP Digit 3 -->
+        <EditText
+            android:id="@+id/etOTP3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#EDEDED"
+            android:inputType="number"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:maxLength="1"
+            android:textColor="#000000"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:text="9"
+            android:textStyle="bold"/>
+
+        <!-- OTP Digit 4 -->
+        <EditText
+            android:id="@+id/etOTP4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#EDEDED"
+            android:inputType="number"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:maxLength="1"
+            android:textColor="#000000"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:text="9"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Xác minh button -->
+    <Button
+        android:id="@+id/btnVerifyOTP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác minh"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#00FF00"
+        android:textSize="20dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_below="@id/otpInputLayout"
+        android:layout_marginTop="90dp"/>
+
+    <!-- Gửi lại OTP -->
+    <TextView
+        android:id="@+id/tvResendOTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gửi lại OTP"
+
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnVerifyOTP"
+        android:layout_marginTop="80dp"
+
+        />
+</RelativeLayout>

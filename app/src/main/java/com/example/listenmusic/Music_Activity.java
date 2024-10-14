@@ -42,7 +42,7 @@ public class Music_Activity extends AppCompatActivity {
     private ViewPager2 viewPager2Music,viewPager2dsphat;
     private TabLayout mTablayout;
     private CircleImageView circle_img;
-    private ImageView bt_pause,btn_addmusic,btn_dow,bt_random,bt_danhsach;
+    private ImageView bt_pause,btn_addmusic,btn_dow,bt_random,bt_danhsach,bt_back;
     private View indicator;
     private TextView tabTitle,durationPlayed,durationTotal;
     private View indicator1,indicator2,indicator3;
@@ -182,12 +182,15 @@ public class Music_Activity extends AppCompatActivity {
 
             }
         });
-
+        bt_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish(); // Quay lại MainActivity
+            }
+        });
     }
 
     private void AnhXa() {
-//        circle_img = findViewById(R.id.rotate);
-//        bt_pause = findViewById(R.id.btn_pause);
         mTablayout = findViewById(R.id.tab_layout_music);
         viewPager2Music= findViewById(R.id.view_pager2_music);
         viewPager2dsphat=findViewById(R.id.view_pager2_dsphat);
@@ -206,7 +209,7 @@ public class Music_Activity extends AppCompatActivity {
         mainlayout=findViewById(R.id.main);
         bt_danhsach=findViewById(R.id.btn_danhsachphat);
         layoutMenu = findViewById(R.id.layout_menu);
-
+        bt_back=findViewById(R.id.btn_back);
     }
     // Hàm cập nhật các chỉ báo
     private void updateIndicators(int position) {
@@ -388,7 +391,6 @@ public class Music_Activity extends AppCompatActivity {
         });
         animator.start();
     }
-
 
 
 }

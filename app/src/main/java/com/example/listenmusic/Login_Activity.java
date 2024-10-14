@@ -3,40 +3,67 @@ package com.example.listenmusic;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.viewpager.widget.ViewPager;
+import me.relex.circleindicator.CircleIndicator;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Login_Activity extends AppCompatActivity {
+    private ViewPager viewPager;
+    private ViewPagerAdapter_Login adapter;
+    private CircleIndicator indicator;
+    private Handler handler;
+    private Runnable runnable;
+    private int currentPage = 0;
 
-    private ViewPager2 viewPager;
-    private ViewPagerAdapter adapter;
-    private Integer[] layouts = {R.layout.slide_layout_1, R.layout.slide_layout_2, R.layout.slide_layout_3};
+    private Integer[] layouts = {R.layout.slide_layout_1, R.layout.slide_layout_2, R.layout.slide_layout_3}; // Danh sách layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.slide_layout_1); // Đảm bảo sử dụng đúng layout
+        setContentView(R.layout.activity_login); // Đảm bảo sử dụng layout chính cho Login Activity
 
-        // Khởi tạo ViewPager
+        // Khởi tạo ViewPager và CircleIndicator
         viewPager = findViewById(R.id.viewPager);
+        indicator = findViewById(R.id.indicator);
 
         // Chuyển danh sách layouts sang List
         List<Integer> layoutList = Arrays.asList(layouts);
 
         // Khởi tạo adapter và set cho ViewPager
-        adapter = new ViewPagerAdapter(this, layoutList);
+        adapter = new ViewPagerAdapter_Login(this, layoutList);
         viewPager.setAdapter(adapter);
 
-        // Thêm chuyển cảnh tự động sau 3 giây (nếu cần)
-        new Handler().postDelayed(new Runnable() {
+        // Liên kết CircleIndicator với ViewPager
+        indicator.setViewPager(viewPager);
+
+        // Khởi tạo Handler để tự động chuyển trang
+        handler = new Handler();
+        runnable = new Runnable() {
             @Override
             public void run() {
-                // Chuyển cảnh sang slide tiếp theo nếu có
-                if (viewPager.getCurrentItem() < layoutList.size() - 1) {
-                    viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                // Tính toán trang hiện tại
+                if (currentPage == layoutList.size()) {
+                    currentPage = 0; // Reset về trang đầu nếu đã đến trang cuối
                 }
+
+                // Chuyển sang trang tiếp theo
+                viewPager.setCurrentItem(currentPage++, true);
+
+                // Đặt lại handler sau 2 giây
+                handler.postDelayed(this, 2000);
             }
-        }, 3000); // 3 giây
+        };
+
+        // Bắt đầu chạy handler sau khi activity tạo xong
+        handler.postDelayed(runnable, 2000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Loại bỏ các callback khi activity bị hủy để tránh rò rỉ bộ nhớ
+        handler.removeCallbacks(runnable);
     }
 }

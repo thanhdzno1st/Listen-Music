@@ -5,30 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Music_Activity"
-    android:background="#6DFF60">
+    tools:context=".MainActivity"
+    android:background="#31FF1F">
 
     <!-- Hình ảnh logo ở trên cùng -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="220dp"
-        android:layout_height="114dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
         android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/logobtp" />
-
-    <!-- TextView chào mừng bên dưới logo -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
-        android:text="Welcome"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        app:srcCompat="@drawable/logotbp" />
 
 
 

@@ -3,5 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#80FFFFFF</color>
-
+    <color name="colorActiveFollow">#FF6F61</color>  <!-- Màu cam đậm -->
+    <color name="colorActiveVip">#325D7A</color>     <!-- Màu xanh da trời trung tính -->
+    <color name="colorActiveHome">#28B463</color>     <!-- Màu xanh lá cây -->
+    <color name="colorActiveTrend">#F39C12</color>    <!-- Màu vàng -->
+    <color name="colorActiveLibrary">#8E44AD</color>   <!-- Màu tím đậm -->
+    <color name="colorInactive">#AAB8C2</color>        <!-- Màu xám nhạt hơn -->
+    <color name="blur">#40000000</color>
+    <color name="colorSelected">#23FF0F</color>
+    <color name="colorNotSelected">#D0D0D0</color>
 </resources>

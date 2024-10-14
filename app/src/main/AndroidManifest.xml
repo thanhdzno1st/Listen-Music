@@ -13,12 +13,13 @@
         android:theme="@style/Theme.ListenMusic"
         tools:targetApi="31" >
         <activity
-            android:name=".TestActivity"
+            android:name=".Intro_Activity"
             android:exported="true">
+
         </activity>
         <activity
-            android:name=".Music_Activity"
-            android:exported="true" >
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +27,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".TestActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Music_Activity"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".Login_Activity"
-            android:exported="false" >
+            android:exported="true" >
+
         </activity>
     </application>
 
