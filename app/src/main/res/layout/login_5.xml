@@ -35,9 +35,10 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/OTP" /> <!-- Your OTP illustration image here -->
+        android:src="@drawable/otp" /> <!-- Your OTP illustration image here -->
 
     <!-- Nhập OTP text -->
+
     <TextView
         android:id="@+id/tvInputOTP"
         android:layout_width="wrap_content"

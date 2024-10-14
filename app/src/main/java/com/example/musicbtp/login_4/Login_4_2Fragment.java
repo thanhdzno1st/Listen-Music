@@ -1,12 +1,15 @@
 package com.example.musicbtp.login_4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.musicbtp.MainActivity;
 import com.example.musicbtp.R;
 
 /**
@@ -15,7 +18,7 @@ import com.example.musicbtp.R;
  * create an instance of this fragment.
  */
 public class Login_4_2Fragment extends Fragment {
-
+    Button btnLogin;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,6 +63,16 @@ public class Login_4_2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login_4_2, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login_4_2, container, false);
+
+    btnLogin = rootView.findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }
+    });
+        return rootView;
     }
 }
