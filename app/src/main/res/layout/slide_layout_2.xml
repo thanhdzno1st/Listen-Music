@@ -7,7 +7,7 @@
     tools:context=".MainActivity"> <!-- Màu nền trắng -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="260dp"
         android:src="@drawable/logologin3"
         android:layout_centerHorizontal="true"
@@ -29,7 +29,7 @@
     <!-- Mô tả dưới tiêu đề -->
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Thuận tiện chia sẻ trải nghiệm âm nhạc trong cộng đồng, giúp kết nối giữa những người yêu âm nhạc"
         android:textSize="15dp"

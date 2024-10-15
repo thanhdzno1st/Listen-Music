@@ -5,14 +5,19 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -42,7 +47,7 @@ public class Music_Activity extends AppCompatActivity {
     private ViewPager2 viewPager2Music,viewPager2dsphat;
     private TabLayout mTablayout;
     private CircleImageView circle_img;
-    private ImageView bt_pause,btn_addmusic,btn_dow,bt_random,bt_danhsach,bt_back;
+    private ImageView bt_pause,btn_addmusic,btn_dow,bt_random,bt_danhsach,bt_back,bt_setting;
     private View indicator;
     private TextView tabTitle,durationPlayed,durationTotal;
     private View indicator1,indicator2,indicator3;
@@ -188,6 +193,12 @@ public class Music_Activity extends AppCompatActivity {
                 finish(); // Quay lại MainActivity
             }
         });
+        bt_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
     }
 
     private void AnhXa() {
@@ -210,6 +221,7 @@ public class Music_Activity extends AppCompatActivity {
         bt_danhsach=findViewById(R.id.btn_danhsachphat);
         layoutMenu = findViewById(R.id.layout_menu);
         bt_back=findViewById(R.id.btn_back);
+        bt_setting=findViewById(R.id.btn_caidat);
     }
     // Hàm cập nhật các chỉ báo
     private void updateIndicators(int position) {
@@ -391,6 +403,15 @@ public class Music_Activity extends AppCompatActivity {
         });
         animator.start();
     }
-
+    private void showDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet_setting);
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialoAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+    }
 
 }

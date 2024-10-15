@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="260dp"
         android:src="@drawable/logologin4"
         android:layout_centerHorizontal="true"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Không phải lo việc mất mạng hoặc mất sóng, khi có thể lưu nhạc một cách nhanh chóng về máy"
         android:textSize="15sp"

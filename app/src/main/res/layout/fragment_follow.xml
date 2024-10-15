@@ -339,6 +339,7 @@
                 android:background="#D3D3D3"
                 android:layout_margin="8dp" />
             <LinearLayout
+                android:id="@+id/info_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">

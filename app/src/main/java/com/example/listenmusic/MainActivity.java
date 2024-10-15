@@ -1,15 +1,23 @@
 package com.example.listenmusic;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
@@ -23,17 +31,42 @@ public class MainActivity extends AppCompatActivity {
     private ImageView btnOpenDrawer;
     private NavigationView navigationView;
     private View view;
+    private RelativeLayout bt_dowload;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        bt_dowload= findViewById(R.id.bt_2);
         // Tham chiếu tới DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         // Tham chiếu tới nút mở menu
         btnOpenDrawer = findViewById(R.id.bt_menu);
         view = findViewById(R.id.viewtablet);
+        bt_dowload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo một dialog mới
+                Dialog dialog = new Dialog(MainActivity.this); // MainActivity.this hoặc getActivity() nếu trong Fragment
+
+                // Đặt nội dung của dialog với layout đã tạo
+                dialog.setContentView(R.layout.dowload_custom);
+
+                // Đảm bảo dialog được hiển thị với layout mong muốn
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                // Đặt nền của dialog trong suốt (loại bỏ nền mặc định)
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // Đảm bảo có thể hủy dialog khi nhấn ra ngoài
+                dialog.setCancelable(true);
+
+                // Hiển thị dialog
+                dialog.show();
+            }
+        });
+        // Đóng dialog khi nhấn vào bên ngoài
+
         // Cài đặt sự kiện cho nút mở menu trái
         btnOpenDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPagerLeftMenu.setAdapter(adapterLeftMenu);
         viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn khi khởi động
+        viewPagerLeftMenu.setPageTransformer(false, null);
+
+
 
         // Liên kết BottomNavigationBar với ViewPager
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
@@ -149,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_setting) {
                     viewPagerLeftMenu.setCurrentItem(4); // Chuyển đến trang 4
                 } else if (id == R.id.nav_logout) {
-                    // Xử lý đăng xuất
+                    Intent intent = new Intent(MainActivity.this, Login_Activity.class);
+                    startActivity(intent);
                 }
 
                 // Đóng Drawer sau khi item được chọn

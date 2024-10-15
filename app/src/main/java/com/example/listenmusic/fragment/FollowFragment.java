@@ -1,5 +1,8 @@
 package com.example.listenmusic.fragment;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.example.listenmusic.MainActivity;
 import com.example.listenmusic.R;
 
 /**
@@ -16,7 +21,7 @@ import com.example.listenmusic.R;
  * create an instance of this fragment.
  */
 public class FollowFragment extends Fragment {
-
+    private LinearLayout info_1;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +66,33 @@ public class FollowFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follow, container, false);
+        View view = inflater.inflate(R.layout.fragment_follow, container, false);
+
+        // Sử dụng view thay vì getView()
+        info_1 = view.findViewById(R.id.info_1);
+        info_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Tạo một dialog mới
+                Dialog dialog = new Dialog(getActivity()); // MainActivity.this hoặc getActivity() nếu trong Fragment
+
+                // Đặt nội dung của dialog với layout đã tạo
+                dialog.setContentView(R.layout.follow);
+
+                // Đảm bảo dialog được hiển thị với layout mong muốn
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                // Đặt nền của dialog trong suốt (loại bỏ nền mặc định)
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                // Đảm bảo có thể hủy dialog khi nhấn ra ngoài
+                dialog.setCancelable(true);
+
+                // Hiển thị dialog
+                dialog.show();
+            }
+        });
+
+        return view;
     }
 }

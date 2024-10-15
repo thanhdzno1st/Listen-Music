@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="260dp"
         android:src="@drawable/logologin2"
         android:layout_centerHorizontal="true"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Sử dụng công nghệ phát nhạc hiện đại, giúp tối ưu hóa trải nghiệm nghe nhạc"
         android:textSize="15sp"

@@ -1,7 +1,10 @@
 package com.example.listenmusic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import me.relex.circleindicator.CircleIndicator;
@@ -16,6 +19,7 @@ public class Login_Activity extends AppCompatActivity {
     private Handler handler;
     private Runnable runnable;
     private int currentPage = 0;
+    private Button btnDangNhap,btnDangKy;
 
     private Integer[] layouts = {R.layout.slide_layout_1, R.layout.slide_layout_2, R.layout.slide_layout_3}; // Danh sách layout
 
@@ -27,7 +31,18 @@ public class Login_Activity extends AppCompatActivity {
         // Khởi tạo ViewPager và CircleIndicator
         viewPager = findViewById(R.id.viewPager);
         indicator = findViewById(R.id.indicator);
+        btnDangNhap = findViewById(R.id.loginButton);
+        btnDangKy = findViewById(R.id.registerButton);
 
+        btnDangNhap.setOnClickListener(v -> {
+            Intent intent = new Intent(Login_Activity.this, login4.class);
+            startActivity(intent);
+        });
+        btnDangKy.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(Login_Activity.this, register.class);
+            startActivity(intent);
+        });
         // Chuyển danh sách layouts sang List
         List<Integer> layoutList = Arrays.asList(layouts);
 
@@ -57,7 +72,7 @@ public class Login_Activity extends AppCompatActivity {
         };
 
         // Bắt đầu chạy handler sau khi activity tạo xong
-        handler.postDelayed(runnable, 2000);
+        handler.postDelayed(runnable, 500);
     }
 
     @Override
