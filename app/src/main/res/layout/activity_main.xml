@@ -214,7 +214,7 @@
             android:layout_above="@+id/bottom_navigation_bar"/>
         <com.ashokvarma.bottomnavigation.BottomNavigationBar
             app:bnbMode="mode_fixed"
-            app:bnbBackgroundStyle="background_style_static"
+            app:bnbBackgroundStyle="background_style_ripple"
             android:layout_alignParentBottom="true"
             android:id="@+id/bottom_navigation_bar"
             android:layout_width="match_parent"

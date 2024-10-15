@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link home_banner#newInstance} factory method to
+ * Use the {@link home_banner1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class home_banner extends Fragment {
+public class home_banner1 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class home_banner extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public home_banner() {
+    public home_banner1() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class home_banner extends Fragment {
      * @return A new instance of fragment home_banner.
      */
     // TODO: Rename and change types and number of parameters
-    public static home_banner newInstance(String param1, String param2) {
-        home_banner fragment = new home_banner();
+    public static home_banner1 newInstance(String param1, String param2) {
+        home_banner1 fragment = new home_banner1();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class home_banner extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_banner, container, false);
+        return inflater.inflate(R.layout.fragment_home_banner1, container, false);
     }
 }

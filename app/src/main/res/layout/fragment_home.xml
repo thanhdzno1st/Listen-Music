@@ -9,27 +9,21 @@
     android:gravity="center_horizontal"
     android:background="#F0F2E4"
     tools:context=".fragment.HomeFragment">
-
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="14dp"
-        android:layout_width="260dp"
-        android:layout_height="95dp"
-        android:layout_marginBottom="8dp"
+    <androidx.viewpager.widget.ViewPager
         app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="@android:color/white">
+        app:cardBackgroundColor="@android:color/white"
+        android:id="@+id/viewpager_banner"
+        android:layout_width="260dp"
+        android:layout_height="120dp">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/img_1"
-            android:scaleType="centerCrop" />
-    </androidx.cardview.widget.CardView>
+    </androidx.viewpager.widget.ViewPager>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#D3D3D3"
-        android:layout_margin="8dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link home_banner3#newInstance} factory method to
+ * Use the {@link home_banner4#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class home_banner3 extends Fragment {
+public class home_banner4 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +23,7 @@ public class home_banner3 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public home_banner3() {
+    public home_banner4() {
         // Required empty public constructor
     }
 
@@ -36,8 +36,8 @@ public class home_banner3 extends Fragment {
      * @return A new instance of fragment home_banner.
      */
     // TODO: Rename and change types and number of parameters
-    public static home_banner3 newInstance(String param1, String param2) {
-        home_banner3 fragment = new home_banner3();
+    public static home_banner4 newInstance(String param1, String param2) {
+        home_banner4 fragment = new home_banner4();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,6 +58,6 @@ public class home_banner3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_banner2, container, false);
+        return inflater.inflate(R.layout.fragment_home_banner4, container, false);
     }
 }

@@ -32,7 +32,7 @@
             android:id="@+id/ivDropdownArrow"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/Vector"
+            android:src="@drawable/vector"
             android:layout_marginEnd="8dp"
             android:layout_gravity="center_vertical"/>
 
