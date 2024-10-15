@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Hình dạng và trạng thái mặc định -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- Màu nền trắng -->
+            <corners android:radius="20dp" /> <!-- Bo tròn -->
+            <padding
+                android:left="16dp"
+                android:right="16dp"
+                android:top="8dp"
+                android:bottom="8dp" /> <!-- Khoảng cách padding -->
+        </shape>
+    </item>
+</selector>

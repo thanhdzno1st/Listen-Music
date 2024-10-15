@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Listen music</string>
+    <string name="music_fragment">music fragment</string>
+    <string name="info_fragment">info fragment</string>
+    <string name="lyrics_fragment">lyrics fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

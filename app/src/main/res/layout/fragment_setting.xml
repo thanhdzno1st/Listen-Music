@@ -1,0 +1,264 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F0F2E4">
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="19dp"
+        />
+    <!-- Tiêu đề "Cài đặt" căn giữa -->
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Cài đặt"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginTop="16dp"/>
+    <View
+        android:layout_below="@+id/title_text"
+        android:id="@+id/line"
+        android:layout_marginVertical="10dp"
+        android:layout_width="290dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:background="#000000"/>
+    <!-- Mục "Trình phát nhạc" -->
+    <RelativeLayout
+        android:id="@+id/music_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_text"
+        android:layout_marginTop="20dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_music"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_music_player"
+            android:contentDescription="Trình phát nhạc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_music"
+            android:layout_marginStart="10dp"
+            android:text="Trình phát nhạc"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <!-- Mục "Tải nhạc" -->
+    <RelativeLayout
+        android:id="@+id/download_music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/music_player"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_download"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_download"
+            android:contentDescription="Tải nhạc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_download"
+            android:layout_marginStart="10dp"
+            android:text="Tải nhạc"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <!-- Mục "Thư viện" -->
+    <RelativeLayout
+        android:id="@+id/library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/download_music"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_library"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_library"
+            android:contentDescription="Thư viện"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_library"
+            android:layout_marginStart="10dp"
+            android:text="Thư viện"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <!-- Mục "Video" -->
+    <RelativeLayout
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/library"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_video"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_video"
+            android:contentDescription="Video"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_video"
+            android:layout_marginStart="10dp"
+            android:text="Video"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <!-- Mục "Tai nghe và Bluetooth" -->
+    <RelativeLayout
+        android:id="@+id/bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_bluetooth"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_bluetooth"
+            android:contentDescription="Tai nghe và Bluetooth"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_bluetooth"
+            android:layout_marginStart="10dp"
+            android:text="Tai nghe và Bluetooth"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <!-- Mục "Thông báo" -->
+    <RelativeLayout
+        android:id="@+id/notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bluetooth"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_notifications"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_notifications"
+            android:contentDescription="Thông báo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_notifications"
+            android:layout_marginStart="10dp"
+            android:text="Thông báo"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <!-- Mục "Giao diện" -->
+    <RelativeLayout
+        android:id="@+id/interface_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notifications"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_interface"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_interface"
+            android:contentDescription="Giao diện"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_interface"
+            android:layout_marginStart="10dp"
+            android:text="Giao diện"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_below="@+id/interface_"
+        android:id="@+id/line2"
+        android:layout_marginVertical="10dp"
+        android:layout_width="290dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:background="#000000"/>
+    <!-- Mục "Điều khoản sử dụng" -->
+
+    <!-- Mục "Chính sách bảo mật" -->
+
+    <RelativeLayout
+        android:id="@+id/terms_of_use"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line2"
+        android:layout_marginTop="10dp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_terms"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="Điều khoản sử dụng"
+            android:src="@drawable/ic_clause" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@id/ic_terms"
+            android:text="Điều khoản sử dụng"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/privacy_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity=""
+        android:layout_below="@id/terms_of_use"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ic_privacy"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_security"
+            android:contentDescription="Chính sách bảo mật"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ic_privacy"
+            android:layout_marginStart="0dp"
+            android:text="Chính sách bảo mật"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

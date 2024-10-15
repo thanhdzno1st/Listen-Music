@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".login_4_1">
+
+
+
+    <!-- Ô nhập số điện thoại kèm quốc kỳ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/toggleLayout">
+
+        <!-- Quốc kỳ Việt Nam -->
+        <ImageView
+            android:id="@+id/ivCountryFlag"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/vn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Mũi tên xuống (dropdown) -->
+        <ImageView
+            android:id="@+id/ivDropdownArrow"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/Vector"
+            android:layout_marginEnd="8dp"
+            android:layout_gravity="center_vertical"/>
+
+        <!-- Ô nhập số điện thoại -->
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Số điện thoại"
+            android:inputType="phone"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Đường kẻ dưới Số điện thoại -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginHorizontal="32dp" />
+
+    <!-- Nút Gửi mã OTP -->
+    <Button
+        android:id="@+id/btnSendOTP"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:text="Gửi mã OTP"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#3DDE00"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/etPhoneNumber"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="32dp"/>
+
+    <!-- Hoặc -->
+    <TextView
+        android:id="@+id/tvOr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hoặc"
+        android:textSize="14sp"
+        android:textColor="#7D7D7D"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"/>
+
+    <!-- Đăng nhập bằng Google -->
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginHorizontal="15dp"
+        android:backgroundTint="#DAD3D3"
+        android:background="@drawable/rounded_bg"
+        android:layout_below="@id/tvOr">
+
+        <!-- Google icon -->
+        <ImageView
+            android:id="@+id/btnGoogleSignInIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/google"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Google Sign-In Button -->
+        <Button
+            android:id="@+id/btnGoogleSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DAD3D3"
+            android:text="Đăng nhập bằng Google"
+            android:textAlignment="center"
+            android:layout_marginTop="0dp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- Đăng ký mới -->
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnGoogleSignIn"
+        android:text="Chưa có tài khoản? Đăng ký ngay"
+        android:textColor="#FF9A00"
+        android:textSize="14sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        tools:ignore="NotSibling" />
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff"
+    tools:context=".MainActivity"> <!-- Màu nền trắng -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="260dp"
+        android:src="@drawable/logologin3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xã hội hóa âm nhạc"
+        android:textSize="23sp"
+        android:textColor="#00C800"
+        android:textStyle="bold"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+    <!-- View màu trắng dưới phần nội dung chính -->
+
+    <!-- Mô tả dưới tiêu đề -->
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Thuận tiện chia sẻ trải nghiệm âm nhạc trong cộng đồng, giúp kết nối giữa những người yêu âm nhạc"
+        android:textSize="15dp"
+        android:textColor="#595959"
+        android:gravity="center"
+        android:layout_below="@id/titleTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+</RelativeLayout>
