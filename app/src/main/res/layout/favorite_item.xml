@@ -6,74 +6,7 @@
     android:orientation="vertical"
     android:layout_gravity="center">
 
-    <!-- Toolbar với các biểu tượng -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#16B608"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:elevation="4dp"
-        >
 
-        <!-- Icon menu -->
-        <ImageView
-            android:id="@+id/icon_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu"
-            android:contentDescription="Menu"
-            android:padding="10dp"
-            android:layout_gravity="start"/>
-
-        <!-- TextView "Nhạc lưu trong máy" -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nhạc lưu trong máy"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center"/>
-
-        <!-- Icon tải xuống -->
-        <ImageView
-            android:id="@+id/icon_download"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_download"
-            android:contentDescription="Download"
-            android:padding="10dp"
-            android:layout_gravity="end"/>
-
-        <!-- Icon Wi-Fi -->
-        <ImageView
-            android:id="@+id/icon_wifi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_wifi"
-            android:contentDescription="Wi-Fi"
-            android:padding="10dp"
-            android:layout_gravity="end"/>
-
-        <!-- Icon tìm kiếm -->
-        <ImageView
-            android:id="@+id/icon_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            android:contentDescription="Search"
-            android:padding="10dp"
-            android:layout_gravity="end"/>
-    </androidx.appcompat.widget.Toolbar>
-
-    <!-- TabLayout để chứa các tab -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:tabIndicatorColor="@android:color/white"
-        app:tabSelectedTextColor="@android:color/white"
-        app:tabTextColor="@android:color/darker_gray"/>
 
     <!-- ViewPager2 để hiển thị nội dung của các fragment -->
     <androidx.viewpager2.widget.ViewPager2
