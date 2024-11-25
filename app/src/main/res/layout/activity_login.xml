@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity"> <!-- Màu nền trắng -->
+
+
+    <RelativeLayout
+        android:id="@+id/btn_login"
+        android:padding="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#31FF1F"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- Nút Đăng nhập -->
+
+        <!-- Nút Đăng ký tài khoản -->
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFFFFF"
+            android:text="Đăng nhập"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/loginButton"
+            android:backgroundTint="#000000"
+            android:text="Đăng ký tài khoản"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <!-- ViewPager2 nằm dưới phần chào mừng, với chiều cao giới hạn -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ci_drawable="@drawable/circle_radius"
+        app:ci_drawable_unselected="@drawable/circle_radius_unselect"
+        android:layout_below="@+id/viewPager"/>
+</RelativeLayout>

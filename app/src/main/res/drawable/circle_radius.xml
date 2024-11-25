@@ -1,0 +1,6 @@
+<!-- res/drawable/circle_drawable.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/colorSelected"/> <!-- Màu cho chỉ báo -->
+    <corners android:radius="50dp"/> <!-- Đảm bảo hình tròn với góc bo lớn -->
+    <size android:width="5dp" android:height="5dp"/> <!-- Kích thước của chỉ báo -->
+</shape>

@@ -1,0 +1,85 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="#ff00"
+    android:layout_gravity="center"
+    android:elevation="2dp">
+
+    <!-- Ảnh đại diện -->
+    <View
+        android:id="@+id/view"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/bg_rounded_corner"
+        android:layout_width="340dp"
+        android:layout_height="52dp">
+
+    </View>
+    <ImageView
+        android:id="@+id/song_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sky3"
+        android:scaleType="centerCrop"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/circle_mask"/>
+
+    <!-- Tên bài hát -->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/song_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nơi này có anh"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/song_image"
+        android:layout_alignTop="@id/song_image"/>
+
+    <!-- Tên nghệ sĩ -->
+    <TextView
+        android:id="@+id/song_artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sơn Tùng M-TP"
+        android:textColor="#757575"
+        android:textSize="14sp"
+        android:layout_below="@id/song_title"
+        android:layout_toEndOf="@id/song_image"/>
+
+    <!-- Nút yêu thích (trái tim) -->
+    <ImageView
+        android:layout_marginTop="12dp"
+        android:id="@+id/btn_favorite"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/skip_next"/>
+
+
+    <!-- Nút tạm dừng -->
+    <ImageView
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_pause"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_toStartOf="@id/btn_favorite"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_pause"/>
+
+    <!-- Nút phát -->
+    <ImageView
+        android:layout_marginTop="17dp"
+        android:id="@+id/btn_play"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_toStartOf="@id/btn_pause"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_favorite_border"/>
+
+</RelativeLayout>

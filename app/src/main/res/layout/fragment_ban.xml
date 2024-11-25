@@ -1,0 +1,258 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F0F2E4">
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="19dp"
+        />
+    <!-- Tiêu đề của Activity -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Danh sách chặn"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Bài Hát Bị Chặn -->
+    <TextView
+        android:id="@+id/blocked_songs_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bài Hát Bị Chặn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@id/title"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Các bài hát bị chặn sẽ bị tự động bỏ qua khi bạn phát playlist."
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_below="@id/blocked_songs_title"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Danh sách bài hát bị chặn -->
+    <RelativeLayout
+        android:id="@+id/blocked_songs_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blocked_songs_title"
+        android:layout_marginTop="10dp">
+
+        <!-- Bài hát 1 -->
+        <RelativeLayout
+            android:id="@+id/song_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/song_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/jack5c" />
+
+            <TextView
+                android:id="@+id/song_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/song_image"
+                android:layout_marginStart="10dp"
+                android:text="Thiên Lý Ơi"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/song_artist_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/song_title_1"
+                android:layout_toEndOf="@id/song_image"
+                android:layout_marginStart="10dp"
+                android:text="Jack - J97"
+                android:textSize="14sp"
+                android:textColor="#757575"/>
+
+            <TextView
+                android:id="@+id/unblock_song_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bỏ chặn"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#9C27B0"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <!-- Bài hát 2 -->
+        <RelativeLayout
+            android:id="@+id/song_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/song_1"
+            android:layout_marginTop="8dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/song_image_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bigbang" />
+
+            <TextView
+                android:id="@+id/song_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/song_image_2"
+                android:layout_marginStart="10dp"
+                android:text="Still Life"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/song_artist_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/song_title_2"
+                android:layout_toEndOf="@id/song_image_2"
+                android:layout_marginStart="10dp"
+                android:text="BIGBANG"
+                android:textSize="14sp"
+                android:textColor="#757575"/>
+
+            <TextView
+                android:id="@+id/unblock_song_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bỏ chặn"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#9C27B0"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- Nghệ Sĩ Bị Chặn -->
+    <TextView
+        android:id="@+id/blocked_artists_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nghệ Sĩ Bị Chặn"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@id/blocked_songs_list"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Những bài hát của nghệ sĩ bị chặn sẽ bị tự động bỏ qua khi phát playlist."
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_below="@id/blocked_artists_title"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Danh sách nghệ sĩ bị chặn -->
+    <RelativeLayout
+        android:id="@+id/blocked_artists_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blocked_artists_title"
+        android:layout_marginTop="10dp">
+
+        <!-- Nghệ sĩ 1 -->
+        <RelativeLayout
+            android:id="@+id/artist_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/artist_image_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_song_image2" />
+
+            <TextView
+                android:id="@+id/artist_name_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/artist_image_1"
+                android:layout_marginStart="10dp"
+                android:text="Jack - J97"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/unblock_artist_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bỏ chặn"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#9C27B0"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <!-- Nghệ sĩ 2 -->
+        <RelativeLayout
+            android:id="@+id/artist_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/artist_1"
+            android:layout_marginTop="8dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/artist_image_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bigbang" />
+
+            <TextView
+                android:id="@+id/artist_name_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/artist_image_2"
+                android:layout_marginStart="10dp"
+                android:text="BIGBANG"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/unblock_artist_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bỏ chặn"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#9C27B0"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

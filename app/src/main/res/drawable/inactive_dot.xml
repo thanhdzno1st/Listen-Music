@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <solid android:color="#CCCCCC" /> <!-- Màu xanh khi không nhấn -->
-            <corners android:radius="4dp" />
-        </shape>
-    </item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <solid android:color="#CCCCCC" />
+        <corners android:radius="4dp" />
+    </shape>
 </selector>

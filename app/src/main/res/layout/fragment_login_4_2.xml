@@ -93,13 +93,14 @@
     <!-- Nút Đăng nhập -->
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
         android:layout_marginHorizontal="32dp"
         android:backgroundTint="#3DDE00"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="30dp"
         android:text="Đăng nhập"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"/>
 
     <!-- Hoặc -->
     <TextView
@@ -111,12 +112,13 @@
         android:textColor="#7D7D7D"
         android:layout_below="@id/btnLogin"
         android:layout_gravity="center"
-        android:layout_marginVertical="24dp"/>
+        android:layout_marginVertical="44dp"/>
 
     <!-- Đăng nhập bằng Google -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="@drawable/rounded_bg"

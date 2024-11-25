@@ -30,8 +30,8 @@
         <!-- Mũi tên xuống (dropdown) -->
         <ImageView
             android:id="@+id/ivDropdownArrow"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:src="@drawable/vector"
             android:layout_marginEnd="8dp"
             android:layout_gravity="center_vertical"/>
@@ -60,9 +60,10 @@
     <!-- Nút Gửi mã OTP -->
     <Button
         android:id="@+id/btnSendOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
         android:text="Gửi mã OTP"
+        android:layout_gravity="center_horizontal"
         android:backgroundTint="#3DDE00"
         android:textColor="#FFFFFF"
         android:layout_below="@id/etPhoneNumber"
@@ -78,18 +79,18 @@
         android:textSize="14sp"
         android:textColor="#7D7D7D"
         android:layout_gravity="center_horizontal"
-        android:layout_below="@id/btnSendOTP"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="44dp"/>
 
     <!-- Đăng nhập bằng Google -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:paddingHorizontal="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:layout_marginHorizontal="15dp"
         android:backgroundTint="#DAD3D3"
         android:background="@drawable/rounded_bg"
@@ -126,6 +127,6 @@
         android:textSize="14sp"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         tools:ignore="NotSibling" />
 </LinearLayout>

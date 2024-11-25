@@ -1,0 +1,82 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@drawable/dialog_background">
+
+        <!-- Tiêu đề "Thông tin" -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin"
+            android:layout_marginTop="1dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#A600FF"
+            android:layout_centerHorizontal="true"
+            android:shadowColor="#000000"
+            android:padding="8dp"
+            />
+
+        <!-- Nội dung thông tin -->
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thanh Tùng bắt đầu chơi nhạc từ cấp ba với nghệ danh M-TP và được biết đến với 'Cơn Mưa Ngang Qua'. Năm 2012, anh đậu khoa Nhạc viện TPHCM và ký hợp đồng với Văn Production, đổi nghệ danh thành Sơn Tùng M-TP."
+            android:textSize="16sp"
+            android:textColor="#FF006E"
+            android:layout_below="@id/title"
+            android:layout_marginBottom="8dp"
+            android:padding="10dp"
+        />
+
+        <!-- Thêm nội dung khác -->
+        <TextView
+            android:id="@+id/information2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Từ 2013 đến 2015, anh cho ra nhiều bản hit như 'Em Của Ngày Hôm Qua', 'Nắng Ấm Xa Dần'. Năm 2015, anh chính thức cộng tác với WePro và trở thành nghệ sĩ độc lập. Năm 2017, anh rời WePro để thành lập M-TP Entertainment. Bản hit 'Lạc Trôi' và 'Nơi Này Có Anh' làm mưa làm gió trên các bảng xếp hạng."
+            android:textSize="16sp"
+            android:textColor="#FF006E"
+            android:layout_below="@id/information"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:padding="10dp"
+           />
+
+        <!-- Thêm phần thông tin tiếp theo -->
+        <TextView
+            android:id="@+id/information3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Năm 2018, Sơn Tùng phát hành 'Chạy Ngay Đi' và 'Hãy Trao Cho Anh' năm 2019, đã hợp tác với Snoop Dogg, đánh dấu bước ngoặt lớn trong sự nghiệp âm nhạc của anh."
+            android:textSize="16sp"
+            android:textColor="#FF006E"
+            android:layout_below="@id/information2"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="16dp"
+            android:padding="10dp"
+            />
+
+        <!-- Thông tin cá nhân -->
+        <TextView
+            android:id="@+id/personal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên thật: Nguyễn Thanh Tùng\nNgày sinh: 05/07/1994\nQuốc gia: Việt Nam\nThể loại: Việt Nam, Rap Việt"
+            android:textSize="16sp"
+            android:textColor="#FF006E"
+            android:layout_below="@id/information3"
+            android:padding="10dp"
+   />
+
+    </RelativeLayout>
+</ScrollView>

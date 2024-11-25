@@ -14,51 +14,112 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
     <HorizontalScrollView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:cardCornerRadius="100dp"
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/white">
-                <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                android:src="@drawable/follow_hang1_img1"
-                android:clipToOutline="true"
-                /></androidx.cardview.widget.CardView>
+                android:background="@drawable/rainbow_border"
+            android:padding="4dp"> <!-- Padding để chừa khoảng cho viền -->
+
             <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:cardCornerRadius="100dp"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                android:elevation="4dp"> <!-- Thêm độ nổi cho CardView nếu cần -->
+
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/follow_hang1_img1"
-                    android:clipToOutline="true"
-                    /></androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:cardCornerRadius="100dp"
+                    android:src="@drawable/nghesi1"
+                    android:clipToOutline="true" />
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/white">
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/follow_hang1_img1"
-                    android:clipToOutline="true"
-                    /></androidx.cardview.widget.CardView>
+                android:background="@drawable/rainbow_border"
+                android:padding="4dp"> <!-- Padding để chừa khoảng cho viền -->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="100dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:elevation="4dp"> <!-- Thêm độ nổi cho CardView nếu cần -->
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nghesi2"
+                        android:clipToOutline="true" />
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/rainbow_border"
+                android:padding="4dp"> <!-- Padding để chừa khoảng cho viền -->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="100dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:elevation="4dp"> <!-- Thêm độ nổi cho CardView nếu cần -->
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nghesi3"
+                        android:clipToOutline="true" />
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/rainbow_border"
+                android:padding="4dp"> <!-- Padding để chừa khoảng cho viền -->
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="100dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:elevation="4dp"> <!-- Thêm độ nổi cho CardView nếu cần -->
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nghesi4"
+                        android:clipToOutline="true" />
+
+                </androidx.cardview.widget.CardView>
+
+            </FrameLayout>
+
         </LinearLayout>
     </HorizontalScrollView>
             <TextView
@@ -70,113 +131,206 @@
                 android:textStyle="bold"/>
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="150dp"
+                    android:orientation="horizontal"
+                    >
+                    <RelativeLayout
+                        android:layout_width="141dp"
                         android:layout_height="150dp"
-                        android:orientation="vertical"
                         android:layout_margin="8dp"
                         android:background="@drawable/border">
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/goiy1"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerHorizontal="true"
                             android:layout_gravity="center"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:layout_margin="8dp"
                             app:cardCornerRadius="100dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/follow_hang2_img1"
-                             /></androidx.cardview.widget.CardView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="RHYDER"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textAlignment="center"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:orientation="vertical"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/border">
-                        <androidx.cardview.widget.CardView
-                            android:layout_gravity="center"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_margin="8dp"
-                            app:cardCornerRadius="100dp">
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/follow_hang2_img1"
-                                /></androidx.cardview.widget.CardView>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="RHYDER"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textAlignment="center"/>
-                    </LinearLayout><LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/border">
-                    <androidx.cardview.widget.CardView
-                        android:layout_gravity="center"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_margin="8dp"
-                        app:cardCornerRadius="100dp">
+                                android:src="@drawable/follow_hang2_img1" />
+                        </androidx.cardview.widget.CardView>
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/follow_hang2_img1"
-                            /></androidx.cardview.widget.CardView>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="RHYDER"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                </LinearLayout><LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/border">
-                    <androidx.cardview.widget.CardView
-                        android:layout_gravity="center"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toRightOf="@+id/goiy1"
+                            android:src="@drawable/close_nhat"/>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/goiy1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="RHYDER"
+                                android:textSize="11dp"
+                                android:textStyle="bold"
+                                android:textAlignment="center"/>
+                            <ImageView
+                                android:layout_toRightOf="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tich_xanh"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="141dp"
+                        android:layout_height="150dp"
                         android:layout_margin="8dp"
-                        app:cardCornerRadius="100dp">
+                        android:background="@drawable/border">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/goiy1"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:cardCornerRadius="100dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/goiy2" />
+                        </androidx.cardview.widget.CardView>
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/follow_hang2_img1"
-                            /></androidx.cardview.widget.CardView>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="RHYDER"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                </LinearLayout>
+                            android:layout_marginTop="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toRightOf="@+id/goiy1"
+                            android:src="@drawable/close_nhat"/>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/goiy1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="JSOL"
+                                android:textSize="11dp"
+                                android:textStyle="bold"
+                                android:textAlignment="center"/>
+                            <ImageView
+                                android:layout_toRightOf="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tich_xanh"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="141dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/border">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/goiy1"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:cardCornerRadius="100dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/follow_hang3_img1" />
+                        </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:layout_marginTop="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toRightOf="@+id/goiy1"
+                            android:src="@drawable/close_nhat"/>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/goiy1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Jack"
+                                android:textSize="11dp"
+                                android:textStyle="bold"
+                                android:textAlignment="center"/>
+                            <ImageView
+                                android:layout_toRightOf="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tich_xanh"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="141dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/border">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/goiy1"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:cardCornerRadius="100dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/follow_hang1_img1" />
+                        </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:layout_marginTop="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_toRightOf="@+id/goiy1"
+                            android:src="@drawable/close_nhat"/>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/goiy1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="11dp"
+                                android:textStyle="bold"
+                                android:textAlignment="center"/>
+                            <ImageView
+                                android:layout_toRightOf="@+id/ten"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tich_xanh"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
                 </LinearLayout>
             </HorizontalScrollView>
             <View
@@ -185,6 +339,7 @@
                 android:background="#D3D3D3"
                 android:layout_margin="8dp" />
             <LinearLayout
+                android:id="@+id/info_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -199,53 +354,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/follow_hang3_img1"/></androidx.cardview.widget.CardView>
+                    android:src="@drawable/follow_hang1_img1"/></androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="122dp"
+                <RelativeLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tennghesi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="J97"
+                        android:text="Sơn Tùng MTP"
                         android:textSize="16dp"
                         android:textStyle="bold"></TextView>
-
+                    <ImageView
+                        android:layout_toRightOf="@+id/tennghesi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tich_xanh"
+                        android:layout_marginTop="3dp"
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Nghệ sĩ"
+                        android:layout_below="@+id/tennghesi"
                         android:textSize="12dp"></TextView>
-                </LinearLayout>
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/btn_follow"
-                    android:layout_width="170dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="50dp"
                     android:backgroundTint="@color/white"
                     android:text="Đang theo dõi"
-                    android:textColor="#000000"
-                    app:strokeColor="#000000"
+                    android:textColor="#FF58A8"
+                    app:strokeColor="#C2005D"
                     app:strokeWidth="1dp" />
 
             </LinearLayout>
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="8dp">
+                    android:layout_marginLeft="20dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -259,8 +421,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -271,8 +433,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -284,7 +446,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -307,8 +471,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -319,8 +483,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -332,7 +496,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -348,7 +514,6 @@
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
                             android:layout_height="70dp"
@@ -356,8 +521,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -368,8 +533,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -381,7 +546,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -411,8 +578,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -423,8 +590,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -436,7 +603,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -459,8 +628,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -471,8 +640,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -484,7 +653,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -499,7 +670,6 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
@@ -508,8 +678,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -520,8 +690,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -533,7 +703,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -548,6 +720,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                     </LinearLayout>
 
@@ -563,8 +736,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -575,8 +748,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -588,7 +761,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -611,8 +786,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -623,8 +798,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -636,7 +811,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -651,7 +828,6 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
@@ -660,8 +836,8 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -672,8 +848,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Hãy trao cho anh"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -685,7 +861,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="Sơn Tùng MTP"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -700,6 +878,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                     </LinearLayout>
                 </LinearLayout>
@@ -725,53 +904,60 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/follow_hang3_img1"/></androidx.cardview.widget.CardView>
+                        android:src="@drawable/nghesi3"/></androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="122dp"
+                <RelativeLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tennghesi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="J97"
+                        android:text="HIEUTHUHAI"
                         android:textSize="16dp"
                         android:textStyle="bold"></TextView>
-
+                    <ImageView
+                        android:layout_toRightOf="@+id/tennghesi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/tich_xanh"
+                        android:layout_marginTop="3dp"
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:text="Nghệ sĩ"
+                        android:layout_below="@+id/tennghesi"
                         android:textSize="12dp"></TextView>
-                </LinearLayout>
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/btn_follow"
-                    android:layout_width="170dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="50dp"
                     android:backgroundTint="@color/white"
                     android:text="Đang theo dõi"
-                    android:textColor="#000000"
-                    app:strokeColor="#000000"
+                    android:textColor="#FF58A8"
+                    app:strokeColor="#C2005D"
                     app:strokeWidth="1dp" />
 
             </LinearLayout>
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="8dp">
+                    android:layout_marginLeft="20dp"
+                    >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -785,20 +971,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -810,7 +996,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -833,20 +1021,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -858,7 +1046,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -874,7 +1064,6 @@
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
                             android:layout_height="70dp"
@@ -882,20 +1071,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -907,7 +1096,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -937,20 +1128,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -962,7 +1153,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -985,20 +1178,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -1010,7 +1203,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -1026,7 +1221,6 @@
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
                             android:layout_height="70dp"
@@ -1034,20 +1228,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -1059,7 +1253,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -1089,20 +1285,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -1114,7 +1310,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -1137,20 +1335,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -1162,7 +1360,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"
@@ -1178,7 +1378,6 @@
                                 app:srcCompat="@drawable/ellipsis" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="307dp"
                             android:layout_height="70dp"
@@ -1186,20 +1385,20 @@
 
                             <ImageView
                                 android:id="@+id/imageView"
-                                android:layout_width="67dp"
-                                android:layout_height="71dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/follow_hang4_img1" />
+                                app:srcCompat="@drawable/trend_img1" />
 
                             <TextView
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="Ngoi sao co don"
-                                android:textSize="20sp"
+                                android:text="Sao Hạng A"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -1211,7 +1410,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:text="J97"
+                                android:text="HIEUTHUHAI"
+                                android:textSize="14sp"
+                                android:textColor="#80000000"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/imageView"
                                 app:layout_constraintTop_toBottomOf="@+id/textView6"

@@ -1,0 +1,298 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F2E4"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="19dp"
+        />
+
+
+    <!-- Tiêu đề trang -->
+
+    <!-- Mục 1 -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="16dp"
+        android:text="Thông báo"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <!-- Logo bên cạnh tiêu đề -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/title"
+        android:src="@drawable/black_notifications"
+        android:layout_marginEnd="8dp" />
+    <ImageView
+        android:id="@+id/imgIcon1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image5"
+        android:layout_below="@id/title"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Song Ca V-Pop"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon1"
+        android:layout_alignTop="@id/imgIcon1" />
+
+    <TextView
+        android:id="@+id/tvTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 giờ"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle1"
+        android:layout_toEndOf="@id/imgIcon1" />
+
+    <TextView
+        android:id="@+id/tvDescription1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trang Pháp nhắn 'Gửi Chồng Tương Lai' cùng JSOL và những màn kết hợp đỉnh nhất"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime1"
+        android:layout_alignStart="@id/tvTitle1" />
+
+    <!-- Mục 2 -->
+    <ImageView
+        android:id="@+id/imgIcon2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image6"
+        android:layout_below="@id/imgIcon1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="K Pop"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon2"
+        android:layout_alignTop="@id/imgIcon2" />
+
+    <TextView
+        android:id="@+id/tvTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4 giờ"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle2"
+        android:layout_toEndOf="@id/imgIcon2" />
+
+    <TextView
+        android:id="@+id/tvDescription2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tuyển tập những màn song ca Kpop khiến bao con tim rung động"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime2"
+        android:layout_alignStart="@id/tvTitle2" />
+
+    <!-- Mục 3 -->
+    <ImageView
+        android:id="@+id/imgIcon3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image7"
+        android:layout_below="@id/imgIcon2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indie Việt Tháng 10"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon3"
+        android:layout_alignTop="@id/imgIcon3" />
+
+    <TextView
+        android:id="@+id/tvTime3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 giờ"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle3"
+        android:layout_toEndOf="@id/imgIcon3" />
+
+    <TextView
+        android:id="@+id/tvDescription3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Không thể bỏ qua những hit indie Việt tiềm năng nhất trong tháng"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime3"
+        android:layout_alignStart="@id/tvTitle3" />
+
+    <!-- Mục 4 -->
+    <ImageView
+        android:id="@+id/imgIcon4"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image8"
+        android:layout_below="@id/imgIcon3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDM Hay Nhất"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon4"
+        android:layout_alignTop="@id/imgIcon4" />
+
+    <TextView
+        android:id="@+id/tvTime4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 giờ"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle4"
+        android:layout_toEndOf="@id/imgIcon4" />
+
+    <TextView
+        android:id="@+id/tvDescription4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lắc lư cùng Alok, Gryffin trong 'Never Letting Go'"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime4"
+        android:layout_alignStart="@id/tvTitle4" />
+
+    <!-- Mục 5 -->
+    <ImageView
+        android:id="@+id/imgIcon5"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_phong"
+        android:layout_below="@id/imgIcon4"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đã phản hồi bình luận của bạn"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon5"
+        android:layout_alignTop="@id/imgIcon5" />
+
+    <TextView
+        android:id="@+id/tvTime5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="8 giờ"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle5"
+        android:layout_toEndOf="@id/imgIcon5" />
+
+    <TextView
+        android:id="@+id/tvDescription5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bài này hay quá"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime5"
+        android:layout_alignStart="@id/tvTitle5" />
+
+    <!-- Mục 6 -->
+    <ImageView
+        android:id="@+id/imgIcon6"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_bao"
+        android:layout_below="@id/imgIcon5"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvTitle6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đã phản hồi bình luận của bạn"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/imgIcon6"
+        android:layout_alignTop="@id/imgIcon6" />
+
+    <TextView
+        android:id="@+id/tvTime6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21 giờ"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:layout_below="@id/tvTitle6"
+        android:layout_toEndOf="@id/imgIcon6" />
+
+    <TextView
+        android:id="@+id/tvDescription6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sky mãi đỉnh :33"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/tvTime6"
+        android:layout_alignStart="@id/tvTitle6" />
+
+</RelativeLayout>
