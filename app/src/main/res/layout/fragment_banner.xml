@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.viewpager.widget.ViewPager
+            android:layout_marginHorizontal="50px"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/viewpager_banner">
+        </androidx.viewpager.widget.ViewPager>
+        <me.relex.circleindicator.CircleIndicator
+            app:ci_drawable="@drawable/circle_radius"
+            app:ci_drawable_unselected="@drawable/circle_radius_unselect"
+            android:id="@+id/indicatordefault"
+            android:layout_marginTop="3dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/viewpager_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp">
+        </me.relex.circleindicator.CircleIndicator>
+    </RelativeLayout>
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_marginTop="14dp"-->
+<!--        android:layout_width="260dp"-->
+<!--        android:layout_height="95dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        app:cardCornerRadius="16dp"-->
+<!--        app:cardBackgroundColor="@android:color/white">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/img_1"-->
+<!--            android:scaleType="centerCrop" />-->
+<!--    </androidx.cardview.widget.CardView>-->
+
+</ScrollView>

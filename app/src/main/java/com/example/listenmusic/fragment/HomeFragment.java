@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.listenmusic.HomeBannerViewPagerAdapter;
 import com.example.listenmusic.Music_Activity;
 import com.example.listenmusic.R;
 
@@ -60,29 +59,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Thiết lập ViewPager và Adapter
-        viewPager = view.findViewById(R.id.viewpager_banner);
-        HomeBannerViewPagerAdapter adapter = new HomeBannerViewPagerAdapter(getActivity().getSupportFragmentManager(),
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(adapter);
 
-        // Khởi tạo danh sách layout cho ViewPager
-        layoutList.add(R.drawable.img_1); // Bạn có thể thay thế bằng các ID của layout khác
-        layoutList.add(R.drawable.img_2);
-        layoutList.add(R.drawable.img_3);
-
-        // Bắt đầu tự động chuyển ảnh
-        handler.postDelayed(runnable, 500);
-
-        // Xử lý sự kiện khi click vào layout
-        View layoutdcchon = view.findViewById(R.id.kedcchon);
-        layoutdcchon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Music_Activity.class);
-                startActivity(intent); // Bắt đầu Activity mới
-            }
-        });
 
         return view;
     }

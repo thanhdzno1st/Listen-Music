@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp">
+
+    <!-- Background Image -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ImageView hiển thị ảnh -->
+        <ImageView
+            android:id="@+id/imgBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <!-- View gradient đè lên ảnh -->
+        <View
+            android:id="@+id/gradientOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradientwhite_black" />
+    </FrameLayout>
+
+    <!-- Song Image -->
+    <ImageView
+        android:id="@+id/imgSong"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="Song Image"
+        android:scaleType="centerCrop"/>
+    <!-- Title Song -->
+    <TextView
+        android:id="@+id/txtTitleSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imgSong"
+        android:layout_alignTop="@id/imgSong"
+        android:layout_marginStart="10dp"
+        android:text="Song Title"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <!-- Content -->
+    <TextView
+        android:id="@+id/txtContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imgSong"
+        android:layout_below="@id/txtTitleSong"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:text="This is the song description. It may be long or short depending on the content."
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+</RelativeLayout>

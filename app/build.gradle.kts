@@ -52,4 +52,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Retrofit and Gson converter
+    implementation("com.squareup.retrofit2:retrofit:2.3.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    // ViewPager Transformers
+    implementation("com.eftimoff:android-viewpager-transformers:1.0.1@aar")
+
+    // CircleImageView
+    implementation("de.hdodenhof:circleimageview:2.2.0")
 }
