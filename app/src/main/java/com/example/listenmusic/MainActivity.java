@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private View view;
     private RelativeLayout bt_dowload;
+    private TextView tv_user,tv_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +43,20 @@ public class MainActivity extends AppCompatActivity {
         // Tham chiếu tới DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        tv_user= headerView.findViewById(R.id.txt_User);
+        tv_email= headerView.findViewById(R.id.txt_Email);
         // Tham chiếu tới nút mở menu
         btnOpenDrawer = findViewById(R.id.bt_menu);
         view = findViewById(R.id.viewtablet);
+        Bundle bundleReceive = getIntent().getExtras();
+        if(bundleReceive!=null){
+            User user = (User) bundleReceive.get("object_user");
+            if(user != null){
+                tv_user.setText(user.getHoTen());
+                tv_email.setText(user.getEmail());
+            }
+        }
         bt_dowload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
