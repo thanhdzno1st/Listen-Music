@@ -1,8 +1,5 @@
 package com.example.listenmusic.fragment;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,52 +13,43 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.listenmusic.Adapter.Follow_ChaAdapter;
 import com.example.listenmusic.Adapter.Follow_GoiYAdapter;
 import com.example.listenmusic.Adapter.Follow_TopAdapter;
 import com.example.listenmusic.R;
+import com.example.listenmusic.model.BaiHatCon;
 import com.example.listenmusic.model.NgheSi;
+import com.example.listenmusic.model.NgheSiCha;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FollowFragment extends Fragment {
 
     private RecyclerView recycler_horizontal;
     private RecyclerView recycler_top;
+    private RecyclerView recycler_cha;
     private List<NgheSi> goiYNgheSiList = new ArrayList<>();
     private List<NgheSi> topNgheSiList = new ArrayList<>();
+    private List<NgheSiCha> chaNgheSiList = new ArrayList<>();
     private LinearLayout info_1;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     public FollowFragment() {
-    }
-
-    public static FollowFragment newInstance(String param1, String param2) {
-        FollowFragment fragment = new FollowFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         fetchNgheSiData();
         fetchTopData();
+        fetchChaData();
     }
 
     private void fetchNgheSiData() {
@@ -87,6 +75,57 @@ public class FollowFragment extends Fragment {
                 error -> Toast.makeText(getActivity(), "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show()
         ));
     }
+
+    private void fetchChaData() {
+        String url = "http://musictbp.atwebpages.com/Server/fullBaiHat_FollowPHP.php";
+        chaNgheSiList.clear();
+        Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        // Duyệt qua từng nghệ sĩ trong dữ liệu JSON
+                        Iterator<String> keys = response.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            JSONObject obj = response.getJSONObject(key);
+
+                            // Tạo đối tượng NgheSiCha và thiết lập thông tin nghệ sĩ
+                            NgheSiCha ngheSiCha = new NgheSiCha();
+                            ngheSiCha.setIdNgheSi(obj.getInt("idNgheSi"));
+                            ngheSiCha.setTenNgheSi(obj.getString("tenNgheSi"));
+                            ngheSiCha.setAvartar(obj.getString("avartar"));
+
+                            // Tạo danh sách bài hát con
+                            List<BaiHatCon> baiHatConList = new ArrayList<>();
+                            JSONArray baihatArray = obj.getJSONArray("baihat");
+                            for (int j = 0; j < baihatArray.length(); j++) {
+                                JSONObject baiHatObj = baihatArray.getJSONObject(j);
+                                BaiHatCon baiHatCon = new BaiHatCon(
+                                        baiHatObj.getInt("idbaihat"),
+                                        baiHatObj.getString("tenBaiHat"),
+                                        baiHatObj.getString("hinhBaiHat"),
+                                        baiHatObj.getString("tenNgheSi")
+                                );
+                                baiHatConList.add(baiHatCon);
+                            }
+
+                            // Set danh sách bài hát cho NgheSiCha
+                            ngheSiCha.setBaihat(baiHatConList);
+
+                            // Thêm NgheSiCha vào danh sách
+                            chaNgheSiList.add(ngheSiCha);
+                        }
+
+                        // Cập nhật adapter với dữ liệu mới
+                        recycler_cha.setAdapter(new Follow_ChaAdapter(chaNgheSiList));
+                        recycler_cha.getAdapter().notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Toast.makeText(getActivity(), "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show()
+        ));
+    }
+
 
     private void fetchTopData() {
         String url = "http://musictbp.atwebpages.com/Server/TopFollowPHP.php";
@@ -123,17 +162,9 @@ public class FollowFragment extends Fragment {
         recycler_top = view.findViewById(R.id.recycler_top);
         recycler_top.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-        info_1 = view.findViewById(R.id.info_1);
-        info_1.setOnClickListener(v -> {
-            Dialog dialog = new Dialog(getActivity());
-            dialog.setContentView(R.layout.follow);
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.setCancelable(true);
-            dialog.show();
-        });
+        recycler_cha = view.findViewById(R.id.recycler_cha);
+        recycler_cha.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
         return view;
     }
 }
-
