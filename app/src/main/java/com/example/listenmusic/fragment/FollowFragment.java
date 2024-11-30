@@ -39,7 +39,6 @@ public class FollowFragment extends Fragment {
     private List<NgheSi> goiYNgheSiList = new ArrayList<>();
     private List<NgheSi> topNgheSiList = new ArrayList<>();
     private List<NgheSiCha> chaNgheSiList = new ArrayList<>();
-    private LinearLayout info_1;
 
     public FollowFragment() {
     }
@@ -47,6 +46,16 @@ public class FollowFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Fetch data if not already loaded
+        fetchNgheSiData();
+        fetchTopData();
+        fetchChaData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Fetch data again when coming back to this fragment
         fetchNgheSiData();
         fetchTopData();
         fetchChaData();
@@ -66,8 +75,12 @@ public class FollowFragment extends Fragment {
                                     obj.getString("avartar")
                             ));
                         }
-                        recycler_horizontal.setAdapter(new Follow_GoiYAdapter(goiYNgheSiList));
-                        recycler_horizontal.getAdapter().notifyDataSetChanged();
+                        // Update the adapter with the new data
+                        if (recycler_horizontal.getAdapter() != null) {
+                            recycler_horizontal.getAdapter().notifyDataSetChanged();
+                        } else {
+                            recycler_horizontal.setAdapter(new Follow_GoiYAdapter(goiYNgheSiList));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -82,19 +95,19 @@ public class FollowFragment extends Fragment {
         Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        // Duyệt qua từng nghệ sĩ trong dữ liệu JSON
+                        // Iterate through each artist in the JSON data
                         Iterator<String> keys = response.keys();
                         while (keys.hasNext()) {
                             String key = keys.next();
                             JSONObject obj = response.getJSONObject(key);
 
-                            // Tạo đối tượng NgheSiCha và thiết lập thông tin nghệ sĩ
+                            // Create NgheSiCha object and set artist info
                             NgheSiCha ngheSiCha = new NgheSiCha();
                             ngheSiCha.setIdNgheSi(obj.getInt("idNgheSi"));
                             ngheSiCha.setTenNgheSi(obj.getString("tenNgheSi"));
                             ngheSiCha.setAvartar(obj.getString("avartar"));
 
-                            // Tạo danh sách bài hát con
+                            // Create the list of BaiHatCon
                             List<BaiHatCon> baiHatConList = new ArrayList<>();
                             JSONArray baihatArray = obj.getJSONArray("baihat");
                             for (int j = 0; j < baihatArray.length(); j++) {
@@ -108,16 +121,20 @@ public class FollowFragment extends Fragment {
                                 baiHatConList.add(baiHatCon);
                             }
 
-                            // Set danh sách bài hát cho NgheSiCha
+                            // Set BaiHat list for NgheSiCha
                             ngheSiCha.setBaihat(baiHatConList);
 
-                            // Thêm NgheSiCha vào danh sách
+                            // Add NgheSiCha to the list
                             chaNgheSiList.add(ngheSiCha);
                         }
 
-                        // Cập nhật adapter với dữ liệu mới
-                        recycler_cha.setAdapter(new Follow_ChaAdapter(chaNgheSiList));
-                        recycler_cha.getAdapter().notifyDataSetChanged();
+                        // Update the adapter with the new data
+                        if (recycler_cha.getAdapter() != null) {
+                            recycler_cha.getAdapter().notifyDataSetChanged();
+                        } else {
+                            recycler_cha.setAdapter(new Follow_ChaAdapter(chaNgheSiList));
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -125,7 +142,6 @@ public class FollowFragment extends Fragment {
                 error -> Toast.makeText(getActivity(), "Lỗi: " + error.getMessage(), Toast.LENGTH_SHORT).show()
         ));
     }
-
 
     private void fetchTopData() {
         String url = "http://musictbp.atwebpages.com/Server/TopFollowPHP.php";
@@ -141,8 +157,12 @@ public class FollowFragment extends Fragment {
                                     obj.getString("avartar")
                             ));
                         }
-                        recycler_top.setAdapter(new Follow_TopAdapter(topNgheSiList));
-                        recycler_top.getAdapter().notifyDataSetChanged();
+                        // Update the adapter with the new data
+                        if (recycler_top.getAdapter() != null) {
+                            recycler_top.getAdapter().notifyDataSetChanged();
+                        } else {
+                            recycler_top.setAdapter(new Follow_TopAdapter(topNgheSiList));
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -152,8 +172,7 @@ public class FollowFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_follow, container, false);
 
         recycler_horizontal = view.findViewById(R.id.recyclerView_goiy);
