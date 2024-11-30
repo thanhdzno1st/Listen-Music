@@ -68,4 +68,5 @@ dependencies {
 
     // CircleImageView
     implementation("de.hdodenhof:circleimageview:2.2.0")
+    implementation("com.google.android.material:material:1.0.0")
 }

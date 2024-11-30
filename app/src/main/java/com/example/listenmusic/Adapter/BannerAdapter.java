@@ -1,17 +1,21 @@
 package com.example.listenmusic.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.listenmusic.Activity.DanhsachbaihatActivity;
 import com.example.listenmusic.Models.Banner;
+import com.example.listenmusic.Music_Activity;
 import com.example.listenmusic.R;
 
 import java.util.ArrayList;
@@ -50,7 +54,14 @@ public class BannerAdapter extends PagerAdapter {
         Glide.with(context).load(arrayListbanner.get(position).getHinhBaiHat()).into(imgsong);
         txttitlesong.setText(arrayListbanner.get(position).getTenBaiHat());
         txtcontent.setText(arrayListbanner.get(position).getNoiDung());
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                intent.putExtra("banner",arrayListbanner.get(position));
+                context.startActivity(intent);
+            }
+        });
         container.addView(view);
         return view;
     }

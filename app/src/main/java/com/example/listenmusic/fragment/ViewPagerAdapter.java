@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.listenmusic.Models.User;
+
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+    private User user; // Đối tượng User cần truyền
+    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior, User user) {
         super(fm, behavior);
+        this.user = user; // Gán User vào adapter
     }
 
     @NonNull
@@ -23,7 +27,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 return new TrendFragment();
             case 4:
-                return new LibraryFragment();
+                return LibraryFragment.newInstance(user); // Truyền User vào LibraryFragment
             default:
                 return new HomeFragment();
         }
