@@ -6,5 +6,17 @@
     <style name="circular_2">
         <item name="cornerSize">10%</item>
     </style>
-
+    <style name="WhiteSquareButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="cornerRadius">0dp</item> <!-- Không bo góc để làm vuông -->
+    </style>
+    <style name="ShapeAppearanceOverlay.MaterialComponents.CardView" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#00FF48</item>
+        <item name="colorPrimaryDark">#00AAFF</item>
+        <item name="colorAccent">#ff00</item>
+    </style>
 </resources>

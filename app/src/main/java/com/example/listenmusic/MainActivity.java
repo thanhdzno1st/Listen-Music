@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.listenmusic.Models.User;
+import com.example.listenmusic.fragment.PlaylistFragment;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.android.material.navigation.NavigationView;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private View view;
     private RelativeLayout bt_dowload;
     private TextView tv_user,tv_email;
+    private User user=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.viewtablet);
         Bundle bundleReceive = getIntent().getExtras();
         if(bundleReceive!=null){
-            User user = (User) bundleReceive.get("object_user");
+            user = (User) bundleReceive.get("object_user");
             if(user != null){
                 tv_user.setText(user.getHoTen());
                 tv_email.setText(user.getEmail());
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         viewpager = findViewById(R.id.viewPager);
         viewpager.setPagingEnabled(false); // Tắt tính năng vuốt
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,user);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(2);
 
