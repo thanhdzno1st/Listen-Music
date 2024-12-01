@@ -39,6 +39,7 @@ public class FollowFragment extends Fragment {
     private List<NgheSi> goiYNgheSiList = new ArrayList<>();
     private List<NgheSi> topNgheSiList = new ArrayList<>();
     private List<NgheSiCha> chaNgheSiList = new ArrayList<>();
+    private boolean isDataLoaded = false; // Flag to check if data is already loaded
 
     public FollowFragment() {
     }
@@ -46,19 +47,20 @@ public class FollowFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Fetch data if not already loaded
-        fetchNgheSiData();
-        fetchTopData();
-        fetchChaData();
+        // Initially, data is not loaded
+        isDataLoaded = false;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Fetch data again when coming back to this fragment
-        fetchNgheSiData();
-        fetchTopData();
-        fetchChaData();
+        // Only fetch data if it hasn't been loaded before
+        if (!isDataLoaded) {
+            fetchNgheSiData();
+            fetchTopData();
+            fetchChaData();
+            isDataLoaded = true; // Mark data as loaded
+        }
     }
 
     private void fetchNgheSiData() {
@@ -75,12 +77,8 @@ public class FollowFragment extends Fragment {
                                     obj.getString("avartar")
                             ));
                         }
-                        // Update the adapter with the new data
-                        if (recycler_horizontal.getAdapter() != null) {
-                            recycler_horizontal.getAdapter().notifyDataSetChanged();
-                        } else {
-                            recycler_horizontal.setAdapter(new Follow_GoiYAdapter(goiYNgheSiList));
-                        }
+                        recycler_horizontal.setAdapter(new Follow_GoiYAdapter(goiYNgheSiList));
+                        recycler_horizontal.getAdapter().notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -95,19 +93,15 @@ public class FollowFragment extends Fragment {
         Volley.newRequestQueue(getActivity()).add(new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        // Iterate through each artist in the JSON data
                         Iterator<String> keys = response.keys();
                         while (keys.hasNext()) {
                             String key = keys.next();
                             JSONObject obj = response.getJSONObject(key);
-
-                            // Create NgheSiCha object and set artist info
                             NgheSiCha ngheSiCha = new NgheSiCha();
                             ngheSiCha.setIdNgheSi(obj.getInt("idNgheSi"));
                             ngheSiCha.setTenNgheSi(obj.getString("tenNgheSi"));
                             ngheSiCha.setAvartar(obj.getString("avartar"));
 
-                            // Create the list of BaiHatCon
                             List<BaiHatCon> baiHatConList = new ArrayList<>();
                             JSONArray baihatArray = obj.getJSONArray("baihat");
                             for (int j = 0; j < baihatArray.length(); j++) {
@@ -120,21 +114,11 @@ public class FollowFragment extends Fragment {
                                 );
                                 baiHatConList.add(baiHatCon);
                             }
-
-                            // Set BaiHat list for NgheSiCha
                             ngheSiCha.setBaihat(baiHatConList);
-
-                            // Add NgheSiCha to the list
                             chaNgheSiList.add(ngheSiCha);
                         }
-
-                        // Update the adapter with the new data
-                        if (recycler_cha.getAdapter() != null) {
-                            recycler_cha.getAdapter().notifyDataSetChanged();
-                        } else {
-                            recycler_cha.setAdapter(new Follow_ChaAdapter(chaNgheSiList));
-                        }
-
+                        recycler_cha.setAdapter(new Follow_ChaAdapter(chaNgheSiList));
+                        recycler_cha.getAdapter().notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -157,12 +141,8 @@ public class FollowFragment extends Fragment {
                                     obj.getString("avartar")
                             ));
                         }
-                        // Update the adapter with the new data
-                        if (recycler_top.getAdapter() != null) {
-                            recycler_top.getAdapter().notifyDataSetChanged();
-                        } else {
-                            recycler_top.setAdapter(new Follow_TopAdapter(topNgheSiList));
-                        }
+                        recycler_top.setAdapter(new Follow_TopAdapter(topNgheSiList));
+                        recycler_top.getAdapter().notifyDataSetChanged();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

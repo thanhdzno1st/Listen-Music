@@ -60,23 +60,8 @@ public class MainActivity extends AppCompatActivity {
         bt_dowload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Tạo một dialog mới
-                Dialog dialog = new Dialog(MainActivity.this); // MainActivity.this hoặc getActivity() nếu trong Fragment
-
-                // Đặt nội dung của dialog với layout đã tạo
-                dialog.setContentView(R.layout.dowload_custom);
-
-                // Đảm bảo dialog được hiển thị với layout mong muốn
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                // Đặt nền của dialog trong suốt (loại bỏ nền mặc định)
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                // Đảm bảo có thể hủy dialog khi nhấn ra ngoài
-                dialog.setCancelable(true);
-
-                // Hiển thị dialog
-                dialog.show();
+                Intent intent = new Intent(MainActivity.this, Download.class);
+                startActivity(intent);
             }
         });
         // Đóng dialog khi nhấn vào bên ngoài
