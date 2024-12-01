@@ -9,11 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.listenmusic.R;
 import com.example.listenmusic.model.NgheSi;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
 public class Follow_GoiYAdapter extends RecyclerView.Adapter<Follow_GoiYAdapter.ViewHolder> {
 
     private List<NgheSi> ngheSiList;
@@ -33,9 +34,20 @@ public class Follow_GoiYAdapter extends RecyclerView.Adapter<Follow_GoiYAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NgheSi ngheSi = ngheSiList.get(position);
         holder.tv_tenNgheSi.setText(ngheSi.getTenNgheSi());
-        Picasso.get()
-                .load(ngheSi.getAvartar())
-                .into(holder.img_avartar);
+
+        String avatarUrl = ngheSi.getAvartar();
+
+        // Kiểm tra nếu URL không rỗng hoặc null
+        if (avatarUrl != null && !avatarUrl.isEmpty()) {
+            Glide.with(holder.img_avartar.getContext())
+                    .load(avatarUrl)
+                    .into(holder.img_avartar);
+        } else {
+            // Nếu URL rỗng hoặc null, tải hình ảnh mặc định
+            Glide.with(holder.img_avartar.getContext())
+                    .load(R.drawable.downloadicon) // Hình ảnh mặc định
+                    .into(holder.img_avartar);
+        }
     }
 
     @Override
@@ -54,4 +66,3 @@ public class Follow_GoiYAdapter extends RecyclerView.Adapter<Follow_GoiYAdapter.
         }
     }
 }
-
