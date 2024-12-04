@@ -1,14 +1,9 @@
 package com.example.listenmusic;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,12 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.User;
-import com.example.listenmusic.fragment.PlaylistFragment;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.android.material.navigation.NavigationView;

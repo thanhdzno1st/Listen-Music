@@ -13,6 +13,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.listenmusic.Activity.Music_Activity;
+import com.example.listenmusic.Adapter.playnhacAdapter;
 
 import java.util.ArrayList;
 
@@ -22,10 +27,10 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class Fragment_info extends Fragment {
-    private ListView lvDanhSach;
+    private RecyclerView recyclerViewPlaynhac;
     private ArrayList<danhsach> arraybaihat;
-    private DanhSachAdapter adapter;
     private ImageView button_cmt;
+    private playnhacAdapter PlaynhacAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,8 +78,12 @@ public class Fragment_info extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         anhxa(view);
-        adapter = new DanhSachAdapter(R.layout.dong_danh_sach, getActivity(), arraybaihat);
-        lvDanhSach.setAdapter(adapter);
+        recyclerViewPlaynhac= view.findViewById(R.id.recycleview_dsbaihat);
+        if(Music_Activity.mangSong.size()>0){
+            PlaynhacAdapter = new playnhacAdapter(getActivity(),Music_Activity.mangSong);
+            recyclerViewPlaynhac.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerViewPlaynhac.setAdapter(PlaynhacAdapter);
+        }
 
         button_cmt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,15 +106,7 @@ public class Fragment_info extends Fragment {
 
     private void anhxa(View view) {
         button_cmt = getActivity().findViewById(R.id.btn_comment);
-        lvDanhSach = view.findViewById(R.id.list_dsbaihat);
-        lvDanhSach.setDivider(null);
-        arraybaihat = new ArrayList<>();
-        arraybaihat.add(new danhsach("Lạc Trôi", "Sơn Tùng MTP", R.drawable.baihat_1));
-        arraybaihat.add(new danhsach("Chúng Ta Của Hiện Tại", "Sơn Tùng MTP", R.drawable.baihat_2));
-        arraybaihat.add(new danhsach("Nắng Ấm Xa Dần", "Sơn Tùng MTP", R.drawable.baihat_3));
-        arraybaihat.add(new danhsach("Hãy Trao Cho Anh", "Sơn Tùng MTP", R.drawable.baihat_4));
-        arraybaihat.add(new danhsach("Bình yên những phút giây", "Sơn Tùng MTP", R.drawable.baihat_5));
-        arraybaihat.add(new danhsach("Making My Way", "Sơn Tùng MTP", R.drawable.baihat_6));
-        arraybaihat.add(new danhsach("Muộn rồi mà sao còn", "Sơn Tùng MTP", R.drawable.baihat_7));
+        recyclerViewPlaynhac = view.findViewById(R.id.recycler_dsbaihat);
+
     }
 }

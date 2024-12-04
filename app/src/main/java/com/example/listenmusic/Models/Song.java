@@ -1,9 +1,14 @@
 package com.example.listenmusic.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Song {
+public class Song implements Parcelable {
 
     @SerializedName("idBaiHat")
     @Expose
@@ -26,6 +31,28 @@ public class Song {
     @SerializedName("tenNgheSi")
     @Expose
     private String tenNgheSi;
+
+    protected Song(Parcel in) {
+        idBaiHat = in.readString();
+        idDanhMuc = in.readString();
+        tenBaiHat = in.readString();
+        ngayPhatHanh = in.readString();
+        hinhBaiHat = in.readString();
+        linkBaiHat = in.readString();
+        tenNgheSi = in.readString();
+    }
+
+    public static final Creator<Song> CREATOR = new Creator<Song>() {
+        @Override
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        @Override
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
 
     public String getIdBaiHat() {
         return idBaiHat;
@@ -83,4 +110,19 @@ public class Song {
         this.tenNgheSi = tenNgheSi;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(idBaiHat);
+        parcel.writeString(idDanhMuc);
+        parcel.writeString(tenBaiHat);
+        parcel.writeString(ngayPhatHanh);
+        parcel.writeString(hinhBaiHat);
+        parcel.writeString(linkBaiHat);
+        parcel.writeString(tenNgheSi);
+    }
 }

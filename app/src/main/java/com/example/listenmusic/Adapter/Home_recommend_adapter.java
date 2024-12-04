@@ -1,6 +1,7 @@
 package com.example.listenmusic.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.R;
 
@@ -69,6 +71,14 @@ public class Home_recommend_adapter extends RecyclerView.Adapter<Home_recommend_
             imageViewSong = itemview.findViewById(R.id.img_song);
             txt_tenbaihat = itemview.findViewById(R.id.tv_tenbai);
             txt_tacgia = itemview.findViewById(R.id.tv_tentacgia);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, Music_Activity.class);
+                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

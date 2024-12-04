@@ -1,5 +1,7 @@
 package com.example.listenmusic.Adapter;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.R;
 import java.util.ArrayList;
@@ -54,6 +57,14 @@ public class Home_tiktok_adapter extends RecyclerView.Adapter<Home_tiktok_adapte
             imageViewSong = itemview.findViewById(R.id.image_tiktok);
             txt_tenbaihat = itemview.findViewById(R.id.tv_tenbaihat_tiktok);
             txt_tacgia = itemview.findViewById(R.id.tv_tennghesi_tiktok);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, Music_Activity.class);
+                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

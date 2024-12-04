@@ -1,6 +1,7 @@
 package com.example.listenmusic.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.R;
 
@@ -65,6 +67,15 @@ public class danhsachbaihatAdapter extends RecyclerView.Adapter<danhsachbaihatAd
             txtcasi = itemView.findViewById(R.id.tv_tentacgia);
             txttenbaihat = itemView.findViewById(R.id.tv_tenbai);
             imghinhbaihat = itemView.findViewById(R.id.img_hinh);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, Music_Activity.class);
+                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
+                    intent.putExtra("new_music",true);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

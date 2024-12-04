@@ -283,13 +283,12 @@
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="#FFFFFF"/>
-            <ListView
-                android:id="@+id/list_dsbaihat"
-                android:layout_below="@+id/title_list"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleview_dsbaihat"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 android:scrollbars="none">
-            </ListView>
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 

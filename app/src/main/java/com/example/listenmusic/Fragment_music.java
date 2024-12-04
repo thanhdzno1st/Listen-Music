@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.listenmusic.Models.Song;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -19,16 +23,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * create an instance of this fragment.
  */
 public class Fragment_music extends Fragment {
-    private CircleImageView circle_img;
-    private ImageView bt_pause,bt_play;
-    private MediaPlayer mediaPlayer;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    public CircleImageView circle_img;
+    public TextView name_music,name_casi;
+    // Các tham số cho Fragment (nếu có)
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -36,15 +35,7 @@ public class Fragment_music extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MusicFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    // Factory method để tạo một instance của Fragment với các tham số
     public static Fragment_music newInstance(String param1, String param2) {
         Fragment_music fragment = new Fragment_music();
         Bundle args = new Bundle();
@@ -61,45 +52,22 @@ public class Fragment_music extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout cho Fragment
         View view = inflater.inflate(R.layout.fragment_music, container, false);
         circle_img = view.findViewById(R.id.rotate);
+        name_music=view.findViewById(R.id.name_music);
+        name_casi = view.findViewById(R.id.name_casi);
         startAnimation();
-        // Khởi tạo MediaPlayer
-        mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bachnguyequangvanotchusa); // Thay your_music_file bằng tên tệp nhạc của bạn
-        playMusic();
-        bt_pause = getActivity().findViewById(R.id.btn_pause);
-        bt_play = getActivity().findViewById(R.id.btn_play);
-
-        bt_pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopAnimation();
-                pauseMusic(); // Gọi hàm tạm dừng nhạc
-                bt_pause.setVisibility(View.INVISIBLE); // Ẩn nút pause
-                bt_play.setVisibility(View.VISIBLE); // Hiện nút play
-            }
-        });
-        bt_play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startAnimation();
-                playMusic(); // Gọi hàm phát nhạc
-                bt_play.setVisibility(View.INVISIBLE); // Ẩn nút play
-                bt_pause.setVisibility(View.VISIBLE); // Hiện nút pause
-
-
-            }
-        });
         return view;
     }
-    private void startAnimation(){
+
+    // Phương thức bắt đầu hoạt ảnh quay hình ảnh
+    public void startAnimation() {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -110,26 +78,27 @@ public class Fragment_music extends Fragment {
         circle_img.animate().rotationBy(360).withEndAction(runnable).setDuration(10000)
                 .setInterpolator(new LinearInterpolator()).start();
     }
-    private void stopAnimation(){
+
+    // Phương thức dừng hoạt ảnh quay
+    public void stopAnimation() {
         circle_img.animate().cancel();
     }
-    private void playMusic() {
-        if (!mediaPlayer.isPlaying()) {
-            mediaPlayer.start(); // Phát nhạc
-        }
-    }
 
-    private void pauseMusic() {
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.pause(); // Tạm dừng nhạc
-        }
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mediaPlayer != null) {
-            mediaPlayer.release(); // Giải phóng MediaPlayer khi không sử dụng
-            mediaPlayer = null; // Đặt mediaPlayer thành null để tránh lỗi
+    // Phương thức để tải ảnh bằng Glide
+    public void Playnhac(Song song) {
+        name_music.setText(song.getTenBaiHat());
+        name_casi.setText(song.getTenNgheSi());
+        if (isAdded() && getContext() != null) {  // Kiểm tra nếu Fragment đã được gắn vào Activity
+            if (song.getHinhBaiHat() != null && !song.getHinhBaiHat().isEmpty()) {
+                Glide.with(getContext())  // Sử dụng getContext() nếu Fragment đã được gắn
+                        .load(song.getHinhBaiHat())  // URL ảnh từ API
+                        .placeholder(R.drawable.image2)  // Ảnh mặc định khi đang tải
+                        .error(R.drawable.image2)  // Ảnh hiển thị nếu URL không hợp lệ
+                        .into(circle_img);
+            } else {
+                // Nếu URL null hoặc rỗng, sử dụng ảnh mặc định
+                circle_img.setImageResource(R.drawable.image2);
+            }
         }
     }
 

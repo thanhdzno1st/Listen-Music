@@ -124,7 +124,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(view -> finish());
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_white); // Đặt icon tùy chỉnh
-
+        floatingActionButton.setEnabled(false);
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
     }
@@ -143,5 +143,23 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("banner")) {
             banner = (Banner) intent.getSerializableExtra("banner");
         }
+    }
+    private void eventClick(){
+        floatingActionButton.setEnabled(true);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DanhsachbaihatActivity.this, Music_Activity.class);
+                // Tạo một Bundle để chứa các giá trị
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("cacbaihat", mangSong);  // Truyền danh sách bài hát
+                bundle.putBoolean("new_music", true);  // Truyền giá trị new_music là true
+
+                // Gửi Bundle vào Intent
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+            }
+        });
     }
 }
