@@ -18,10 +18,16 @@ import java.util.List;
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
     private Context context;
     private List<BaiHatOffline> songList;
+    private OnSongClickListener listener;
 
-    public SongAdapter(Context context, List<BaiHatOffline> songList) {
+    public interface OnSongClickListener {
+        void onSongClick(String songPath, String songTitle);
+    }
+
+    public SongAdapter(Context context, List<BaiHatOffline> songList, OnSongClickListener listener) {
         this.context = context;
         this.songList = songList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -36,8 +42,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         BaiHatOffline song = songList.get(position);
         holder.songTitle.setText(song.getTitle());
         holder.songArtist.setText(song.getArtist());
-        // Optional: Load thumbnail if available
-        // holder.songThumbnail.setImageResource(song.getThumbnail());
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onSongClick(song.getPath(), song.getTitle());
+            }
+        });
     }
 
     @Override

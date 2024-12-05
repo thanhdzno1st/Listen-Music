@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/music_player_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:visibility="visible"
+        android:background="#ffffff"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
+
+        <!-- Tiêu đề bài hát -->
+        <TextView
+            android:id="@+id/tv_song_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
+            android:textColor="#000000"
+            android:layout_below="@id/btn_play_pause"
+            android:textSize="18sp"
+            android:text="Tên bài hát" />
+
+        <!-- Nút Play/Pause -->
+        <ImageView
+            android:id="@+id/btn_play_pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Play/Pause"
+            android:src="@drawable/ic_play" />
+
+        <!-- SeekBar -->
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_song_title"
+            android:layout_marginTop="10dp"
+            android:max="100"
+            android:progress="0" />
+
+        <!-- Thời gian bài hát -->
+        <TextView
+            android:id="@+id/tv_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/seek_bar"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_below="@id/seek_bar"
+            android:text="00:00"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

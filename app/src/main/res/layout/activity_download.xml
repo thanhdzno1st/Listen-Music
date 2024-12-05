@@ -9,11 +9,12 @@
     tools:context=".Download">
 
     <!-- Nội dung chính của activity -->
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F0F2E4">
+        android:background="#F0F2E4"
+        android:orientation="vertical">
 
         <!-- Thanh header -->
         <LinearLayout
@@ -28,12 +29,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/bt_menu"
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
                     android:src="@drawable/btn_menu" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="32dp"
@@ -48,11 +51,13 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/bt_1"
                 android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/bt_download"
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/btn_download" />
+
                 <TextView
                     android:id="@+id/content_dowload"
                     android:layout_width="75dp"
@@ -61,8 +66,9 @@
                     android:layout_toRightOf="@id/bt_download"
                     android:layout_centerVertical="true"
                     android:text="Nhạc lưu trong máy"
-                    android:textColor="#ffff"
+                    android:textColor="#ffffff"
                     android:textSize="16sp" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="32dp"
@@ -76,11 +82,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/bt_online"
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/btn_online" />
+
                 <TextView
                     android:id="@+id/content_online"
                     android:layout_width="wrap_content"
@@ -90,8 +98,9 @@
                     android:layout_toRightOf="@id/bt_online"
                     android:layout_centerVertical="true"
                     android:text="Online"
-                    android:textColor="#ffff"
+                    android:textColor="#ffffff"
                     android:textSize="16sp" />
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="32dp"
@@ -109,28 +118,92 @@
                 android:src="@drawable/btn_search" />
         </LinearLayout>
 
-        <!-- TextView Header -->
+        <!-- Tiêu đề danh sách tải xuống -->
         <TextView
             android:id="@+id/tv_download_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/layout_header"
             android:padding="10dp"
             android:text="Các bài hát bạn đã tải xuống"
             android:textAlignment="center"
-            android:textColor="#000"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- RecyclerView -->
+        <!-- RecyclerView hiển thị danh sách bài hát tải xuống -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_download"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tv_download_header" />
-    </RelativeLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1" /> <!-- RecyclerView chiếm phần không gian còn lại -->
 
-    <!-- NavigationView -->
+        <!-- Trình phát nhạc luôn nằm ở phía dưới -->
+        <RelativeLayout
+            android:id="@+id/music_player_layout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:padding="16dp">
+
+            <!-- Tiêu đề bài hát -->
+            <TextView
+                android:id="@+id/tv_song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
+                android:layout_centerVertical="true"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:text="Tên bài hát" />
+
+            <!-- Nút Play/Pause -->
+            <ImageView
+                android:id="@+id/btn_play_pause"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="Play/Pause"
+                android:src="@drawable/ic_play" />
+
+            <!-- SeekBar -->
+            <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_song_title"
+                android:layout_marginTop="10dp"
+                android:max="100"
+                android:progress="0" />
+
+            <!-- Thời gian bài hát -->
+            <TextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@id/seek_bar"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
+                android:layout_below="@id/seek_bar"
+                android:text="00:00"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- Thanh Navigation -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
