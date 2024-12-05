@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.listenmusic.Adapter.BannerAdapter;
 import com.example.listenmusic.Models.Banner;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIRetrofitClient;
 import com.example.listenmusic.Service.APIservice;
@@ -38,6 +39,8 @@ public class Fragment_banner extends Fragment {
     Runnable runnable;
     Handler handler;
     int currentItem;
+    private User user; // Biến lưu trữ đối tượng User
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,13 +60,8 @@ public class Fragment_banner extends Fragment {
      * @return A new instance of fragment home_banner.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_banner newInstance(String param1, String param2) {
-        Fragment_banner fragment = new Fragment_banner();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public void setUser(User user) {
+        this.user = user;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,29 +89,37 @@ public class Fragment_banner extends Fragment {
     }
 
     private void GetDataBanner() {
-        Dataservice dataservice= APIservice.getService();
+        Dataservice dataservice = APIservice.getService();
         Call<List<Banner>> callback = dataservice.GetDataBanner();
         callback.enqueue(new Callback<List<Banner>>() {
             @Override
             public void onResponse(Call<List<Banner>> call, Response<List<Banner>> response) {
                 ArrayList<Banner> banners = (ArrayList<Banner>) response.body();
-                bannerAdapter = new BannerAdapter(getActivity(),banners);
-                viewPager.setAdapter(bannerAdapter);
-                circleIndicator.setViewPager(viewPager);
-                handler = new Handler();
-                runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        currentItem = viewPager.getCurrentItem();
-                        currentItem++;
-                        if(currentItem >= viewPager.getAdapter().getCount())
-                            currentItem =0;
-                        viewPager.setCurrentItem(currentItem,true);
-                        handler.postDelayed(runnable,2500);
-                    }
-                };
-                handler.postDelayed(runnable,4500);
-                Log.d("hihi", banners.get(0).getTenBaiHat());
+
+                // Sử dụng biến user đã được set
+                if (user != null) {
+                    bannerAdapter = new BannerAdapter(getActivity(), banners, user);
+                    viewPager.setAdapter(bannerAdapter);
+                    circleIndicator.setViewPager(viewPager);
+
+                    // Thiết lập Handler để tự động chuyển trang
+                    handler = new Handler();
+                    runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            currentItem = viewPager.getCurrentItem();
+                            currentItem++;
+                            if (currentItem >= viewPager.getAdapter().getCount())
+                                currentItem = 0;
+                            viewPager.setCurrentItem(currentItem, true);
+                            handler.postDelayed(runnable, 2500);
+                        }
+                    };
+                    handler.postDelayed(runnable, 4500);
+                    Log.d("hihi", banners.get(0).getTenBaiHat());
+                } else {
+                    Log.e("Fragment_banner", "User is null");
+                }
             }
 
             @Override
@@ -122,5 +128,6 @@ public class Fragment_banner extends Fragment {
             }
         });
     }
+
 
 }

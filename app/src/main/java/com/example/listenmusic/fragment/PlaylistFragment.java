@@ -90,7 +90,7 @@ public class PlaylistFragment extends Fragment {
         fragmentManager = getActivity().getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         fragmentPlaylistList = Fragment_playlist_list.newInstance(user);
-        transaction.replace(R.id.fragment_container_2, fragmentPlaylistList);
+        transaction.replace(R.id.fragment_container_playlist, fragmentPlaylistList);
         transaction.commit();
     }
 

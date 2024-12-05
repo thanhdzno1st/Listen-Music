@@ -2,6 +2,7 @@ package com.example.listenmusic.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
 import java.util.ArrayList;
@@ -21,10 +23,12 @@ import java.util.ArrayList;
 public class danhsachbaihatAdapter extends RecyclerView.Adapter<danhsachbaihatAdapter.ViewHolder>{
     Context context;
     ArrayList<Song> mangSong;
+    private User user;
 
-    public danhsachbaihatAdapter(Context context, ArrayList<Song> mangSong) {
+    public danhsachbaihatAdapter(Context context, ArrayList<Song> mangSong,User user) {
         this.context = context;
         this.mangSong = mangSong;
+        this.user = user;
     }
 
     @NonNull
@@ -70,9 +74,20 @@ public class danhsachbaihatAdapter extends RecyclerView.Adapter<danhsachbaihatAd
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    // Tạo một Bundle để đóng gói dữ liệu
+                    Bundle bundle = new Bundle();
+
+                    // Truyền bài hát được chọn
+                    bundle.putParcelable("cakhuc", mangSong.get(getAdapterPosition()));
+                    bundle.putSerializable("user",user);
+                    // Truyền danh sách bài hát
+                    bundle.putParcelableArrayList("cacbaihat", mangSong);
+
+                    // Tạo Intent và đính kèm Bundle
                     Intent intent = new Intent(context, Music_Activity.class);
-                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
-                    intent.putExtra("new_music",true);
+                    intent.putExtras(bundle);
+
+                    // Chuyển sang Music_Activity
                     context.startActivity(intent);
                 }
             });

@@ -23,7 +23,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new VipFragment();
             case 2:
-                return new HomeFragment();
+                return HomeFragment.newInstance(user);
             case 3:
                 return new TrendFragment();
             case 4:

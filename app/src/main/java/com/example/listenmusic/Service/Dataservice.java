@@ -43,4 +43,9 @@ public interface Dataservice {
     Call<List<Song>> Getdsbaihattheobanner(
             @Field("idquangcao") String idquangcao
     );
+    @FormUrlEncoded
+    @POST("getdsbaihattheonghesi.php")
+    Call<List<Song>> Getdsbaihattheonghesi(
+            @Field("idnghesi") String idnghesi
+    );
 }

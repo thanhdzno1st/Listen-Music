@@ -26,6 +26,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -37,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -46,6 +48,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
@@ -56,15 +60,19 @@ import com.example.listenmusic.Fragment_lyrics;
 import com.example.listenmusic.Fragment_music;
 import com.example.listenmusic.MainActivity;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.ViewPageAdapter_dsphat;
 import com.example.listenmusic.Adapter.ViewPagerAdapter_Music;
+import com.example.listenmusic.fragment.Fragment_playlist;
+import com.example.listenmusic.fragment.PlaylistFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -72,7 +80,7 @@ public class Music_Activity extends AppCompatActivity {
     private ViewPager2 viewPager2Music,viewPager2dsphat;
     private TabLayout mTablayout;
     private CircleImageView circle_img;
-    private ImageView btn_play,btn_addmusic,btn_dow,bt_random,bt_danhsach,bt_back,bt_setting;
+    private ImageView btn_play,bt_previous,bt_next,btn_add_toplaylist,btn_dow,bt_random,bt_danhsach,bt_back,bt_setting,bt_repeat;
     private View indicator;
     private TextView tabTitle,durationPlayed,durationTotal;
     private View indicator1,indicator2,indicator3;
@@ -100,6 +108,12 @@ public class Music_Activity extends AppCompatActivity {
         }
     }
     boolean isNewMusic;
+    private User user;
+    int positionMusic =0;
+    boolean repeat = false;
+    boolean checkrandom = false;
+    boolean next = false;
+    Song song;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +177,7 @@ public class Music_Activity extends AppCompatActivity {
                     layoutMenu.setVisibility(View.VISIBLE);
                     updateViewPager2(currentPosition);
                     updateSeekbar(currentPosition);
-                    fadeInViews(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);  // Fade in các view
+                    fadeInViews(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);  // Fade in các view
                     isDanhSachVisible = false;
                 } else {
                     // Hiện danh sách phát
@@ -174,7 +188,7 @@ public class Music_Activity extends AppCompatActivity {
                     layoutMenu.setVisibility(View.INVISIBLE);
                     updateViewPager2(3);  // Chuyển đến trang 3
                     updateSeekbar(2);  // Cập nhật seekbar
-                    fadeOutViews(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);  // Fade out các view
+                    fadeOutViews(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);  // Fade out các view
                     isDanhSachVisible = true;
                 }
             }
@@ -227,19 +241,351 @@ public class Music_Activity extends AppCompatActivity {
                 showDialog_setting();
             }
         });
-        fragmentMusic= (Fragment_music) viewPagerAdapterMusic.fragmentArrayList.get(1);
+        btn_add_toplaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment_playlist playlistFragment = Fragment_playlist.newInstance(user);
+                playlistFragment.show(getSupportFragmentManager(), "PlaylistFragment");
 
-        if(mangSong.size()>0){
-            new PlayMp3().execute(mangSong.get(0).getLinkBaiHat());
+
+            }
+        });
+        fragmentMusic= (Fragment_music) viewPagerAdapterMusic.fragmentArrayList.get(1);
+        if(song != null){
+            new PlayMp3().execute(song.getLinkBaiHat());
             btn_play.setImageResource(R.drawable.button_pause);
-        }
-        eventClick();
-        if (!mangSong.isEmpty() && mangSong.get(0).getHinhBaiHat() != null) {
-            String imageUrl = mangSong.get(0).getHinhBaiHat(); // Đường dẫn hình ảnh
+            String imageUrl = song.getHinhBaiHat(); // Đường dẫn hình ảnh
             applyBlurredBackground(imageUrl);
+        }else{
+//            if(mangSong.size()>0){
+//                new PlayMp3().execute(mangSong.get(0).getLinkBaiHat());
+//                btn_play.setImageResource(R.drawable.button_pause);
+//                String imageUrl = mangSong.get(0).getHinhBaiHat(); // Đường dẫn hình ảnh
+//                applyBlurredBackground(imageUrl);
+//            }
+        }
+        positionMusic = findSongPosition(mangSong,song);
+        Log.d("DEBUG", "Thong tin User: " + user);
+
+        eventClick();
+
+    }
+
+
+
+    private void eventClick() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(viewPagerAdapterMusic.fragmentArrayList.get(1)!=null){
+                    if(song!=null){
+                        fragmentMusic.Playnhac(song);
+                        String imageUrl = song.getHinhBaiHat(); // Đường dẫn hình ảnh
+                        applyBlurredBackground(imageUrl);
+                        handler.removeCallbacks(this);
+//                    }else
+//                    if(mangSong.size()>0){
+//                        fragmentMusic.Playnhac(mangSong.get(0));
+//                        String imageUrl = mangSong.get(0).getHinhBaiHat(); // Đường dẫn hình ảnh
+//                        applyBlurredBackground(imageUrl);
+                        handler.removeCallbacks(this);
+                    }else{
+                        handler.postDelayed(this,300);
+                    }
+                }
+
+            }
+        },500);
+        btn_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mediaPlayer.isPlaying()){
+                    mediaPlayer.pause();
+                    btn_play.setImageResource(R.drawable.button_play);
+                    fragmentMusic.stopAnimation();
+                }else{
+                    mediaPlayer.start();
+                    btn_play.setImageResource(R.drawable.button_pause);
+                    fragmentMusic.startAnimation();
+                }
+            }
+        });
+        bt_repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(repeat == false) {
+                    if(checkrandom == true){
+                        checkrandom = false;
+                        bt_repeat.setImageResource(R.drawable.active_repeate);
+                        bt_random.setImageResource(R.drawable.icon_random);
+                    }
+                    bt_repeat.setImageResource(R.drawable.active_repeate);
+                    repeat = true;
+                }else{
+                    bt_repeat.setImageResource(R.drawable.repeat);
+                    repeat=false;
+                }
+            }
+        });
+        bt_random.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkrandom == false) {
+                    if(repeat == true){
+                        repeat = false;
+                        bt_repeat.setImageResource(R.drawable.repeat);
+                        bt_random.setImageResource(R.drawable.active_random);
+                    }
+                    bt_random.setImageResource(R.drawable.active_random);
+                    checkrandom = true;
+                }else{
+                    bt_random.setImageResource(R.drawable.icon_random);
+                    checkrandom=false;
+                }
+            }
+        });
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mediaPlayer.seekTo(seekBar.getProgress());
+            }
+        });
+        bt_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mangSong.size() > 0){
+                    if(mediaPlayer.isPlaying() || mediaPlayer!=null){
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        mediaPlayer=null;
+                    }
+                    if(positionMusic < (mangSong.size())){
+                        btn_play.setImageResource(R.drawable.button_pause);
+                        positionMusic++;
+                        if(repeat == true){
+                            if(positionMusic == 0 ){
+                                positionMusic = mangSong.size();
+                            }
+                            positionMusic -= 1;
+                        }
+                        if(checkrandom == true){
+                            Random random = new Random();
+                            int index = random.nextInt(mangSong.size());
+                            if(index == positionMusic){
+                                positionMusic = index - 1;
+                            }
+                            positionMusic = index;
+                        }
+                        if(positionMusic >(mangSong.size()-1)){
+                            positionMusic = 0;
+                        }
+                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
+                        applyBlurredBackground(imageUrl);
+                    }
+                }
+
+            }
+        });
+        bt_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mangSong.size() > 0){
+                    if(mediaPlayer.isPlaying() || mediaPlayer!=null){
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        mediaPlayer=null;
+                    }
+                    if(positionMusic < (mangSong.size())){
+                        btn_play.setImageResource(R.drawable.button_pause);
+                        positionMusic--;
+                        if(positionMusic<0){
+                            positionMusic=mangSong.size()-1;
+                        }
+                        if(repeat == true){
+
+                            positionMusic += 1;
+                        }
+                        if(checkrandom == true){
+                            Random random = new Random();
+                            int index = random.nextInt(mangSong.size());
+                            if(index == positionMusic){
+                                positionMusic = index - 1;
+                            }
+                            positionMusic = index;
+                        }
+
+                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
+                        applyBlurredBackground(imageUrl);
+                    }
+                }
+            }
+        });
+    }
+
+
+    class PlayMp3 extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return strings[0];
+        }
+
+        @Override
+        protected void onPostExecute(String baihat) {
+            super.onPostExecute(baihat);
+            try {
+                mediaPlayer=new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        mediaPlayer.stop();
+                        mediaPlayer.reset();
+                    }
+                });
+                mediaPlayer.setDataSource("https://drive.google.com/uc?export=download&id=1jG4B2iPuexujAWYMGMPSXGHSJ9165z_n");
+                mediaPlayer.prepare();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            mediaPlayer.start();
+            TimeSong();
         }
     }
 
+    private void TimeSong() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+        durationTotal.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
+        seekbar.setMax(mediaPlayer.getDuration());
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+    }
+
+    private void GetdataFromIntent() {
+        Bundle bundleReceive = getIntent().getExtras();
+        Intent intent = getIntent();
+        mangSong.clear();
+        if(intent!=null)
+        {
+            if (intent.hasExtra("cakhuc")) {
+                song = intent.getParcelableExtra("cakhuc");
+                if (song != null) {
+                    Log.d("DEBUG", "Nhận được một bài hát từ Intent: " + song.getTenBaiHat());
+                } else {
+                    Log.d("DEBUG", "Bài hát từ Intent 'cakhuc' là null.");
+                }
+            }
+
+            if (intent.hasExtra("cacbaihat")) {
+                ArrayList<Song> baihatArraylist = intent.getParcelableArrayListExtra("cacbaihat");
+                if (baihatArraylist != null && !baihatArraylist.isEmpty()) {
+                    Log.d("DEBUG", "Nhận được danh sách bài hát từ Intent: " + baihatArraylist.size() + " bài hát.");
+                    for (Song s : baihatArraylist) {
+                        Log.d("DEBUG", "Bài hát: " + s.toString());
+                    }
+                    mangSong = baihatArraylist;
+                } else {
+                    Log.d("DEBUG", "Danh sách bài hát từ Intent 'cacbaihat' rỗng hoặc null.");
+                }
+            }
+            if (intent.hasExtra("user")) {
+                user = (User) bundleReceive.get("user");
+                if (user!=null) {
+                    Log.d("DEBUG", "Da truyen user vao Music_activity"+user);
+                } else {
+                    Log.d("DEBUG", "Chua truyen dc user vao Music_activity");
+                }
+            }
+            if (intent.hasExtra("new_music")) {
+                isNewMusic = intent.getBooleanExtra("new_music",false);
+                if (isNewMusic) {
+                    Log.d("DEBUG", "Bai hat moi");
+                } else {
+                    Log.d("DEBUG", "Bai hat cu");
+                }
+            }
+        }
+
+    }
+
+    private void AnhXa() {
+        mTablayout = findViewById(R.id.tab_layout_music);
+        viewPager2Music= findViewById(R.id.view_pager2_music);
+        viewPager2dsphat=findViewById(R.id.view_pager2_dsphat);
+        tabTitle = findViewById(R.id.tab_title);
+        indicator1 = findViewById(R.id.indicator_1);
+        indicator2 = findViewById(R.id.indicator_2);
+        indicator3 = findViewById(R.id.indicator_3);
+        seekbar = findViewById(R.id.seekbar);
+        durationPlayed=findViewById(R.id.txtTimeSong);
+        durationTotal=findViewById(R.id.txtTotaltimesong);
+        btn_add_toplaylist=findViewById(R.id.btn_add_music_to_playlist);
+        btn_Kbps=findViewById(R.id.btn_Kbps);
+        btn_dow=findViewById(R.id.btn_dowload);
+        bt_random=findViewById(R.id.btn_random);
+        constraint_control=findViewById(R.id.constraint_control);
+        mainlayout=findViewById(R.id.main_music);
+        bt_danhsach=findViewById(R.id.btn_danhsachphat);
+        layoutMenu = findViewById(R.id.layout_menu);
+        bt_back=findViewById(R.id.btn_back);
+        bt_setting=findViewById(R.id.btn_caidat);
+        btn_play= findViewById(R.id.btn_play);
+        fragmentMusic= new Fragment_music();
+        fragmentInfo=new Fragment_info();
+        fragmentLyrics=new Fragment_lyrics();
+        bt_repeat = findViewById(R.id.btn_repeat);
+        bt_next = findViewById(R.id.btn_next);
+        bt_previous = findViewById(R.id.btn_previous);
+    }
+    public static int findSongPosition(ArrayList<Song> mangSong, Song targetSong) {
+        for (int i = 0; i < mangSong.size(); i++) {
+            if (mangSong.get(i).getTenBaiHat().equals(targetSong.getTenBaiHat())) {
+                return i; // Trả về vị trí của bài hát
+            }
+        }
+        return -1; // Không tìm thấy
+    }
+    // Hàm cập nhật các chỉ báo
+    private void updateIndicators(int position) {
+        // Reset về trạng thái ban đầu (xám và ngắn)
+        resetIndicators();
+
+        // Dựa vào vị trí trang, cập nhật chỉ báo tương ứng
+        switch (position) {
+            case 0:
+                updateIndicator(indicator1, true); // Trang đầu tiên, cập nhật indicator1
+                updateSeekbar(position);
+                break;
+            case 1:
+                updateIndicator(indicator2, true); // Trang thứ hai, cập nhật indicator2
+                break;
+            case 2:
+                updateIndicator(indicator3, true); // Trang thứ ba, cập nhật indicator3
+                updateSeekbar(position);
+                break;
+        }
+    }
     private void applyBlurredBackground(String imageUrl) {
         Glide.with(this)
                 .asBitmap()
@@ -287,169 +633,6 @@ public class Music_Activity extends AppCompatActivity {
         output.copyTo(bitmap);
         rs.destroy();
         return bitmap;
-    }
-
-    class PlayMp3 extends AsyncTask<String,Void,String>{
-
-        @Override
-        protected String doInBackground(String... strings) {
-            return strings[0];
-        }
-
-        @Override
-        protected void onPostExecute(String baihat) {
-            super.onPostExecute(baihat);
-            try {
-                mediaPlayer=new MediaPlayer();
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.stop();
-                        mediaPlayer.reset();
-                    }
-                });
-                AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.bachnguyequangvanotchusa);
-                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                mediaPlayer.prepare();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            mediaPlayer.start();
-            TimeSong();
-        }
-    }
-
-    private void TimeSong() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
-        durationTotal.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
-        seekbar.setMax(mediaPlayer.getDuration());
-    }
-
-    private void eventClick() {
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(viewPagerAdapterMusic.fragmentArrayList.get(1)!=null){
-                    if(mangSong.size()>0){
-                        fragmentMusic.Playnhac(mangSong.get(0));
-                        handler.removeCallbacks(this);
-                    }else{
-                        handler.postDelayed(this,300);
-                    }
-                }
-
-            }
-        },500);
-        btn_play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                    btn_play.setImageResource(R.drawable.button_play);
-                    fragmentMusic.stopAnimation();
-                }else{
-                    mediaPlayer.start();
-                    btn_play.setImageResource(R.drawable.button_pause);
-                    fragmentMusic.startAnimation();
-                }
-            }
-        });
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-            if (mediaPlayer != null) {
-                mediaPlayer.release();
-                mediaPlayer = null;
-            }
-    }
-
-    private void GetdataFromIntent() {
-        Intent intent = getIntent();
-        mangSong.clear();
-        if(intent!=null)
-        {
-            if (intent.hasExtra("cakhuc")) {
-                Song song = intent.getParcelableExtra("cakhuc");
-                if (song != null) {
-                    Log.d("DEBUG", "Nhận được một bài hát từ Intent: " + song.getTenBaiHat());
-                    mangSong.add(song);
-                } else {
-                    Log.d("DEBUG", "Bài hát từ Intent 'cakhuc' là null.");
-                }
-            }
-
-            if (intent.hasExtra("cacbaihat")) {
-                ArrayList<Song> baihatArraylist = intent.getParcelableArrayListExtra("cacbaihat");
-                if (baihatArraylist != null && !baihatArraylist.isEmpty()) {
-                    Log.d("DEBUG", "Nhận được danh sách bài hát từ Intent: " + baihatArraylist.size() + " bài hát.");
-                    for (Song s : baihatArraylist) {
-                        Log.d("DEBUG", "Bài hát: " + s.toString());
-                    }
-                    mangSong = baihatArraylist;
-                } else {
-                    Log.d("DEBUG", "Danh sách bài hát từ Intent 'cacbaihat' rỗng hoặc null.");
-                }
-            }
-            if (intent.hasExtra("new_music")) {
-                isNewMusic = intent.getBooleanExtra("new_music",false);
-                if (isNewMusic) {
-                    Log.d("DEBUG", "Bai hat moi");
-                } else {
-                    Log.d("DEBUG", "Bai hat cu");
-                }
-            }
-        }
-
-    }
-
-    private void AnhXa() {
-        mTablayout = findViewById(R.id.tab_layout_music);
-        viewPager2Music= findViewById(R.id.view_pager2_music);
-        viewPager2dsphat=findViewById(R.id.view_pager2_dsphat);
-        tabTitle = findViewById(R.id.tab_title);
-        indicator1 = findViewById(R.id.indicator_1);
-        indicator2 = findViewById(R.id.indicator_2);
-        indicator3 = findViewById(R.id.indicator_3);
-        seekbar = findViewById(R.id.seekbar);
-        durationPlayed=findViewById(R.id.txtTimeSong);
-        durationTotal=findViewById(R.id.txtTotaltimesong);
-        btn_addmusic=findViewById(R.id.btn_add_music);
-        btn_Kbps=findViewById(R.id.btn_Kbps);
-        btn_dow=findViewById(R.id.btn_dowload);
-        bt_random=findViewById(R.id.btn_random);
-        constraint_control=findViewById(R.id.constraint_control);
-        mainlayout=findViewById(R.id.main_music);
-        bt_danhsach=findViewById(R.id.btn_danhsachphat);
-        layoutMenu = findViewById(R.id.layout_menu);
-        bt_back=findViewById(R.id.btn_back);
-        bt_setting=findViewById(R.id.btn_caidat);
-        btn_play= findViewById(R.id.btn_play);
-        fragmentMusic= new Fragment_music();
-        fragmentInfo=new Fragment_info();
-        fragmentLyrics=new Fragment_lyrics();
-    }
-    // Hàm cập nhật các chỉ báo
-    private void updateIndicators(int position) {
-        // Reset về trạng thái ban đầu (xám và ngắn)
-        resetIndicators();
-
-        // Dựa vào vị trí trang, cập nhật chỉ báo tương ứng
-        switch (position) {
-            case 0:
-                updateIndicator(indicator1, true); // Trang đầu tiên, cập nhật indicator1
-                updateSeekbar(position);
-                break;
-            case 1:
-                updateIndicator(indicator2, true); // Trang thứ hai, cập nhật indicator2
-                break;
-            case 2:
-                updateIndicator(indicator3, true); // Trang thứ ba, cập nhật indicator3
-                updateSeekbar(position);
-                break;
-        }
     }
     // Hàm cập nhật một indicator thành màu trắng và dài hơn
     private void updateIndicator(View indicator, boolean isSelected) {
@@ -577,22 +760,22 @@ public class Music_Activity extends AppCompatActivity {
             animateViewPagerHeightChange(viewPager2dsphat,newHeight2);
             if (viewPager2Music.getHeight() != newHeight)
                 // Fade out the specified views
-                fadeOutViews(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);
+                fadeOutViews(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);
             else
-                fadeOutViews2(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);
+                fadeOutViews2(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);
 
         } else if (position == 1) {
             Log.d("Distance", "Trang 1");
             animateViewPagerHeightChange(viewPager2Music,viewPagerMusicHeight);
             animateViewPagerHeightChange(viewPager2dsphat,viewPagerdsphatHeight);
-            fadeInViews(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);  // Fade in các view
+            fadeInViews(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);  // Fade in các view
         } else {
             Log.d("Distance", "Toi o day");
             int newHeight = viewPagerMusicHeight + getFixSeekbar() - distanceToBottomBtn;
             int newHeight2= viewPagerdsphatHeight + getFixSeekbar() - distanceToBottomBtn;
             animateViewPagerHeightChange(viewPager2Music,newHeight);
             animateViewPagerHeightChange(viewPager2dsphat,newHeight2);
-            fadeOutViews(durationPlayed, durationTotal, btn_addmusic, btn_Kbps, btn_dow);  // Fade out các view
+            fadeOutViews(durationPlayed, durationTotal, btn_add_toplaylist, btn_Kbps, btn_dow);  // Fade out các view
         }
         Log.d("Distance", "Chiều cao của viewPagerMusic : " + viewPager2Music.getHeight() + " pixels");
         Log.d("Distance", "Chiều cao của viewPagerdsphat : " + viewPager2dsphat.getHeight() + " pixels");
@@ -621,5 +804,6 @@ public class Music_Activity extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialoAnimation;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
+
 
 }

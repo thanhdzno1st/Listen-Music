@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.listenmusic.Models.Banner;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIservice;
 import com.example.listenmusic.Service.Dataservice;
@@ -49,6 +51,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     private ImageView imgdanhsachcakhuc;
     private ArrayList<Song> mangSong;
     danhsachbaihatAdapter danhsachbaihatAdapter ;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,26 +77,79 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         if (banner != null && !banner.getTenBaiHat().isEmpty()) {
             setValueInView(banner.getTenBaiHat(), banner.getHinhBaiHat(),banner.getHinhAnhBanner());
             Getdataquangcao(banner.getIdBanner());
+
         }
     }
 
     private void Getdataquangcao(String Idquangcao) {
+        if (Idquangcao == null || Idquangcao.isEmpty()) {
+            Toast.makeText(this, "ID quảng cáo không hợp lệ!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Dataservice dataservice = APIservice.getService();
         Call<List<Song>> callback = dataservice.Getdsbaihattheobanner(Idquangcao);
         callback.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                mangSong = new ArrayList<>(response.body());
-                danhsachbaihatAdapter= new danhsachbaihatAdapter(DanhsachbaihatActivity.this,mangSong);
-                recyclerViewDsbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
-                recyclerViewDsbaihat.setAdapter(danhsachbaihatAdapter);
+                if (response.isSuccessful() && response.body() != null) {
+                    mangSong = new ArrayList<>(response.body());
+                    Log.d("API_RESPONSE", "Danh sách bài hát: " + mangSong.toString());
+                    Log.d("API_RESPONSE", "bài hát banner: " + mangSong.get(0));
+
+                    if (!mangSong.isEmpty()) {
+                        String idNgheSi = mangSong.get(0).getIdNgheSi();
+                        if (idNgheSi != null && !idNgheSi.isEmpty()) {
+                            GetdatadsBaihattheoNghesi(idNgheSi);
+                        } else {
+                            Toast.makeText(DanhsachbaihatActivity.this, "Không có nghệ sĩ liên quan!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(DanhsachbaihatActivity.this, "Không có bài hát từ quảng cáo!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(DanhsachbaihatActivity.this, "API trả về lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<Song>> call, Throwable t) {
-                // Xử lý lỗi
                 t.printStackTrace();
-                Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu từ quảng cáo", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void GetdatadsBaihattheoNghesi(String IdNghesi) {
+        if (IdNghesi == null || IdNghesi.isEmpty()) {
+            Toast.makeText(this, "ID nghệ sĩ không hợp lệ!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Dataservice dataservice = APIservice.getService();
+        Call<List<Song>> callback = dataservice.Getdsbaihattheonghesi(IdNghesi);
+        callback.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    mangSong = new ArrayList<>(response.body());
+
+                    if (!mangSong.isEmpty()) {
+                        danhsachbaihatAdapter = new danhsachbaihatAdapter(DanhsachbaihatActivity.this, mangSong,user);
+                        recyclerViewDsbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                        recyclerViewDsbaihat.setAdapter(danhsachbaihatAdapter);
+                    } else {
+                        Toast.makeText(DanhsachbaihatActivity.this, "Không có bài hát nào từ nghệ sĩ!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(DanhsachbaihatActivity.this, "API trả về lỗi: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+                t.printStackTrace();
+                Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu từ nghệ sĩ", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -139,10 +195,12 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     }
 
     private void DataIntent() {
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("banner")) {
-            banner = (Banner) intent.getSerializableExtra("banner");
+        Bundle bundleReceive = getIntent().getExtras();
+        if (bundleReceive != null) {
+            banner = (Banner) bundleReceive.get("banner");
+            user = (User) bundleReceive.get("user");
         }
+
     }
     private void eventClick(){
         floatingActionButton.setEnabled(true);

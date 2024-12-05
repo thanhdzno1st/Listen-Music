@@ -28,6 +28,9 @@ public class Song implements Parcelable {
     @SerializedName("linkBaiHat")
     @Expose
     private String linkBaiHat;
+    @SerializedName("idNgheSi")
+    @Expose
+    private String idNgheSi;
     @SerializedName("tenNgheSi")
     @Expose
     private String tenNgheSi;
@@ -38,6 +41,7 @@ public class Song implements Parcelable {
         tenBaiHat = in.readString();
         ngayPhatHanh = in.readString();
         hinhBaiHat = in.readString();
+        idNgheSi = in.readString();
         linkBaiHat = in.readString();
         tenNgheSi = in.readString();
     }
@@ -102,6 +106,14 @@ public class Song implements Parcelable {
         this.linkBaiHat = linkBaiHat;
     }
 
+    public String getIdNgheSi() {
+        return idNgheSi;
+    }
+
+    public void setIdNgheSi(String idNgheSi) {
+        this.idNgheSi = idNgheSi;
+    }
+
     public String getTenNgheSi() {
         return tenNgheSi;
     }
@@ -122,7 +134,22 @@ public class Song implements Parcelable {
         parcel.writeString(tenBaiHat);
         parcel.writeString(ngayPhatHanh);
         parcel.writeString(hinhBaiHat);
+        parcel.writeString(idNgheSi);
         parcel.writeString(linkBaiHat);
         parcel.writeString(tenNgheSi);
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "idBaiHat='" + idBaiHat + '\'' +
+                ", idDanhMuc='" + idDanhMuc + '\'' +
+                ", tenBaiHat='" + tenBaiHat + '\'' +
+                ", ngayPhatHanh='" + ngayPhatHanh + '\'' +
+                ", hinhBaiHat='" + hinhBaiHat + '\'' +
+                ", linkBaiHat='" + linkBaiHat + '\'' +
+                ", idNgheSi='" + idNgheSi + '\'' +
+                ", tenNgheSi='" + tenNgheSi + '\'' +
+                '}';
     }
 }

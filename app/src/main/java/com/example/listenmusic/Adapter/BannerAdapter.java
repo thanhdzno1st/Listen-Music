@@ -2,6 +2,7 @@ package com.example.listenmusic.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +15,20 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.bumptech.glide.Glide;
 import com.example.listenmusic.Activity.DanhsachbaihatActivity;
 import com.example.listenmusic.Models.Banner;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
 import java.util.ArrayList;
 
 public class BannerAdapter extends PagerAdapter {
+    private User user;
     Context context;
     ArrayList<Banner> arrayListbanner;
 
-    public BannerAdapter(Context context, ArrayList<Banner> arrayListbanner) {
+    public BannerAdapter(Context context, ArrayList<Banner> arrayListbanner, User user) {
         this.context = context;
         this.arrayListbanner = arrayListbanner;
+        this.user = user;
     }
 
     @Override
@@ -55,9 +59,21 @@ public class BannerAdapter extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Tạo một Bundle để đóng gói dữ liệu
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("banner", arrayListbanner.get(position)); // Đảm bảo `banner` là Serializable hoặc Parcelable
+                bundle.putSerializable("user", user);
+
+                // Tạo Intent và đính kèm Bundle
                 Intent intent = new Intent(context, DanhsachbaihatActivity.class);
-                intent.putExtra("banner",arrayListbanner.get(position));
+                intent.putExtras(bundle);
+
+                // Bắt đầu Activity
                 context.startActivity(intent);
+//                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+//                intent.putExtra("banner",arrayListbanner.get(position));
+//                intent.putExtra("user",user);
+//                context.startActivity(intent);
             }
         });
         container.addView(view);

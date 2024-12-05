@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
 import java.util.ArrayList;
@@ -24,8 +25,13 @@ public class HomeFragment extends Fragment {
     private int currentPage = 0;
     private List<Integer> layoutList = new ArrayList<>();
 
-    public HomeFragment() {
-        // Required empty public constructor
+
+    public static HomeFragment newInstance(User user) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("user", user); // Truyền đối tượng User vào Bundle
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -56,7 +62,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+// Lấy đối tượng Fragment_banner từ id
+        Fragment_banner fragmentBanner = (Fragment_banner) getChildFragmentManager().findFragmentById(R.id.fragment_banner);
 
+        // Truyền dữ liệu vào Fragment_banner
+        if (fragmentBanner != null) {
+            User user =  (User) getArguments().getSerializable("user"); // Lấy đối tượng User
+            fragmentBanner.setUser(user); // Gọi hàm để truyền User
+        }
 
         return view;
     }
