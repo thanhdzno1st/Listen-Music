@@ -458,10 +458,13 @@ public class Music_Activity extends AppCompatActivity {
                         mediaPlayer.reset();
                     }
                 });
-                mediaPlayer.setDataSource("https://drive.google.com/uc?export=download&id=1jG4B2iPuexujAWYMGMPSXGHSJ9165z_n");
+                Log.e("PlayMp3", "Link bài hát: " + baihat);
+                mediaPlayer.setDataSource(baihat);
                 mediaPlayer.prepare();
             } catch (IOException e) {
+                Log.e("PlayMp3", "Link bài hát lỗi: " + baihat);
                 throw new RuntimeException(e);
+
             }
             mediaPlayer.start();
             TimeSong();
