@@ -114,7 +114,7 @@ public class Music_Activity extends AppCompatActivity {
     boolean checkrandom = false;
     boolean next = false;
     public Song song;
-
+    private Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,7 +232,12 @@ public class Music_Activity extends AppCompatActivity {
         bt_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish(); // Quay lại MainActivity
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
+                finish(); // Thoát Activity
             }
         });
         bt_setting.setOnClickListener(new View.OnClickListener() {
@@ -481,76 +486,94 @@ public class Music_Activity extends AppCompatActivity {
         durationTotal.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekbar.setMax(mediaPlayer.getDuration());
     }
-    private void UpdateTime(){
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+    private void UpdateTime() {
+        // Khởi tạo Handler
+        handler = new Handler();
+
+        // Runnable cập nhật SeekBar và thời gian
+        Runnable updateSeekBarRunnable = new Runnable() {
             @Override
             public void run() {
-                if(mediaPlayer != null)
+                if (mediaPlayer != null) {
+                    // Cập nhật tiến trình của SeekBar
                     seekbar.setProgress(mediaPlayer.getCurrentPosition());
+
+                    // Định dạng và hiển thị thời gian phát
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
                     durationPlayed.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
-                    handler.postDelayed(this,300);
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            next = true;
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-            }
-        },300);
-        Handler handler1 = new Handler();
-        handler1.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(next == true){
-                    if(positionMusic < (mangSong.size())){
-                        btn_play.setImageResource(R.drawable.button_pause);
-                        positionMusic++;
-                        if(repeat == true){
-                            if(positionMusic == 0 ){
-                                positionMusic = mangSong.size();
-                            }
-                            positionMusic -= 1;
-                        }
-                        if(checkrandom == true){
-                            Random random = new Random();
-                            int index = random.nextInt(mangSong.size());
-                            if(index == positionMusic){
-                                positionMusic = index - 1;
-                            }
-                            positionMusic = index;
-                        }
-                        if(positionMusic >(mangSong.size()-1)){
-                            positionMusic = 0;
-                        }
-                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
-                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
-                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
-                        applyBlurredBackground(imageUrl);
-                    }
-                    next = false;
-                    handler1.removeCallbacks(this);
-                }else {
-                    handler1.postDelayed(this,1000);
+
+                    // Lặp lại sau 300ms
+                    handler.postDelayed(this, 300);
                 }
             }
-        },1000);
+        };
+        handler.postDelayed(updateSeekBarRunnable, 300);
+
+        // Runnable kiểm tra trạng thái bài hát
+        Runnable checkNextSongRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (next) {
+                    // Logic khi chuyển bài
+                    if (positionMusic < mangSong.size()) {
+                        btn_play.setImageResource(R.drawable.button_pause);
+                        positionMusic++;
+
+                        // Xử lý repeat
+                        if (repeat && positionMusic > 0) {
+                            positionMusic--;
+                        }
+
+                        // Xử lý random
+                        if (checkrandom) {
+                            Random random = new Random();
+                            positionMusic = random.nextInt(mangSong.size());
+                        }
+
+                        // Quay lại bài đầu nếu vượt giới hạn
+                        if (positionMusic >= mangSong.size()) {
+                            positionMusic = 0;
+                        }
+
+                        // Phát bài mới
+                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // URL hình ảnh
+                        applyBlurredBackground(imageUrl);
+                    }
+
+                    // Đặt lại trạng thái "next"
+                    next = false;
+                }
+                handler.postDelayed(this, 1000); // Lặp lại sau 1 giây
+            }
+        };
+        handler.postDelayed(checkNextSongRunnable, 1000);
+
+        // Lắng nghe sự kiện hoàn thành bài hát
+        if (mediaPlayer != null) {
+            mediaPlayer.setOnCompletionListener(mp -> {
+                next = true; // Đặt cờ "next" khi bài hát kết thúc
+            });
+        }
     }
 
+    // Dừng Handler và giải phóng MediaPlayer khi Activity bị hủy
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            if (mediaPlayer != null) {
-                mediaPlayer.release();
-                mediaPlayer = null;
-            }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        // Dừng tất cả các Runnable trong Handler
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
     }
+
 
     private void GetdataFromIntent() {
         Bundle bundleReceive = getIntent().getExtras();
