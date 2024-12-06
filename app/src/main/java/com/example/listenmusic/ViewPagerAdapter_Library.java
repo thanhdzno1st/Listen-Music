@@ -25,7 +25,7 @@ public class ViewPagerAdapter_Library extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return PlaylistFragment.newInstance(user); // Truyền dữ liệu vào PlaylistFragment
+                return PlaylistFragment.newInstance(user,null); // Truyền dữ liệu vào PlaylistFragment
             case 1:
                 return new AlbumnFragment();
             case 2:

@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.listenmusic.Models.Banner;
+import com.example.listenmusic.Models.Playlist;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
@@ -52,6 +53,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     private ArrayList<Song> mangSong;
     danhsachbaihatAdapter danhsachbaihatAdapter ;
     private User user;
+    private Playlist playlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +79,51 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         if (banner != null && !banner.getTenBaiHat().isEmpty()) {
             setValueInView(banner.getTenBaiHat(), banner.getHinhBaiHat(),banner.getHinhAnhBanner());
             Getdataquangcao(banner.getIdBanner());
+        }else{
+            GetdataPlaylist(playlist.getIdPlaylist(),user.getIdTaiKhoan());
 
         }
     }
+
+    private void GetdataPlaylist(String idPlaylist, int idTaiKhoan) {
+        Log.d("GetdataPlaylist", "Bắt đầu gọi API với idPlaylist: " + idPlaylist + " và idTaiKhoan: " + idTaiKhoan);
+
+        Dataservice dataservice = APIservice.getService();
+        Call<List<Song>> callback = dataservice.Getdsbaihattheoplaylist(idPlaylist, idTaiKhoan);
+
+        callback.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                Log.d("GetdataPlaylist", "API trả về phản hồi: " + response.code() + ", dữ liệu: " + (response.body() != null ? response.body().size() : 0) + " bài hát.");
+
+                if (response.isSuccessful() && response.body() != null) {
+                    mangSong = new ArrayList<>(response.body());
+                    Log.d("GetdataPlaylist", "Dữ liệu bài hát đã được tải thành công. Số lượng bài hát: " + mangSong.size());
+
+                    if (!mangSong.isEmpty()) {
+                        danhsachbaihatAdapter = new danhsachbaihatAdapter(DanhsachbaihatActivity.this, mangSong, user);
+                        recyclerViewDsbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                        recyclerViewDsbaihat.setAdapter(danhsachbaihatAdapter);
+                        Log.d("GetdataPlaylist", "Adapter đã được thiết lập và RecyclerView đã được cập nhật.");
+                    } else {
+                        Log.d("GetdataPlaylist", "Playlist không có bài hát nào.");
+                        Toast.makeText(DanhsachbaihatActivity.this, "Không có bài hát nào trong playlist của bạn!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("GetdataPlaylist", "Lỗi khi gọi API. Mã lỗi: " + response.code());
+                    Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu từ playlist. Mã lỗi: " + response.code(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+                Log.e("GetdataPlaylist", "Gọi API thất bại. Lỗi: " + t.getMessage(), t);
+                t.printStackTrace();
+                Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu từ playlist. Chi tiết lỗi: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     private void Getdataquangcao(String Idquangcao) {
         if (Idquangcao == null || Idquangcao.isEmpty()) {
@@ -199,6 +243,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         if (bundleReceive != null) {
             banner = (Banner) bundleReceive.get("banner");
             user = (User) bundleReceive.get("user");
+            playlist = (Playlist) bundleReceive.get("playlist");
         }
 
     }

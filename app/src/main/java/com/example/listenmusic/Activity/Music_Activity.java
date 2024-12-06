@@ -113,7 +113,7 @@ public class Music_Activity extends AppCompatActivity {
     boolean repeat = false;
     boolean checkrandom = false;
     boolean next = false;
-    Song song;
+    public Song song;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,7 +244,7 @@ public class Music_Activity extends AppCompatActivity {
         btn_add_toplaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment_playlist playlistFragment = Fragment_playlist.newInstance(user);
+                Fragment_playlist playlistFragment = Fragment_playlist.newInstance(user,song);
                 playlistFragment.show(getSupportFragmentManager(), "PlaylistFragment");
 
 
@@ -394,6 +394,7 @@ public class Music_Activity extends AppCompatActivity {
                         fragmentMusic.Playnhac(mangSong.get(positionMusic));
                         String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
                         applyBlurredBackground(imageUrl);
+                        UpdateTime();
                     }
                 }
 
@@ -431,6 +432,7 @@ public class Music_Activity extends AppCompatActivity {
                         fragmentMusic.Playnhac(mangSong.get(positionMusic));
                         String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
                         applyBlurredBackground(imageUrl);
+                        UpdateTime();
                     }
                 }
             }
@@ -463,11 +465,14 @@ public class Music_Activity extends AppCompatActivity {
                 mediaPlayer.prepare();
             } catch (IOException e) {
                 Log.e("PlayMp3", "Link bài hát lỗi: " + baihat);
+                Log.e("PlayMp3", "lỗi: " + e);
+
                 throw new RuntimeException(e);
 
             }
             mediaPlayer.start();
             TimeSong();
+            UpdateTime();
         }
     }
 
@@ -476,6 +481,68 @@ public class Music_Activity extends AppCompatActivity {
         durationTotal.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekbar.setMax(mediaPlayer.getDuration());
     }
+    private void UpdateTime(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(mediaPlayer != null)
+                    seekbar.setProgress(mediaPlayer.getCurrentPosition());
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+                    durationPlayed.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
+                    handler.postDelayed(this,300);
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            next = true;
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+            }
+        },300);
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(next == true){
+                    if(positionMusic < (mangSong.size())){
+                        btn_play.setImageResource(R.drawable.button_pause);
+                        positionMusic++;
+                        if(repeat == true){
+                            if(positionMusic == 0 ){
+                                positionMusic = mangSong.size();
+                            }
+                            positionMusic -= 1;
+                        }
+                        if(checkrandom == true){
+                            Random random = new Random();
+                            int index = random.nextInt(mangSong.size());
+                            if(index == positionMusic){
+                                positionMusic = index - 1;
+                            }
+                            positionMusic = index;
+                        }
+                        if(positionMusic >(mangSong.size()-1)){
+                            positionMusic = 0;
+                        }
+                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
+                        applyBlurredBackground(imageUrl);
+                    }
+                    next = false;
+                    handler1.removeCallbacks(this);
+                }else {
+                    handler1.postDelayed(this,1000);
+                }
+            }
+        },1000);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

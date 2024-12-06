@@ -39,6 +39,13 @@ public interface Dataservice {
             @Field("idBaiHat") String idBaiHat
     );
     @FormUrlEncoded
+    @POST("Add_song_to_playlist.php")
+    Call<ResponseBody> AddSongtoPlaylist(
+            @Field("idBaiHat") String idBaiHat,
+            @Field("idTaiKhoan") int idTaiKhoan,
+            @Field("idPlaylist") String idPlaylist
+    );
+    @FormUrlEncoded
     @POST("dsbaihat.php")
     Call<List<Song>> Getdsbaihattheobanner(
             @Field("idquangcao") String idquangcao
@@ -47,5 +54,12 @@ public interface Dataservice {
     @POST("getdsbaihattheonghesi.php")
     Call<List<Song>> Getdsbaihattheonghesi(
             @Field("idnghesi") String idnghesi
+    );
+    @FormUrlEncoded
+    @POST("Get_Music_from_playlist.php")
+    Call<List<Song>> Getdsbaihattheoplaylist(
+            @Field("idPlaylist") String idPlaylist,
+            @Field("idTaiKhoan") int idTaiKhoan
+
     );
 }

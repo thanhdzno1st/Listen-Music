@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Intro_Activity extends AppCompatActivity {
 
     @Override
@@ -22,5 +25,10 @@ public class Intro_Activity extends AppCompatActivity {
                 finish(); // Kết thúc activity intro để không quay lại nó
             }
         }, 2000); // Thời gian chờ 2 giây
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
     }
 }

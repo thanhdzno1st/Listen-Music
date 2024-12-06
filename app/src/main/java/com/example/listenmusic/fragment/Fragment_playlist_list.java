@@ -41,12 +41,15 @@ public class Fragment_playlist_list extends Fragment {
     Playlist_list_adapter playlistListAdapter;
     ArrayList<Playlist> PlaylistArraylist;
     private static final String ARG_USER = "user";
-    private User user;
+    private static final String ARG_Song = "song";
 
-    public static Fragment_playlist_list newInstance(User user) {
+    private User user;
+    private Song song;
+    public static Fragment_playlist_list newInstance(User user,Song song) {
         Fragment_playlist_list fragment = new Fragment_playlist_list();
         Bundle args = new Bundle();
         args.putSerializable(ARG_USER, user); // Truyền đối tượng User vào Bundle
+        args.putParcelable(ARG_Song,song);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,12 +59,8 @@ public class Fragment_playlist_list extends Fragment {
         view = inflater.inflate(R.layout.fragment_playlist_list,container,false);
         anhXa();
         if (getArguments() != null) {
-            user = (User) getArguments().getSerializable(ARG_USER); // Dùng getSerializable để lấy đối tượng User
-            if (user != null) {
-                Log.d("AddPlaylistDebug", "User: " + user.toString());
-            } else {
-                Log.d("AddPlaylistDebug", "User bị null trong Bundle!");
-            }
+            user = (User) getArguments().getSerializable(ARG_USER);
+            song = getArguments().getParcelable(ARG_Song);
         } else {
             Log.d("AddPlaylistDebug", "Bundle bị null!");
         }
@@ -96,7 +95,7 @@ public class Fragment_playlist_list extends Fragment {
                     }
                     // Nếu adapter chưa khởi tạo, tạo mới adapter và gắn vào RecyclerView
                     if (playlistListAdapter == null) {
-                        playlistListAdapter = new Playlist_list_adapter(getActivity(), PlaylistArraylist);
+                        playlistListAdapter = new Playlist_list_adapter(getActivity(), PlaylistArraylist,user,song);
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                         recyclerViewPlaylist.setLayoutManager(linearLayoutManager);

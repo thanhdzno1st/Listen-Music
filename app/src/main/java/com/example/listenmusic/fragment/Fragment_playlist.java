@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIservice;
@@ -36,8 +37,10 @@ public class Fragment_playlist extends DialogFragment {
     private EditText etPlaylistName;
     private Button btnAddPlaylist, btnclose;
     private User user;
+    private Song song;
     private Bundle bundle;
     private static final String ARG_USER = "user";
+    private static final String ARG_Song = "song";
     private FragmentManager fragmentManager;
     private Fragment_playlist_list fragmentPlaylistList;
     private FragmentTransaction transaction;
@@ -45,10 +48,11 @@ public class Fragment_playlist extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static Fragment_playlist newInstance(User user) {
+    public static Fragment_playlist newInstance(User user, Song song) {
         Fragment_playlist fragment = new Fragment_playlist();
         Bundle args = new Bundle();
         args.putSerializable(ARG_USER, user); // Truyền đối tượng User vào Bundle
+        args.putParcelable(ARG_Song,song);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,11 +65,7 @@ public class Fragment_playlist extends DialogFragment {
 
         if (getArguments() != null) {
             user = (User) getArguments().getSerializable(ARG_USER);
-            if (user != null) {
-                Log.d("AddPlaylistDebug", "User: " + user.toString());
-            } else {
-                Log.d("AddPlaylistDebug", "User bị null trong Bundle!");
-            }
+            song = getArguments().getParcelable(ARG_Song);
         } else {
             Log.d("AddPlaylistDebug", "Bundle bị null!");
         }
@@ -94,7 +94,7 @@ public class Fragment_playlist extends DialogFragment {
         if (container != null) {
             fragmentManager = getChildFragmentManager();
             transaction = fragmentManager.beginTransaction();
-            fragmentPlaylistList = Fragment_playlist_list.newInstance(user);
+            fragmentPlaylistList = Fragment_playlist_list.newInstance(user,song);
             transaction.replace(R.id.fragment_container_playlist, fragmentPlaylistList);
             transaction.commit();
         } else {
