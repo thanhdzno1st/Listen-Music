@@ -13,6 +13,7 @@ import com.example.listenmusic.fragment.HomeFragment;
 import com.example.listenmusic.fragment.LibraryFragment;
 import com.example.listenmusic.fragment.NotifyFragment;
 import com.example.listenmusic.fragment.SettingFragment;
+import com.example.listenmusic.fragment.ThongtinSvThuchienFragment;
 import com.example.listenmusic.fragment.TrendFragment;
 import com.example.listenmusic.fragment.VipFragment;
 
@@ -35,6 +36,8 @@ public class ViewPagerAdapter_LeftMenu extends FragmentStatePagerAdapter {
                 return new HelpFragment();
             case 4:
                 return new SettingFragment();
+            case 5:
+                return new ThongtinSvThuchienFragment();
             default:
                 return new SettingFragment();
         }
@@ -42,6 +45,6 @@ public class ViewPagerAdapter_LeftMenu extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 }

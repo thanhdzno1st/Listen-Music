@@ -28,7 +28,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listenmusic.Adapter.SongAdapter;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.model.BaiHatOffline;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class Download extends AppCompatActivity {
     RelativeLayout bt_on;
     ImageView bt_menu;
     private DrawerLayout drawerLayout;
+    private User user=null;
 
     private RelativeLayout musicPlayerLayout;
     private TextView tvSongTitle;
@@ -46,6 +49,8 @@ public class Download extends AppCompatActivity {
     private TextView tvCurrentTime, tvTotalTime;
     private MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
+    private TextView tv_user,tv_email;
+    private NavigationView navigationView;
 
     // Thêm hằng số cho mã yêu cầu quyền
     private static final int REQUEST_PERMISSION_STORAGE = 100;
@@ -62,7 +67,13 @@ public class Download extends AppCompatActivity {
         // Khởi tạo drawerLayout và bt_menu
         drawerLayout = findViewById(R.id.drawer_layout);
         bt_menu = findViewById(R.id.bt_menu);
-
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        tv_user= headerView.findViewById(R.id.txt_User);
+        tv_email= headerView.findViewById(R.id.txt_Email);
+        user = (User) getIntent().getSerializableExtra("object_user");
+        tv_user.setText(user.getHoTen());
+        tv_email.setText(user.getEmail());
         // Sự kiện khi bấm vào bt_menu
         bt_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +92,7 @@ public class Download extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Download.this, MainActivity.class);
+                intent.putExtra("object_user",user);
                 startActivity(intent);
             }
         });
@@ -269,4 +281,22 @@ public class Download extends AppCompatActivity {
         }
         return songs;
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.release(); // Giải phóng tài nguyên MediaPlayer khi activity bị tạm dừng
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mediaPlayer != null) {
+            mediaPlayer.release(); // Giải phóng tài nguyên khi activity bị ngừng
+            mediaPlayer = null;
+        }
+    }
+
 }

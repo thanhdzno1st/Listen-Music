@@ -3,6 +3,7 @@ package com.example.listenmusic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +18,9 @@ public class login5 extends AppCompatActivity {
         setContentView(R.layout.login_5);
         btnVerifyOTP = findViewById(R.id.btnVerifyOTP);
         btnVerifyOTP.setOnClickListener(v -> {
-            Intent intent = new Intent(login5.this, MainActivity.class);
-            startActivity(intent);
+            Toast.makeText(login5.this, "Chức năng đang được cập nhật, vui lòng đăng nhập bằng email: thanh261220@gmail.com và pass: 1234", Toast.LENGTH_LONG).show();
+            finish();
+
         });
     }
 }

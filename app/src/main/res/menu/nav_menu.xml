@@ -24,6 +24,10 @@
             android:id="@+id/nav_setting"
             android:icon="@drawable/settings"
             android:title="Cài đặt" />
+        <item
+            android:id="@+id/nav_student"
+            android:icon="@drawable/group_user"
+            android:title="Thông tin sinh viên" />
     </group>
     <item
         android:title="">

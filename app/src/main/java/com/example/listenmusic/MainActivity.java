@@ -54,10 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 tv_email.setText(user.getEmail());
             }
         }
+        if(user==null){
+            user = (User) getIntent().getSerializableExtra("object_user");
+            tv_user.setText(user.getHoTen());
+            tv_email.setText(user.getEmail());
+        }
         bt_dowload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Download.class);
+                intent.putExtra("object_user",user);
                 startActivity(intent);
             }
         });
@@ -180,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
                     viewPagerLeftMenu.setCurrentItem(3); // Chuyển đến trang 3
                 } else if (id == R.id.nav_setting) {
                     viewPagerLeftMenu.setCurrentItem(4); // Chuyển đến trang 4
+                } else if (id == R.id.nav_student) {
+                    viewPagerLeftMenu.setCurrentItem(5); // Chuyển đến trang 5
                 } else if (id == R.id.nav_logout) {
                     Intent intent = new Intent(MainActivity.this, Login_Activity.class);
                     startActivity(intent);
