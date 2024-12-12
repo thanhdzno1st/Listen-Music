@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         tv_user = headerView.findViewById(R.id.txt_User);
         tv_email = headerView.findViewById(R.id.txt_Email);
         btn_search = findViewById(R.id.btn_search);
-        searchView = findViewById(R.id.search_view);
         btnOpenDrawer = findViewById(R.id.bt_menu);
         view = findViewById(R.id.viewtablet);
         bt_1 = findViewById(R.id.bt_1);
@@ -147,12 +146,8 @@ public class MainActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchView.setVisibility(View.VISIBLE);
                 btn_close_search.setVisibility(View.VISIBLE);
                 btn_search.setVisibility(View.GONE);
-                bt_1.setVisibility(View.GONE);
-                bt_2.setVisibility(View.GONE);
-                bt_3.setVisibility(View.GONE);
 
                 SearchFragmentAdapter searchadapter = new SearchFragmentAdapter(getSupportFragmentManager(),
                         FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, MainActivity.this);
@@ -164,12 +159,8 @@ public class MainActivity extends AppCompatActivity {
         btn_close_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchView.setVisibility(View.GONE);
                 btn_search.setVisibility(View.VISIBLE);
                 btn_close_search.setVisibility(View.GONE);
-                bt_1.setVisibility(View.VISIBLE);
-                bt_2.setVisibility(View.VISIBLE);
-                bt_3.setVisibility(View.VISIBLE);
                 viewpager.setAdapter(adapter);
                 viewpager.setCurrentItem(2);
             }
