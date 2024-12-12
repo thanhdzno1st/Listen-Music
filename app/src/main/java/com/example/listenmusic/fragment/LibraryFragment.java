@@ -5,11 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
@@ -19,12 +25,13 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class LibraryFragment extends Fragment {
     private TabLayout tabLayoutLibra;
-    private ViewPager2 viewPager2Library;
+    private ViewPager viewPagerLibrary;
 
     private static final String ARG_USER = "user"; // Key cho User
 
     private User user; // Biến để lưu trữ User
-
+    FragmentManager fragmentManager;
+    PlaylistFragment playlistFragment = new PlaylistFragment();
     public LibraryFragment() {
         // Required empty public constructor
     }
@@ -54,19 +61,19 @@ public class LibraryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Toast.makeText(getActivity(), "Dang o thu vien!", Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_library, container, false);
         tabLayoutLibra = view.findViewById(R.id.tab_layout_library);
-        viewPager2Library = view.findViewById(R.id.view_pager2_library);
+        viewPagerLibrary = view.findViewById(R.id.view_pager_library);
 
         // Truyền User vào ViewPagerAdapter_Library
-        ViewPagerAdapter_Library viewPagerAdapterLibrary = new ViewPagerAdapter_Library(getActivity(), user);
-        viewPager2Library.setAdapter(viewPagerAdapterLibrary);
-        viewPager2Library.setCurrentItem(0);
-
-        new TabLayoutMediator(tabLayoutLibra, viewPager2Library,
-                (tab, position) -> tab.setText(viewPagerAdapterLibrary.getPageTitle(position))
-        ).attach();
+        ViewPagerAdapter_Library viewPagerAdapterLibrary = new ViewPagerAdapter_Library(getActivity().getSupportFragmentManager(),
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, user);
+        viewPagerLibrary.setAdapter(viewPagerAdapterLibrary);
+        viewPagerLibrary.setCurrentItem(0);
+        // Kết nối TabLayout với ViewPager
+        tabLayoutLibra.setupWithViewPager(viewPagerLibrary);
 
         return view;
     }

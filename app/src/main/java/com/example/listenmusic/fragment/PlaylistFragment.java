@@ -55,7 +55,7 @@ public class PlaylistFragment extends Fragment {
     private FragmentTransaction transaction;
 
     public PlaylistFragment() {
-        // Required empty public constructor
+
     }
 
     public static PlaylistFragment newInstance(User user, Song song) {
@@ -70,6 +70,8 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
+        Toast.makeText(getActivity(), "dang tao lai playlist", Toast.LENGTH_SHORT).show();
+
         btn_playlist = view.findViewById(R.id.bt_playlist);
         createDialog();
 
@@ -82,9 +84,9 @@ public class PlaylistFragment extends Fragment {
 
         // Setup fragment để hiển thị danh sách playlist
         setupPlaylistFragment();
-
         return view;
     }
+
 
     private void setupPlaylistFragment() {
         fragmentManager = getActivity().getSupportFragmentManager();
@@ -174,11 +176,13 @@ public class PlaylistFragment extends Fragment {
         }
     }
 
-    private void refreshPlaylist() {
+    public void refreshPlaylist() {
         if (fragmentPlaylistList != null) {
             fragmentPlaylistList.GetData();
         } else {
             Toast.makeText(getActivity(), "Không thể làm mới danh sách playlist.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

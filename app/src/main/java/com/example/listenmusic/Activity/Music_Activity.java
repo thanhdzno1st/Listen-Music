@@ -395,6 +395,7 @@ public class Music_Activity extends AppCompatActivity {
                         if(positionMusic >(mangSong.size()-1)){
                             positionMusic = 0;
                         }
+                        song = mangSong.get(positionMusic);
                         new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
                         fragmentMusic.Playnhac(mangSong.get(positionMusic));
                         String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
@@ -432,7 +433,7 @@ public class Music_Activity extends AppCompatActivity {
                             }
                             positionMusic = index;
                         }
-
+                        song = mangSong.get(positionMusic);
                         new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
                         fragmentMusic.Playnhac(mangSong.get(positionMusic));
                         String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh

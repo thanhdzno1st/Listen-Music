@@ -36,6 +36,7 @@ public class ViewPagerAdapter_Music extends FragmentStateAdapter {
     public void AddFragment(Fragment fragment) {
         fragmentArrayList.add(fragment);
     }
+    // Phương thức xóa tất cả Fragment trong danh sách
 
 //    public ViewPagerAdapter_Music(@NonNull FragmentActivity fragmentActivity) {
 //        super(fragmentActivity);

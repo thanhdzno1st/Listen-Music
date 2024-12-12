@@ -37,51 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-    <!-- Playlist gợi ý -->
-<!--    <TextView-->
 
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Playlist gợi ý"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_marginTop="16dp" />-->
-
-    <!-- Phần Playlist chi tiết - Gợi ý -->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:paddingBottom="16dp">-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:src="@drawable/lofi"-->
-<!--            android:layout_marginEnd="16dp" />-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_weight="1">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Lofi một chút thôi"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="#000" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Tạo bởi Music TBP"-->
-<!--                android:textSize="14sp"-->
-<!--                android:textColor="#808080" />-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
 
 </androidx.core.widget.NestedScrollView>

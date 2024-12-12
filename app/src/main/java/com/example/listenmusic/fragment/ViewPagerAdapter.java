@@ -1,5 +1,7 @@
 package com.example.listenmusic.fragment;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -27,6 +29,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 return new TrendFragment();
             case 4:
+                Log.d("Debug playlist", "toi dang o adapter thu vien");
                 return LibraryFragment.newInstance(user); // Truyền User vào LibraryFragment
             default:
                 return new HomeFragment();

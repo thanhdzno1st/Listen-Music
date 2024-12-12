@@ -12,12 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.User;
+import com.example.listenmusic.fragment.LibraryFragment;
+import com.example.listenmusic.fragment.PlaylistFragment;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.android.material.navigation.NavigationView;
@@ -135,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 // Di chuyển đến fragment tương ứng khi tab được chọn
                 viewpager.setCurrentItem(position);
                 viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn ViewPagerMenuLeft khi chọn tab
+
             }
 
             @Override
@@ -160,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
                 // Đặt tab tương ứng trên BottomNavigationBar khi trang được thay đổi
                 bottomNavigationBar.selectTab(position);
                 viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn ViewPagerMenuLeft khi đổi tab
+
+
             }
 
             @Override
