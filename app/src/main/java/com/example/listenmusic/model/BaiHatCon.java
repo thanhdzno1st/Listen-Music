@@ -1,14 +1,14 @@
 package com.example.listenmusic.model;
 
 public class BaiHatCon {
-    private int idbaihat;
+    private int idBaihat;
     private String tenBaiHat;
     private String hinhBaiHat;
     private String tenNgheSi;  // Thêm thuộc tính tenNgheSi
 
     // Constructor
     public BaiHatCon(int idbaihat, String tenBaiHat, String hinhBaiHat, String tenNgheSi) {
-        this.idbaihat = idbaihat;
+        this.idBaihat = idbaihat;
         this.tenBaiHat = tenBaiHat;
         this.hinhBaiHat = hinhBaiHat;
         this.tenNgheSi = tenNgheSi;  // Gán giá trị cho tenNgheSi
@@ -16,11 +16,11 @@ public class BaiHatCon {
 
     // Getter và setter
     public int getIdbaihat() {
-        return idbaihat;
+        return idBaihat;
     }
 
     public void setIdbaihat(int idbaihat) {
-        this.idbaihat = idbaihat;
+        this.idBaihat = idbaihat;
     }
 
     public String getTenBaiHat() {

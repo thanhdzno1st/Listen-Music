@@ -2,8 +2,11 @@ package com.example.listenmusic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,9 +21,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.listenmusic.Activity.Music_Activity;
+import com.example.listenmusic.Adapter.SearchFragmentAdapter;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.fragment.LibraryFragment;
 import com.example.listenmusic.fragment.PlaylistFragment;
+import com.example.listenmusic.fragment.SearchFragment;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.android.material.navigation.NavigationView;
@@ -33,50 +38,61 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private View view;
     private RelativeLayout bt_dowload;
-    private TextView tv_user,tv_email;
-    private User user=null;
+    private TextView tv_user, tv_email;
+    private User user = null;
+    private ImageView btn_search;
+    private TextView searchView;
+    private RelativeLayout bt_1;
+    private RelativeLayout bt_2;
+    private RelativeLayout bt_3;
+    private ImageView btn_close_search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bt_dowload= findViewById(R.id.bt_2);
-        // Tham chiếu tới DrawerLayout
+
+        bt_dowload = findViewById(R.id.bt_2);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        tv_user= headerView.findViewById(R.id.txt_User);
-        tv_email= headerView.findViewById(R.id.txt_Email);
-        // Tham chiếu tới nút mở menu
+        tv_user = headerView.findViewById(R.id.txt_User);
+        tv_email = headerView.findViewById(R.id.txt_Email);
+        btn_search = findViewById(R.id.btn_search);
+        searchView = findViewById(R.id.search_view);
         btnOpenDrawer = findViewById(R.id.bt_menu);
         view = findViewById(R.id.viewtablet);
+        bt_1 = findViewById(R.id.bt_1);
+        bt_2 = findViewById(R.id.bt_2);
+        bt_3 = findViewById(R.id.bt_3);
+        btn_close_search = findViewById(R.id.btn_close_search);
+
         Bundle bundleReceive = getIntent().getExtras();
-        if(bundleReceive!=null){
+        if (bundleReceive != null) {
             user = (User) bundleReceive.get("object_user");
-            if(user != null){
+            if (user != null) {
                 tv_user.setText(user.getHoTen());
                 tv_email.setText(user.getEmail());
             }
         }
-        if(user==null){
+        if (user == null) {
             user = (User) getIntent().getSerializableExtra("object_user");
             tv_user.setText(user.getHoTen());
             tv_email.setText(user.getEmail());
         }
+
         bt_dowload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Download.class);
-                intent.putExtra("object_user",user);
+                intent.putExtra("object_user", user);
                 startActivity(intent);
             }
         });
-        // Đóng dialog khi nhấn vào bên ngoài
 
-        // Cài đặt sự kiện cho nút mở menu trái
         btnOpenDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Kiểm tra và mở menu nếu chưa mở
                 if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.openDrawer(GravityCompat.START);
                 } else {
@@ -84,14 +100,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Music_Activity.class); // Thay MainActivity bằng tên Activity hiện tại của bạn
-                startActivity(intent); // Bắt đầu Activity mới
+                Intent intent = new Intent(MainActivity.this, Music_Activity.class);
+                startActivity(intent);
             }
         });
-        // Cấu hình BottomNavigationBar
+
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.menu_follow_ic, "Follow")
@@ -109,104 +126,113 @@ public class MainActivity extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.menu_storage_ic, "Library")
                         .setActiveColorResource(R.color.colorActiveLibrary)
                         .setInActiveColorResource(R.color.colorInactive))
-                .setFirstSelectedPosition(2)  // Đặt tab "Home" là mặc định
+                .setFirstSelectedPosition(2)
                 .initialise();
 
-        // Thiết lập ViewPager và Adapter
         viewpager = findViewById(R.id.viewPager);
-        viewpager.setPagingEnabled(false); // Tắt tính năng vuốt
+        viewpager.setPagingEnabled(false);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),
-                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,user);
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, user);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(2);
 
-        // Thiết lập ViewPagerMenuLeft và ẩn nó ban đầu
         viewPagerLeftMenu = findViewById(R.id.viewPagerMenuLeft);
         viewPagerLeftMenu.setPagingEnabled(false);
         ViewPagerAdapter_LeftMenu adapterLeftMenu = new ViewPagerAdapter_LeftMenu(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPagerLeftMenu.setAdapter(adapterLeftMenu);
-        viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn khi khởi động
+        viewPagerLeftMenu.setVisibility(View.GONE);
         viewPagerLeftMenu.setPageTransformer(false, null);
 
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setVisibility(View.VISIBLE);
+                btn_close_search.setVisibility(View.VISIBLE);
+                btn_search.setVisibility(View.GONE);
+                bt_1.setVisibility(View.GONE);
+                bt_2.setVisibility(View.GONE);
+                bt_3.setVisibility(View.GONE);
+
+                SearchFragmentAdapter searchadapter = new SearchFragmentAdapter(getSupportFragmentManager(),
+                        FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, MainActivity.this);
+                viewpager.setAdapter(searchadapter);
+                viewpager.setCurrentItem(1);
+            }
+        });
+
+        btn_close_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setVisibility(View.GONE);
+                btn_search.setVisibility(View.VISIBLE);
+                btn_close_search.setVisibility(View.GONE);
+                bt_1.setVisibility(View.VISIBLE);
+                bt_2.setVisibility(View.VISIBLE);
+                bt_3.setVisibility(View.VISIBLE);
+                viewpager.setAdapter(adapter);
+                viewpager.setCurrentItem(2);
+            }
+        });
 
 
-        // Liên kết BottomNavigationBar với ViewPager
+
+
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position) {
-                // Di chuyển đến fragment tương ứng khi tab được chọn
                 viewpager.setCurrentItem(position);
-                viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn ViewPagerMenuLeft khi chọn tab
-
+                viewPagerLeftMenu.setVisibility(View.GONE);
             }
 
             @Override
-            public void onTabUnselected(int position) {
-                // Xử lý khi tab không được chọn nếu cần
-            }
+            public void onTabUnselected(int position) {}
 
             @Override
-            public void onTabReselected(int position) {
-                // Xử lý khi tab được chọn lại nếu cần
-            }
+            public void onTabReselected(int position) {}
         });
 
-        // Đồng bộ hóa trạng thái khi trang được thay đổi qua swipe (nếu được kích hoạt)
         viewpager.addOnPageChangeListener(new CustomViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // Không cần xử lý
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
-                // Đặt tab tương ứng trên BottomNavigationBar khi trang được thay đổi
                 bottomNavigationBar.selectTab(position);
-                viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn ViewPagerMenuLeft khi đổi tab
-
-
+                viewPagerLeftMenu.setVisibility(View.GONE);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-                // Không cần xử lý
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
-        // Thiết lập sự kiện chọn item cho NavigationView
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-
-                // Hiển thị ViewPagerMenuLeft và chuyển đến trang tương ứng
-                viewPagerLeftMenu.setVisibility(View.VISIBLE); // Hiển thị khi chọn item
+                viewPagerLeftMenu.setVisibility(View.VISIBLE);
                 if (id == R.id.nav_history) {
-                    viewPagerLeftMenu.setCurrentItem(0); // Chuyển đến trang 0
+                    viewPagerLeftMenu.setCurrentItem(0);
                 } else if (id == R.id.nav_ban) {
-                    viewPagerLeftMenu.setCurrentItem(1); // Chuyển đến trang 1
+                    viewPagerLeftMenu.setCurrentItem(1);
                 } else if (id == R.id.nav_notify) {
-                    viewPagerLeftMenu.setCurrentItem(2); // Chuyển đến trang 2
+                    viewPagerLeftMenu.setCurrentItem(2);
                 } else if (id == R.id.nav_help) {
-                    viewPagerLeftMenu.setCurrentItem(3); // Chuyển đến trang 3
+                    viewPagerLeftMenu.setCurrentItem(3);
                 } else if (id == R.id.nav_setting) {
-                    viewPagerLeftMenu.setCurrentItem(4); // Chuyển đến trang 4
+                    viewPagerLeftMenu.setCurrentItem(4);
                 } else if (id == R.id.nav_student) {
-                    viewPagerLeftMenu.setCurrentItem(5); // Chuyển đến trang 5
+                    viewPagerLeftMenu.setCurrentItem(5);
                 } else if (id == R.id.nav_logout) {
                     Intent intent = new Intent(MainActivity.this, Login_Activity.class);
                     startActivity(intent);
                 }
-
-                // Đóng Drawer sau khi item được chọn
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
     }
 
-    // Hàm xử lý khi người dùng nhấn nút Back để đóng Drawer nếu đang mở
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -215,8 +241,8 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-    public void closeCurrentFragment() {
-            viewPagerLeftMenu.setVisibility(View.GONE); // Ẩn ViewPagerMenuLeft nếu đã ở fragment đầu tiên
 
+    public void closeCurrentFragment() {
+        viewPagerLeftMenu.setVisibility(View.GONE);
     }
 }

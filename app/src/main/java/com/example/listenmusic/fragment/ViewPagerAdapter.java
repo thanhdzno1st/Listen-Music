@@ -31,6 +31,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             case 4:
                 Log.d("Debug playlist", "toi dang o adapter thu vien");
                 return LibraryFragment.newInstance(user); // Truyền User vào LibraryFragment
+            case 5:
+                return new SearchFragment();
             default:
                 return new HomeFragment();
         }
@@ -38,6 +40,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return 6;
     }
 }
