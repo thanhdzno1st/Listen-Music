@@ -125,7 +125,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     }
 
 
-    private void Getdataquangcao(String Idquangcao) {
+    public void Getdataquangcao(String Idquangcao) {
         if (Idquangcao == null || Idquangcao.isEmpty()) {
             Toast.makeText(this, "ID quảng cáo không hợp lệ!", Toast.LENGTH_SHORT).show();
             return;
@@ -164,7 +164,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         });
     }
 
-    private void GetdatadsBaihattheoNghesi(String IdNghesi) {
+    public void GetdatadsBaihattheoNghesi(String IdNghesi) {
         if (IdNghesi == null || IdNghesi.isEmpty()) {
             Toast.makeText(this, "ID nghệ sĩ không hợp lệ!", Toast.LENGTH_SHORT).show();
             return;

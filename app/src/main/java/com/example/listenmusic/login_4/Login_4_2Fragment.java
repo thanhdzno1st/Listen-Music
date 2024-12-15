@@ -11,8 +11,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.listenmusic.Login_Activity;
-import com.example.listenmusic.MainActivity;
+import com.example.listenmusic.Activity.MainActivity;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIservice;

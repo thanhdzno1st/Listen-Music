@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffff"
-    tools:context=".MainActivity"> <!-- Màu nền trắng -->
+    tools:context=".Activity.MainActivity"> <!-- Màu nền trắng -->
 
     <ImageView
         android:id="@+id/imageView"

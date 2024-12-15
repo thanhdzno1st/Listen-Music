@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
 
     <!-- Nội dung chính của activity -->
@@ -111,14 +111,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_search"
                 android:layout_marginHorizontal="5dp" />
-            <!-- Nút đóng -->
-            <ImageView
-                android:id="@+id/btn_close_search"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/btn_close"
-                android:layout_marginHorizontal="5dp"
-                android:visibility="gone" />
         </LinearLayout>
 
 

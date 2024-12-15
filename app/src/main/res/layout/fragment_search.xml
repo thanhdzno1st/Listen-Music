@@ -3,25 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SearchFragment"
     android:orientation="vertical"
     android:background="#F0F2E4">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/edt_search"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:hint="Nhập bài hát cần tìm..." />
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tìm"/>
-    </LinearLayout>
+        android:layout_height="65dp"
+        android:background="#16B608">
+        <ImageView
+            android:id="@+id/bt_back_search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_back_white"/>
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/edt_search"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/search_view_bg"
+            app:iconifiedByDefault="false"
+            app:queryHint="Tìm kiếm bài hát ..">
+        </androidx.appcompat.widget.SearchView>
+    </LinearLayout>
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"

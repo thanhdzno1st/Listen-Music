@@ -276,7 +276,13 @@ public class Music_Activity extends AppCompatActivity implements MediaPlayer.OnC
             }
         });
         fragmentMusic= (Fragment_music) viewPagerAdapterMusic.fragmentArrayList.get(1);
-        positionMusic = findSongPosition(mangSong,song);
+        if (mangSong != null) {
+            positionMusic = findSongPosition(mangSong, song);
+        } else {
+            mangSong = new ArrayList<>();  // Tạo danh sách mới nếu mangSong là null
+            mangSong.add(song);            // Thêm song vào mangSong
+            positionMusic = 0;             // Vì đây là phần tử đầu tiên trong mangSong
+        }
         if(song != null){
             new PlayMp3().execute(song.getLinkBaiHat());
             btn_play.setImageResource(R.drawable.button_pause);

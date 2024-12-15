@@ -34,7 +34,17 @@ public class Song implements Parcelable {
     @SerializedName("tenNgheSi")
     @Expose
     private String tenNgheSi;
-
+    // Public constructor to allow external initialization
+    public Song(String idBaiHat, String tenBaiHat, String hinhBaiHat, String tenNgheSi, String ngayPhatHanh, String linkBaiHat, String idDanhMuc, String idNgheSi) {
+        this.idBaiHat = idBaiHat;
+        this.tenBaiHat = tenBaiHat;
+        this.hinhBaiHat = hinhBaiHat;
+        this.tenNgheSi = tenNgheSi;
+        this.ngayPhatHanh = ngayPhatHanh;
+        this.linkBaiHat = linkBaiHat;
+        this.idDanhMuc = idDanhMuc;
+        this.idNgheSi = idNgheSi;
+    }
     protected Song(Parcel in) {
         idBaiHat = in.readString();
         idDanhMuc = in.readString();

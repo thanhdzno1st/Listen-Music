@@ -12,14 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import java.util.ArrayList;
 public class Home_tiktok_adapter extends RecyclerView.Adapter<Home_tiktok_adapter.ViewHolder>{
     Context context;
     ArrayList<Song> mangSong;
-    public Home_tiktok_adapter(Context context, ArrayList<Song> mangSong) {
+    private User user;
+
+    public Home_tiktok_adapter(Context context, ArrayList<Song> mangSong,User user) {
         this.context = context;
         this.mangSong = mangSong;
+        this.user=user;
+
     }
     @NonNull
     @Override
@@ -60,8 +65,12 @@ public class Home_tiktok_adapter extends RecyclerView.Adapter<Home_tiktok_adapte
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Bundle bundle = new Bundle();
                     Intent intent = new Intent(context, Music_Activity.class);
-                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
+                    bundle.putParcelable("cakhuc",mangSong.get(getPosition()));
+                    bundle.putSerializable("user", user); // Transmit the user object
+                    bundle.putParcelableArrayList("cacbaihat", mangSong);
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.listenmusic.Adapter.Home_recommend_adapter;
 import com.example.listenmusic.Adapter.Home_tiktok_adapter;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIservice;
 import com.example.listenmusic.Service.Dataservice;
@@ -25,6 +26,8 @@ public class Fragment_home_tiktok extends Fragment {
     View view;
     RecyclerView recycler_dsbaihattiktok;
     Home_tiktok_adapter homeTiktokAdapter;
+    private User user;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +35,9 @@ public class Fragment_home_tiktok extends Fragment {
         anhXa();
         GetDataHome_tiktok();
         return view;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
     private void anhXa() {
         recycler_dsbaihattiktok = view.findViewById(R.id.recycler_dsbaihattiktok);
@@ -54,7 +60,7 @@ public class Fragment_home_tiktok extends Fragment {
                     combinedList.addAll(list2);
                     combinedList.addAll(list3);
                     // Thiết lập adapter cho RecyclerView
-                    homeTiktokAdapter = new Home_tiktok_adapter(getActivity(), combinedList);
+                    homeTiktokAdapter = new Home_tiktok_adapter(getActivity(), combinedList,user);
                     // Sử dụng GridLayoutManager để tạo layout kiểu 3 cột
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.HORIZONTAL, false);
                     recycler_dsbaihattiktok.setLayoutManager(gridLayoutManager);

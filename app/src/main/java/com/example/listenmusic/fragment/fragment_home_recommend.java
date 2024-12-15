@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listenmusic.Adapter.Home_recommend_adapter;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.APIservice;
 import com.example.listenmusic.Service.Dataservice;
@@ -29,6 +30,7 @@ public class fragment_home_recommend extends Fragment {
     View view;
     RecyclerView recyclerViewSongRecommend;
     Home_recommend_adapter homeRecommendAdapter;
+    private User user;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class fragment_home_recommend extends Fragment {
         GetDataHome_recommend();
         return view;
     }
-
+    public void setUser(User user) {
+        this.user = user;
+    }
     private void anhXa() {
         recyclerViewSongRecommend = view.findViewById(R.id.recycler_dsbaihatdexuat);
     }
@@ -49,7 +53,7 @@ public class fragment_home_recommend extends Fragment {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
                 ArrayList<Song> SongArraylist = (ArrayList<Song>) response.body();
-                homeRecommendAdapter = new Home_recommend_adapter(getActivity(),SongArraylist);
+                homeRecommendAdapter = new Home_recommend_adapter(getActivity(),SongArraylist,user);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerViewSongRecommend.setLayoutManager(linearLayoutManager);

@@ -9,7 +9,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
-import com.example.listenmusic.MainActivity;
+import com.example.listenmusic.Activity.MainActivity;
 import com.example.listenmusic.MyApplication;
 import com.example.listenmusic.R;
 import com.google.firebase.messaging.FirebaseMessagingService;

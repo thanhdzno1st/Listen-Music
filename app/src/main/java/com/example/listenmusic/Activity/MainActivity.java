@@ -1,52 +1,40 @@
-package com.example.listenmusic;
+package com.example.listenmusic.Activity;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.example.listenmusic.Activity.ChatBoxDialogFragment;
-import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Adapter.SearchFragmentAdapter;
+import com.example.listenmusic.Download;
+import com.example.listenmusic.Login_Activity;
 import com.example.listenmusic.Models.User;
-import com.example.listenmusic.fragment.LibraryFragment;
-import com.example.listenmusic.fragment.PlaylistFragment;
-import com.example.listenmusic.fragment.SearchFragment;
-import com.example.listenmusic.fragment.ViewPagerAdapter;
+import com.example.listenmusic.Adapter.ViewPagerAdapter;
+import com.example.listenmusic.R;
+import com.example.listenmusic.ViewPagerAdapter_LeftMenu;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.ai.client.generativeai.java.ChatFutures;
-import com.google.ai.client.generativeai.java.GenerativeModelFutures;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
-    private CustomViewPager viewpager, viewPagerLeftMenu;
+    public CustomViewPager viewpager, viewPagerLeftMenu;
     private BottomNavigationBar bottomNavigationBar;
     private DrawerLayout drawerLayout;
     private ImageView btnOpenDrawer;
@@ -68,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout chatResponse;
     private ChatFutures chatModel;
     Dialog dialog;
+    public LinearLayout layout_header;
+    public ViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
         bt_1 = findViewById(R.id.bt_1);
         bt_2 = findViewById(R.id.bt_2);
         bt_3 = findViewById(R.id.bt_3);
-        btn_close_search = findViewById(R.id.btn_close_search);
-
+        layout_header=findViewById(R.id.layout_header);
         buttonshowDialog = findViewById(R.id.showMessageDialog);
 
         buttonshowDialog.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewpager = findViewById(R.id.viewPager);
         viewpager.setPagingEnabled(false);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, user);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(2);
@@ -168,8 +157,7 @@ public class MainActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_close_search.setVisibility(View.VISIBLE);
-                btn_search.setVisibility(View.GONE);
+                layout_header.setVisibility(View.GONE);
 
                 SearchFragmentAdapter searchadapter = new SearchFragmentAdapter(getSupportFragmentManager(),
                         FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, MainActivity.this);
@@ -178,15 +166,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_close_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btn_search.setVisibility(View.VISIBLE);
-                btn_close_search.setVisibility(View.GONE);
-                viewpager.setAdapter(adapter);
-                viewpager.setCurrentItem(2);
-            }
-        });
 
 
 

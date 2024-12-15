@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.listenmusic.MainActivity;
+import com.example.listenmusic.Activity.MainActivity;
 import com.example.listenmusic.R;
 
 /**

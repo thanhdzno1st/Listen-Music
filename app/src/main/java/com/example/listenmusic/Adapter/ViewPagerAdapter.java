@@ -1,4 +1,4 @@
-package com.example.listenmusic.fragment;
+package com.example.listenmusic.Adapter;
 
 import android.util.Log;
 
@@ -8,6 +8,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.listenmusic.Models.User;
+import com.example.listenmusic.fragment.FollowFragment;
+import com.example.listenmusic.fragment.HomeFragment;
+import com.example.listenmusic.fragment.LibraryFragment;
+import com.example.listenmusic.fragment.SearchFragment;
+import com.example.listenmusic.fragment.TrendFragment;
+import com.example.listenmusic.fragment.VipFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private User user; // Đối tượng User cần truyền

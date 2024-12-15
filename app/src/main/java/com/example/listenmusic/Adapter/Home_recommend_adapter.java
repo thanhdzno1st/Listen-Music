@@ -2,6 +2,7 @@ package com.example.listenmusic.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
 import java.util.ArrayList;
@@ -25,10 +27,12 @@ import java.util.List;
 public class Home_recommend_adapter extends RecyclerView.Adapter<Home_recommend_adapter.ViewHolder>{
     Context context;
     ArrayList<Song> mangSong;
+    private User user;
 
-    public Home_recommend_adapter(Context context, ArrayList<Song> mangSong) {
+    public Home_recommend_adapter(Context context, ArrayList<Song> mangSong, User user) {
         this.context = context;
         this.mangSong = mangSong;
+        this.user=user;
     }
 
     @NonNull
@@ -74,8 +78,12 @@ public class Home_recommend_adapter extends RecyclerView.Adapter<Home_recommend_
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Bundle bundle = new Bundle();
                     Intent intent = new Intent(context, Music_Activity.class);
-                    intent.putExtra("cakhuc",mangSong.get(getPosition()));
+                    bundle.putParcelable("cakhuc",mangSong.get(getPosition()));
+                    bundle.putSerializable("user", user); // Transmit the user object
+                    bundle.putParcelableArrayList("cacbaihat", mangSong);
+                    intent.putExtras(bundle);
                     context.startActivity(intent);
                 }
             });

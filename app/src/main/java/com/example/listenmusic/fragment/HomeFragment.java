@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.listenmusic.Adapter.Home_tiktok_adapter;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
@@ -70,7 +71,19 @@ public class HomeFragment extends Fragment {
             User user =  (User) getArguments().getSerializable("user"); // Lấy đối tượng User
             fragmentBanner.setUser(user); // Gọi hàm để truyền User
         }
+        // Truyền user vào fragment_home_recommend
+        fragment_home_recommend homeRecommendFragment = (fragment_home_recommend) getChildFragmentManager().findFragmentById(R.id.fragment_home_recommend);
+        if (homeRecommendFragment != null) {
+            User user = (User) getArguments().getSerializable("user");  // Lấy đối tượng user
+            homeRecommendFragment.setUser(user);  // Truyền user vào fragment_home_recommend
+        }
 
+        // Truyền user vào fragment_home_tiktok
+        Fragment_home_tiktok fragmentHomeTiktok = (Fragment_home_tiktok) getChildFragmentManager().findFragmentById(R.id.fragment_home_tiktok);
+        if (homeRecommendFragment != null) {
+            User user = (User) getArguments().getSerializable("user");  // Lấy đối tượng user
+            fragmentHomeTiktok.setUser(user);  // Truyền user vào fragment_home_recommend
+        }
         return view;
     }
 

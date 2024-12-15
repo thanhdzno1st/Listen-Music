@@ -36,7 +36,7 @@
             android:name=".Activity.Chatbox_Activity"
             android:exported="false"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="false"></activity>
         <activity
             android:name=".Intro_Activity"
