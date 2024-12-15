@@ -1,14 +1,23 @@
 package com.example.listenmusic;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +25,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.listenmusic.Activity.ChatBoxDialogFragment;
 import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Adapter.SearchFragmentAdapter;
 import com.example.listenmusic.Models.User;
@@ -28,7 +39,11 @@ import com.example.listenmusic.fragment.PlaylistFragment;
 import com.example.listenmusic.fragment.SearchFragment;
 import com.example.listenmusic.fragment.ViewPagerAdapter;
 import com.example.listenmusic.widget.CustomViewPager;
+import com.google.ai.client.generativeai.java.ChatFutures;
+import com.google.ai.client.generativeai.java.GenerativeModelFutures;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
     private CustomViewPager viewpager, viewPagerLeftMenu;
@@ -46,7 +61,13 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout bt_2;
     private RelativeLayout bt_3;
     private ImageView btn_close_search;
-
+    private TextInputEditText querryEditText;
+    private ImageView sendQuerry,logo,appIcon;
+    FloatingActionButton buttonshowDialog;
+    private ProgressBar progressBar;
+    private LinearLayout chatResponse;
+    private ChatFutures chatModel;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +81,19 @@ public class MainActivity extends AppCompatActivity {
         tv_email = headerView.findViewById(R.id.txt_Email);
         btn_search = findViewById(R.id.btn_search);
         btnOpenDrawer = findViewById(R.id.bt_menu);
-        view = findViewById(R.id.viewtablet);
         bt_1 = findViewById(R.id.bt_1);
         bt_2 = findViewById(R.id.bt_2);
         bt_3 = findViewById(R.id.bt_3);
         btn_close_search = findViewById(R.id.btn_close_search);
+
+        buttonshowDialog = findViewById(R.id.showMessageDialog);
+
+        buttonshowDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChatDialog();
+            }
+        });
 
         Bundle bundleReceive = getIntent().getExtras();
         if (bundleReceive != null) {
@@ -100,13 +129,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Music_Activity.class);
-                startActivity(intent);
-            }
-        });
 
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar
@@ -235,5 +257,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void closeCurrentFragment() {
         viewPagerLeftMenu.setVisibility(View.GONE);
+    }
+    private void showChatDialog() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ChatBoxDialogFragment chatDialogFragment = new ChatBoxDialogFragment();
+        chatDialogFragment.show(fragmentManager, "ChatBoxDialogFragment");
     }
 }

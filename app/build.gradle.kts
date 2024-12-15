@@ -35,6 +35,11 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    // Giải quyết xung đột META-INF/DEPENDENCIES
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+    }
 }
 
 dependencies {
@@ -66,9 +71,20 @@ dependencies {
     implementation("com.eftimoff:android-viewpager-transformers:1.0.1@aar")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
+    implementation("androidx.media:media:1.6.0")
+    implementation("androidx.media2:media2-session:1.2.1")
 
     // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Thư viện OkHttp cho HTTP requests
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+
+    // Thư viện Generative AI client của Google
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+    implementation("com.google.guava:guava:31.0.1-android")
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
+
 }

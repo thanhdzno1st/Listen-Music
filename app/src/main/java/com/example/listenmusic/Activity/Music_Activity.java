@@ -1,13 +1,24 @@
 package com.example.listenmusic.Activity;
 
+import static com.example.listenmusic.ApplicationClass.ACTION_NEXT;
+import static com.example.listenmusic.ApplicationClass.ACTION_PLAY;
+import static com.example.listenmusic.ApplicationClass.ACTION_PREVIOUS;
+import static com.example.listenmusic.ApplicationClass.CHANNEL_ID_2;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -15,18 +26,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.StrictMode;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -45,38 +59,42 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.example.listenmusic.Adapter.ViewPagerAdapter_Music;
 import com.example.listenmusic.Fragment_info;
 import com.example.listenmusic.Fragment_lyrics;
 import com.example.listenmusic.Fragment_music;
-import com.example.listenmusic.MainActivity;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
+import com.example.listenmusic.NotificationReceiver;
 import com.example.listenmusic.R;
+import com.example.listenmusic.Service.ActionPlaying;
+import com.example.listenmusic.Service.MusicService;
 import com.example.listenmusic.ViewPageAdapter_dsphat;
-import com.example.listenmusic.Adapter.ViewPagerAdapter_Music;
 import com.example.listenmusic.fragment.Fragment_playlist;
-import com.example.listenmusic.fragment.PlaylistFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Music_Activity extends AppCompatActivity {
+public class Music_Activity extends AppCompatActivity implements MediaPlayer.OnCompletionListener, ActionPlaying, ServiceConnection {
     private ViewPager2 viewPager2Music,viewPager2dsphat;
     private TabLayout mTablayout;
     private CircleImageView circle_img;
@@ -115,6 +133,8 @@ public class Music_Activity extends AppCompatActivity {
     boolean next = false;
     public Song song;
     private Handler handler;
+    MusicService musicService;
+    MediaSessionCompat mediaSessionCompat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -256,11 +276,13 @@ public class Music_Activity extends AppCompatActivity {
             }
         });
         fragmentMusic= (Fragment_music) viewPagerAdapterMusic.fragmentArrayList.get(1);
+        positionMusic = findSongPosition(mangSong,song);
         if(song != null){
             new PlayMp3().execute(song.getLinkBaiHat());
             btn_play.setImageResource(R.drawable.button_pause);
             String imageUrl = song.getHinhBaiHat(); // Đường dẫn hình ảnh
             applyBlurredBackground(imageUrl);
+            showNotification(R.drawable.button_pause_small);
         }else{
 //            if(mangSong.size()>0){
 //                new PlayMp3().execute(mangSong.get(0).getLinkBaiHat());
@@ -269,9 +291,7 @@ public class Music_Activity extends AppCompatActivity {
 //                applyBlurredBackground(imageUrl);
 //            }
         }
-        positionMusic = findSongPosition(mangSong,song);
         Log.d("DEBUG", "Thong tin User: " + user);
-
         eventClick();
 
     }
@@ -305,15 +325,7 @@ public class Music_Activity extends AppCompatActivity {
         btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
-                    btn_play.setImageResource(R.drawable.button_play);
-                    fragmentMusic.stopAnimation();
-                }else{
-                    mediaPlayer.start();
-                    btn_play.setImageResource(R.drawable.button_pause);
-                    fragmentMusic.startAnimation();
-                }
+                btn_play_pauseClicked();
             }
         });
         bt_repeat.setOnClickListener(new View.OnClickListener() {
@@ -369,80 +381,266 @@ public class Music_Activity extends AppCompatActivity {
         bt_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mangSong.size() > 0){
-                    if(mediaPlayer.isPlaying() || mediaPlayer!=null){
-                        mediaPlayer.stop();
-                        mediaPlayer.release();
-                        mediaPlayer=null;
-                    }
-                    if(positionMusic < (mangSong.size())){
-                        btn_play.setImageResource(R.drawable.button_pause);
-                        positionMusic++;
-                        if(repeat == true){
-                            if(positionMusic == 0 ){
-                                positionMusic = mangSong.size();
-                            }
-                            positionMusic -= 1;
-                        }
-                        if(checkrandom == true){
-                            Random random = new Random();
-                            int index = random.nextInt(mangSong.size());
-                            if(index == positionMusic){
-                                positionMusic = index - 1;
-                            }
-                            positionMusic = index;
-                        }
-                        if(positionMusic >(mangSong.size()-1)){
-                            positionMusic = 0;
-                        }
-                        song = mangSong.get(positionMusic);
-                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
-                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
-                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
-                        applyBlurredBackground(imageUrl);
-                        UpdateTime();
-                    }
-                }
-
+                btn_nextClicked();
             }
         });
         bt_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mangSong.size() > 0){
-                    if(mediaPlayer.isPlaying() || mediaPlayer!=null){
-                        mediaPlayer.stop();
-                        mediaPlayer.release();
-                        mediaPlayer=null;
-                    }
-                    if(positionMusic < (mangSong.size())){
-                        btn_play.setImageResource(R.drawable.button_pause);
-                        positionMusic--;
-                        if(positionMusic<0){
-                            positionMusic=mangSong.size()-1;
-                        }
-                        if(repeat == true){
-
-                            positionMusic += 1;
-                        }
-                        if(checkrandom == true){
-                            Random random = new Random();
-                            int index = random.nextInt(mangSong.size());
-                            if(index == positionMusic){
-                                positionMusic = index - 1;
-                            }
-                            positionMusic = index;
-                        }
-                        song = mangSong.get(positionMusic);
-                        new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
-                        fragmentMusic.Playnhac(mangSong.get(positionMusic));
-                        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
-                        applyBlurredBackground(imageUrl);
-                        UpdateTime();
-                    }
-                }
+                btn_prevClicked();
             }
         });
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        Intent intent = new Intent(this, MusicService.class);
+        bindService(intent,this,BIND_AUTO_CREATE);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unbindService(this);
+    }
+
+    @Override
+    public void onServiceConnected(ComponentName componentName, IBinder service) {
+        MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
+        musicService = myBinder.getService();
+        musicService.setCallBack(this);
+        Toast.makeText(this,"Connected" + musicService,
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName componentName) {
+
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    void showNotification(int playPauseBtn) {
+        // Kiểm tra null cho song
+        if (song == null) return;
+
+        // Intent mở ứng dụng
+        Intent intent = new Intent(this, MusicService.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        // Previous action
+        Intent prevIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_PREVIOUS);
+        PendingIntent prevPending = PendingIntent.getBroadcast(this, 0, prevIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Play/Pause action
+        Intent pauseIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_PLAY);
+        PendingIntent pausePending = PendingIntent.getBroadcast(this, 0, pauseIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Next action
+        Intent nextIntent = new Intent(this, NotificationReceiver.class).setAction(ACTION_NEXT);
+        PendingIntent nextPending = PendingIntent.getBroadcast(this, 0, nextIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        // Lấy ảnh từ URL trong AsyncTask (nếu bạn chưa sử dụng AsyncTask hoặc ExecutorService)
+        String imageUrl = mangSong.get(positionMusic).getHinhBaiHat();
+
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            new AsyncTask<String, Void, Bitmap>() {
+                @Override
+                protected Bitmap doInBackground(String... urls) {
+                    try {
+                        // Tải ảnh từ URL và chuyển thành Bitmap
+                        URL url = new URL(urls[0]);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setDoInput(true);
+                        connection.connect();
+                        InputStream input = connection.getInputStream();
+                        return BitmapFactory.decodeStream(input); // Trực tiếp decode InputStream
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return null; // Nếu có lỗi, trả về null
+                }
+
+                @Override
+                protected void onPostExecute(Bitmap result) {
+                    // Nếu tải ảnh thành công
+                    if (result != null) {
+                        // Tạo thông báo
+                        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(result) // Đặt ảnh lớn từ result
+                                .setContentTitle(mangSong.get(positionMusic).getTenBaiHat())
+                                .setContentText(mangSong.get(positionMusic).getTenNgheSi())
+                                .addAction(R.drawable.skip_previous_filled_small, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Play/Pause", pausePending) // Sửa nhãn thành Play/Pause
+                                .addAction(R.drawable.skip_next_filled_small, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+
+                        // Hiển thị thông báo
+                        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        notificationManager.notify(0, notification);
+                    } else {
+                        // Nếu không tải được ảnh, sử dụng ảnh mặc định
+                        Bitmap defaultThumb = BitmapFactory.decodeResource(getResources(), R.drawable.baihat_1);
+                        // Tạo thông báo với ảnh mặc định
+                        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID_2)
+                                .setSmallIcon(playPauseBtn)
+                                .setLargeIcon(defaultThumb) // Đặt ảnh mặc định nếu không tải được ảnh
+                                .setContentTitle(mangSong.get(positionMusic).getTenBaiHat())
+                                .setContentText(mangSong.get(positionMusic).getTenNgheSi())
+                                .addAction(R.drawable.skip_previous_filled_small, "Previous", prevPending)
+                                .addAction(playPauseBtn, "Play/Pause", pausePending)
+                                .addAction(R.drawable.skip_next_filled_small, "Next", nextPending)
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                                        .setMediaSession(mediaSessionCompat.getSessionToken()))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                .setOnlyAlertOnce(true)
+                                .build();
+
+                        // Hiển thị thông báo
+                        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                        notificationManager.notify(0, notification);
+                    }
+                }
+            }.execute(imageUrl);
+        } else {
+            // Nếu không có URL ảnh, sử dụng ảnh mặc định
+            Bitmap defaultThumb = BitmapFactory.decodeResource(getResources(), R.drawable.logotbp);
+            // Tạo thông báo với ảnh mặc định
+            Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID_2)
+                    .setSmallIcon(playPauseBtn)
+                    .setLargeIcon(defaultThumb)
+                    .setContentTitle(song.getTenBaiHat())
+                    .setContentText(song.getTenNgheSi())
+                    .addAction(R.drawable.skip_previous_filled_small, "Previous", prevPending)
+                    .addAction(playPauseBtn, "Play/Pause", pausePending)
+                    .addAction(R.drawable.skip_next_filled_small, "Next", nextPending)
+                    .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                            .setMediaSession(mediaSessionCompat.getSessionToken()))
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setOnlyAlertOnce(true)
+                    .build();
+
+            // Hiển thị thông báo
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(0, notification);
+        }
+    }
+
+    private byte[] inputStreamToByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+
+        return byteBuffer.toByteArray();
+    }
+
+
+    @Override
+    public void btn_play_pauseClicked() {
+        if(mediaPlayer.isPlaying()){
+            mediaPlayer.pause();
+            btn_play.setImageResource(R.drawable.button_play);
+            fragmentMusic.stopAnimation();
+            showNotification(R.drawable.button_play_small);
+        }else{
+            mediaPlayer.start();
+            btn_play.setImageResource(R.drawable.button_pause);
+            fragmentMusic.startAnimation();
+            showNotification(R.drawable.button_pause_small);
+        }
+    }
+
+    @Override
+    public void btn_prevClicked() {
+        if(mangSong.size() > 0){
+            if(mediaPlayer.isPlaying() || mediaPlayer!=null){
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer=null;
+            }
+            if(positionMusic < (mangSong.size())){
+                btn_play.setImageResource(R.drawable.button_pause);
+                positionMusic--;
+                if(positionMusic<0){
+                    positionMusic=mangSong.size()-1;
+                }
+                if(repeat == true){
+
+                    positionMusic += 1;
+                }
+                if(checkrandom == true){
+                    Random random = new Random();
+                    int index = random.nextInt(mangSong.size());
+                    if(index == positionMusic){
+                        positionMusic = index - 1;
+                    }
+                    positionMusic = index;
+                }
+                song = mangSong.get(positionMusic);
+                new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
+                applyBlurredBackground(imageUrl);
+                UpdateTime();
+            }
+            showNotification(R.drawable.button_pause_small);
+        }
+    }
+
+    @Override
+    public void btn_nextClicked() {
+        if(mangSong.size() > 0){
+            if(mediaPlayer.isPlaying() || mediaPlayer!=null){
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer=null;
+            }
+            if(positionMusic < (mangSong.size())){
+                btn_play.setImageResource(R.drawable.button_pause);
+                positionMusic++;
+                if(repeat == true){
+                    if(positionMusic == 0 ){
+                        positionMusic = mangSong.size();
+                    }
+                    positionMusic -= 1;
+                }
+                if(checkrandom == true){
+                    Random random = new Random();
+                    int index = random.nextInt(mangSong.size());
+                    if(index == positionMusic){
+                        positionMusic = index - 1;
+                    }
+                    positionMusic = index;
+                }
+                if(positionMusic >(mangSong.size()-1)){
+                    positionMusic = 0;
+                }
+                song = mangSong.get(positionMusic);
+                new PlayMp3().execute(mangSong.get(positionMusic).getLinkBaiHat());
+                fragmentMusic.Playnhac(mangSong.get(positionMusic));
+                String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // Đường dẫn hình ảnh
+                applyBlurredBackground(imageUrl);
+                UpdateTime();
+            }
+            showNotification(R.drawable.button_pause_small);
+        }
+
     }
 
 
@@ -541,6 +739,7 @@ public class Music_Activity extends AppCompatActivity {
                         fragmentMusic.Playnhac(mangSong.get(positionMusic));
                         String imageUrl = mangSong.get(positionMusic).getHinhBaiHat(); // URL hình ảnh
                         applyBlurredBackground(imageUrl);
+                        showNotification(R.drawable.button_pause_small);
                     }
 
                     // Đặt lại trạng thái "next"
@@ -651,6 +850,7 @@ public class Music_Activity extends AppCompatActivity {
         bt_repeat = findViewById(R.id.btn_repeat);
         bt_next = findViewById(R.id.btn_next);
         bt_previous = findViewById(R.id.btn_previous);
+        mediaSessionCompat = new MediaSessionCompat(getBaseContext(),"My audio");
     }
     public static int findSongPosition(ArrayList<Song> mangSong, Song targetSong) {
         for (int i = 0; i < mangSong.size(); i++) {

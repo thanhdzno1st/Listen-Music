@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ApplicationClass"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,6 +17,10 @@
         android:theme="@style/Theme.ListenMusic"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.chatboxActivity"
+            android:exported="false" />
+
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
@@ -23,11 +28,16 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service
+            android:name=".Service.MusicService"
+            android:enabled="true" />
 
         <activity
+            android:name=".Activity.Chatbox_Activity"
+            android:exported="false"></activity>
+        <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".Intro_Activity"
             android:exported="true">
@@ -45,22 +55,33 @@
             android:exported="false" />
         <activity
             android:name=".login4"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".login5"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".register"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".TestActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Activity.Music_Activity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".Login_Activity"
-            android:exported="false"></activity>
+            android:exported="false" />
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true"
+            android:exported="true"> <!-- Set to true or false as needed -->
+            <intent-filter>
+                <action android:name="actionprevious" />
+                <action android:name="actionnext" />
+                <action android:name="actionplay" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
