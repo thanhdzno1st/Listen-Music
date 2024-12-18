@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.listenmusic.Adapter.Home_tiktok_adapter;
+import com.example.listenmusic.Adapter.SearchAdapter;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
 
@@ -84,6 +85,7 @@ public class HomeFragment extends Fragment {
             User user = (User) getArguments().getSerializable("user");  // Lấy đối tượng user
             fragmentHomeTiktok.setUser(user);  // Truyền user vào fragment_home_recommend
         }
+
         return view;
     }
 

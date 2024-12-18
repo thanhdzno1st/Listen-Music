@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Khi nhấn giữ (long click) hoặc nhấn vào (click) -->
+    <item android:drawable="@android:color/darker_gray" android:state_pressed="true"/>
+    <item android:drawable="@android:color/darker_gray" android:state_selected="true"/>
+/>
+</selector>

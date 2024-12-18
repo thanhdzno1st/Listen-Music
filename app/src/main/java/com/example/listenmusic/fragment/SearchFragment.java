@@ -102,7 +102,11 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate layout cho fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        if (getArguments() != null) {
+            user = (User) getArguments().getSerializable("user"); // Lấy đối tượng User
+            Log.d("Debug SearchFragment", "toi dang Lấy đối tượng User voi user la: "+user);
 
+        }
         // Khởi tạo baiHatList nếu chưa khởi tạo
         if (baiHatList == null) {
             baiHatList = new ArrayList<>();

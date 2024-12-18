@@ -1,5 +1,6 @@
 package com.example.listenmusic.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,11 +35,17 @@ public class Playlist_list_adapter extends RecyclerView.Adapter<Playlist_list_ad
     ArrayList<Playlist> mangPlaylist;
     User user;
     Song song;
-    public Playlist_list_adapter(Context context, ArrayList<Playlist> mangPlaylist, User user, Song song) {
+    private OnPlaylistDeletedListener onPlaylistDeletedListener;
+
+    public interface OnPlaylistDeletedListener {
+        void onPlaylistDeleted();  // Phương thức callback
+    }
+    public Playlist_list_adapter(Context context, ArrayList<Playlist> mangPlaylist, User user, Song song,OnPlaylistDeletedListener listener) {
         this.context = context;
         this.mangPlaylist = mangPlaylist;
         this.user = user;
         this.song = song;
+        this.onPlaylistDeletedListener = listener;
     }
 
     @NonNull
@@ -54,6 +61,8 @@ public class Playlist_list_adapter extends RecyclerView.Adapter<Playlist_list_ad
         Playlist playlist = mangPlaylist.get(position);
         holder.txt_tenplaylist.setText(playlist.getTenPlayList());
         holder.txt_tacgia.setText("Tạo bởi "+playlist.getHoTen());
+        // Áp dụng hiệu ứng nền cho itemView (để khi nhấn giữ hoặc nhấn vào có hiệu ứng màu xám)
+        holder.itemView.setBackgroundResource(R.drawable.selector_item); // Thêm selector vào background
         //holder.imageViewSong.setImageResource(R.drawable.img_1);
         if (playlist.getHinhPlayList() != null && !playlist.getHinhPlayList().isEmpty()) {
             Glide.with(context)
@@ -71,7 +80,26 @@ public class Playlist_list_adapter extends RecyclerView.Adapter<Playlist_list_ad
             else
                 showPlaylistData(playlist);
         });
+        // Xử lý sự kiện nhấn giữ (long click)
+        holder.itemView.setOnLongClickListener(v -> {
+            // Hiển thị dialog xác nhận xóa
+            new AlertDialog.Builder(v.getContext())
+                    .setTitle("Xóa Playlist")
+                    .setMessage("Bạn có chắc chắn muốn xóa playlist này không?")
+                    .setPositiveButton("Xóa", (dialog, which) -> {
+                        // Thực hiện hành động xóa playlist
+                        deletePlaylist(playlist);
+                    })
+                    .setNegativeButton("Hủy", (dialog, which) -> {
+                        // Đóng dialog mà không làm gì
+                        dialog.dismiss();
+                    })
+                    .show();
+            return true; // Trả về true để sự kiện nhấn giữ được xử lý
+        });
     }
+
+
 
     private void showPlaylistData(Playlist playlist) {
         // Tạo một Bundle để đóng gói dữ liệu
@@ -102,7 +130,6 @@ public class Playlist_list_adapter extends RecyclerView.Adapter<Playlist_list_ad
         }
     }
     private void updatePlaylistData(Playlist playlist, User user, Song song) {
-        // Hiển thị thông báo hoặc xử lý logic trước khi gọi API
         Toast.makeText(context, "Đang cập nhật playlist: " + playlist.getTenPlayList(), Toast.LENGTH_SHORT).show();
 
         Dataservice dataservice = APIservice.getService();
@@ -121,4 +148,29 @@ public class Playlist_list_adapter extends RecyclerView.Adapter<Playlist_list_ad
             }
         });
     }
+    private void deletePlaylist(Playlist playlist) {
+        Toast.makeText(context, "Đang xóa playlist: " + playlist.getTenPlayList(), Toast.LENGTH_SHORT).show();
+
+        Dataservice dataservice = APIservice.getService();
+        Call<ResponseBody> callback = dataservice.deletePlaylist(playlist.getIdPlaylist());
+        callback.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Xóa playlist thành công", Toast.LENGTH_SHORT).show();
+                    if (onPlaylistDeletedListener != null) {
+                        onPlaylistDeletedListener.onPlaylistDeleted();  // Gọi callback
+                    }
+                } else {
+                    Toast.makeText(context, "Xóa playlist thất bại: " + response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(context, "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

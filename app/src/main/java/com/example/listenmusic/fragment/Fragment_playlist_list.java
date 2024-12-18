@@ -35,7 +35,7 @@ import retrofit2.Response;
  * Use the {@link Fragment_playlist_list#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_playlist_list extends Fragment {
+public class Fragment_playlist_list extends Fragment implements Playlist_list_adapter.OnPlaylistDeletedListener {
     View view;
     RecyclerView recyclerViewPlaylist;
     Playlist_list_adapter playlistListAdapter;
@@ -45,25 +45,29 @@ public class Fragment_playlist_list extends Fragment {
 
     private User user;
     private Song song;
-    public static Fragment_playlist_list newInstance(User user,Song song) {
+
+    public static Fragment_playlist_list newInstance(User user, Song song) {
         Fragment_playlist_list fragment = new Fragment_playlist_list();
         Bundle args = new Bundle();
         args.putSerializable(ARG_USER, user); // Truyền đối tượng User vào Bundle
-        args.putParcelable(ARG_Song,song);
+        args.putParcelable(ARG_Song, song);
         fragment.setArguments(args);
         return fragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_playlist_list,container,false);
+        view = inflater.inflate(R.layout.fragment_playlist_list, container, false);
         anhXa();
+
         if (getArguments() != null) {
             user = (User) getArguments().getSerializable(ARG_USER);
             song = getArguments().getParcelable(ARG_Song);
         } else {
             Log.d("AddPlaylistDebug", "Bundle bị null!");
         }
+
         GetData();
         return view;
     }
@@ -93,19 +97,17 @@ public class Fragment_playlist_list extends Fragment {
                     for (Playlist playlist : PlaylistArraylist) {
                         Log.d("hihi", "Tên Playlist: " + playlist.getTenPlayList());
                     }
+
                     // Nếu adapter chưa khởi tạo, tạo mới adapter và gắn vào RecyclerView
                     if (playlistListAdapter == null) {
-                        playlistListAdapter = new Playlist_list_adapter(getActivity(), PlaylistArraylist,user,song);
+                        playlistListAdapter = new Playlist_list_adapter(getActivity(), PlaylistArraylist, user, song, Fragment_playlist_list.this);
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                         recyclerViewPlaylist.setLayoutManager(linearLayoutManager);
                         recyclerViewPlaylist.setAdapter(playlistListAdapter);
                         recyclerViewPlaylist.invalidate();
                     } else {
-                        Log.d("Adapter", "Trước notifyDataSetChanged");
                         playlistListAdapter.notifyDataSetChanged();
-                        Log.d("Adapter", "Sau notifyDataSetChanged");
-
                     }
 
                     Toast.makeText(getActivity(), "Dữ liệu đã được làm mới!", Toast.LENGTH_SHORT).show();
@@ -123,5 +125,10 @@ public class Fragment_playlist_list extends Fragment {
         });
     }
 
-
+    // Phương thức gọi lại khi playlist bị xóa
+    @Override
+    public void onPlaylistDeleted() {
+        // Gọi lại GetData() để tải lại dữ liệu sau khi playlist bị xóa
+        GetData();
+    }
 }

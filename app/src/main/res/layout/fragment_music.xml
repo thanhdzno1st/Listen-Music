@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    tools:context=".Fragment_music"
+    tools:context=".fragment.Fragment_music"
     >
 
 

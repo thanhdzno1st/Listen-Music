@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
 }
 
@@ -70,6 +70,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
     implementation("com.eftimoff:android-viewpager-transformers:1.0.1@aar")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("androidx.media:media:1.6.0")
     implementation("androidx.media2:media2-session:1.2.1")

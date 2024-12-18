@@ -100,18 +100,27 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                     mangSong = new ArrayList<>(response.body());
                     Log.d("GetdataPlaylist", "Dữ liệu bài hát đã được tải thành công. Số lượng bài hát: " + mangSong.size());
 
-                    if (!mangSong.isEmpty()) {
+                    boolean hasValidSong = false;
+
+                    // Kiểm tra xem có bài hát nào có idBaiHat khác 0 không
+                    for (Song song : mangSong) {
+                        if (song != null && song.getIdBaiHat() != "0") {
+                            hasValidSong = true;
+                            break; // Thoát vòng lặp khi tìm thấy bài hát hợp lệ
+                        }
+                    }
+
+                    if (hasValidSong) {
+                        // Cập nhật RecyclerView nếu có bài hát hợp lệ
                         danhsachbaihatAdapter = new danhsachbaihatAdapter(DanhsachbaihatActivity.this, mangSong, user);
                         recyclerViewDsbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
                         recyclerViewDsbaihat.setAdapter(danhsachbaihatAdapter);
                         Log.d("GetdataPlaylist", "Adapter đã được thiết lập và RecyclerView đã được cập nhật.");
                     } else {
-                        Log.d("GetdataPlaylist", "Playlist không có bài hát nào.");
+                        // Nếu không có bài hát hợp lệ
+                        Log.d("GetdataPlaylist", "Playlist không có bài hát nào hợp lệ.");
                         Toast.makeText(DanhsachbaihatActivity.this, "Không có bài hát nào trong playlist của bạn!", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Log.e("GetdataPlaylist", "Lỗi khi gọi API. Mã lỗi: " + response.code());
-                    Toast.makeText(DanhsachbaihatActivity.this, "Không thể tải dữ liệu từ playlist. Mã lỗi: " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
 

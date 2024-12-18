@@ -1,51 +1,46 @@
 package com.example.listenmusic.Adapter;
 
-import android.util.Log;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.listenmusic.Models.User;
-import com.example.listenmusic.fragment.FollowFragment;
-import com.example.listenmusic.fragment.HomeFragment;
-import com.example.listenmusic.fragment.LibraryFragment;
-import com.example.listenmusic.fragment.SearchFragment;
-import com.example.listenmusic.fragment.TrendFragment;
-import com.example.listenmusic.fragment.VipFragment;
+import java.util.List;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    private User user; // Đối tượng User cần truyền
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int behavior, User user) {
-        super(fm, behavior);
-        this.user = user; // Gán User vào adapter
+public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewHolder> {
+
+    private List<Integer> layouts;  // Danh sách các layout
+    private LayoutInflater inflater;
+
+    public ViewPagerAdapter(Context context, List<Integer> layouts) {
+        this.layouts = layouts;
+        this.inflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-                return new FollowFragment();
-            case 1:
-                return new VipFragment();
-            case 2:
-                return HomeFragment.newInstance(user);
-            case 3:
-                return new TrendFragment();
-            case 4:
-                Log.d("Debug playlist", "toi dang o adapter thu vien");
-                return LibraryFragment.newInstance(user); // Truyền User vào LibraryFragment
-            case 5:
-                return new SearchFragment();
-            default:
-                return new HomeFragment();
-        }
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate layout cho từng trang
+        View view = inflater.inflate(layouts.get(viewType), parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public int getCount() {
-        return 6;
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Bạn có thể thêm các hành động khác nếu cần
+    }
+
+    @Override
+    public int getItemCount() {
+        return layouts.size();  // Trả về số lượng trang
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 }

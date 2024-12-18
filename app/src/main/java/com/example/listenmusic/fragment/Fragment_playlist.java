@@ -17,6 +17,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.listenmusic.Adapter.Playlist_list_adapter;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
@@ -31,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import android.view.Gravity;
 
-public class Fragment_playlist extends DialogFragment {
+public class Fragment_playlist extends DialogFragment{
     private LinearLayout btn_playlist;
     private Dialog dialog;
     private EditText etPlaylistName;

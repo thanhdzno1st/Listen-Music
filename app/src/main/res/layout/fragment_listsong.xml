@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_listsong">
+    tools:context=".fragment.Fragment_listsong">
     <!-- TODO: Update blank fragment layout -->
 
         <LinearLayout

@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.NgheSiCha;
-import com.example.listenmusic.model.BaiHatCon;
+import com.example.listenmusic.Models.NgheSiCha;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.NgheSi;
+import com.example.listenmusic.Models.NgheSi;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

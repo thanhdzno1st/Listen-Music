@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +55,7 @@ public class PlaylistFragment extends Fragment {
     private FragmentManager fragmentManager;
     private Fragment_playlist_list fragmentPlaylistList;
     private FragmentTransaction transaction;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PlaylistFragment() {
 
@@ -71,7 +74,25 @@ public class PlaylistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
         Toast.makeText(getActivity(), "dang tao lai playlist", Toast.LENGTH_SHORT).show();
+        // Khởi tạo SwipeRefreshLayout
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
 
+        // Thiết lập sự kiện khi vuốt xuống để làm mới
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Khi vuốt xuống, thực hiện làm mới nội dung
+                refreshPlaylist();
+                // Giả lập quá trình làm mới bằng cách tạm dừng 2 giây
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Sau 2 giây, dừng quá trình làm mới
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000); // 2000ms = 2 giây
+            }
+        });
         btn_playlist = view.findViewById(R.id.bt_playlist);
         createDialog();
 

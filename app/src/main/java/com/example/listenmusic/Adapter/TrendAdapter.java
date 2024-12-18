@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.listenmusic.Models.BaiHat;
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.Trend;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> {
 
-    private List<Trend> trendList;
+    private List<BaiHat.Trend> trendList;
 
-    public TrendAdapter(List<Trend> trendList) {
+    public TrendAdapter(List<BaiHat.Trend> trendList) {
         this.trendList = trendList;
     }
 
@@ -32,7 +32,7 @@ public class TrendAdapter extends RecyclerView.Adapter<TrendAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Trend trend = trendList.get(position);
+        BaiHat.Trend trend = trendList.get(position);
         holder.tv_stt.setText(trend.getStt());
         holder.tv_tenBaiHat.setText(trend.getTenBaiHat());
         holder.tv_tenNgheSi.setText(trend.getTenNgheSi());

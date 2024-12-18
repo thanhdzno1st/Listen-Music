@@ -2,7 +2,7 @@ package com.example.listenmusic.Adapter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import com.example.listenmusic.Activity.Music_Activity;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.BaiHatCon;
 
 import com.squareup.picasso.Picasso;
 
@@ -78,6 +77,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
                         Intent intent = new Intent(itemView.getContext(), Music_Activity.class);
                         Bundle bundle = new Bundle();
+                        Log.d("Debug SearchFragment", "toi dang o bundle voi user la: "+user);
                         bundle.putParcelable("cakhuc", baiHat); // Transmit the song object
                         bundle.putSerializable("user", user); // Transmit the user object
                         bundle.putParcelableArrayList("cacbaihat", mangSong);

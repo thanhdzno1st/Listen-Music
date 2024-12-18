@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -19,9 +18,9 @@ import com.example.listenmusic.Adapter.Follow_ChaAdapter;
 import com.example.listenmusic.Adapter.Follow_GoiYAdapter;
 import com.example.listenmusic.Adapter.Follow_TopAdapter;
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.BaiHatCon;
-import com.example.listenmusic.model.NgheSi;
-import com.example.listenmusic.model.NgheSiCha;
+import com.example.listenmusic.Models.BaiHatCon;
+import com.example.listenmusic.Models.NgheSi;
+import com.example.listenmusic.Models.NgheSiCha;
 
 import org.json.JSONArray;
 import org.json.JSONException;

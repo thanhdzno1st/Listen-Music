@@ -17,17 +17,14 @@
         android:theme="@style/Theme.ListenMusic"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".Activity.chatboxActivity"
-            android:exported="false" />
-
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
-            android:exported="false">
+            android:name=".MyFirebaseMessagingService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <service
             android:name=".Service.MusicService"
             android:enabled="true" />
@@ -39,7 +36,7 @@
             android:name=".Activity.MainActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".Intro_Activity"
+            android:name=".Activity.Intro_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,28 +45,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Download"
+            android:name=".Activity.Download"
             android:exported="false" />
         <activity
             android:name=".Activity.DanhsachbaihatActivity"
             android:exported="false" />
         <activity
-            android:name=".login4"
+            android:name=".Activity.login4"
             android:exported="false" />
         <activity
-            android:name=".login5"
+            android:name=".Activity.login5"
             android:exported="false" />
         <activity
-            android:name=".register"
-            android:exported="false" />
-        <activity
-            android:name=".TestActivity"
+            android:name=".Activity.register"
             android:exported="false" />
         <activity
             android:name=".Activity.Music_Activity"
             android:exported="false" />
         <activity
-            android:name=".Login_Activity"
+            android:name=".Activity.Login_Activity"
             android:exported="false" />
 
         <receiver

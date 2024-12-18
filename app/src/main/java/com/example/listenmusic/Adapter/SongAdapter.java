@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.BaiHatOffline;
+import com.example.listenmusic.Models.BaiHatOffline;
 
 import java.util.List;
 

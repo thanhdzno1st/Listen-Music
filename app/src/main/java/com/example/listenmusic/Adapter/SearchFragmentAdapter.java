@@ -7,22 +7,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.listenmusic.Models.User;
 import com.example.listenmusic.fragment.SearchFragment;
 
 public class SearchFragmentAdapter extends FragmentStatePagerAdapter {
     private Context context;
-
+    private User user;
     // Constructor
-    public SearchFragmentAdapter(@NonNull FragmentManager fm, int behavior, Context context) {
+    public SearchFragmentAdapter(@NonNull FragmentManager fm, int behavior, Context context,User user) {
         super(fm, behavior);
         this.context = context;
+        this.user = user;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
         // Trả về fragment tương ứng
-        return new SearchFragment();
+        return SearchFragment.newInstance(user);
     }
 
     @Override

@@ -21,12 +21,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.listenmusic.Adapter.SearchFragmentAdapter;
-import com.example.listenmusic.Download;
-import com.example.listenmusic.Login_Activity;
 import com.example.listenmusic.Models.User;
-import com.example.listenmusic.Adapter.ViewPagerAdapter;
+import com.example.listenmusic.Adapter.ViewPagerAdapter_Menu;
 import com.example.listenmusic.R;
-import com.example.listenmusic.ViewPagerAdapter_LeftMenu;
+import com.example.listenmusic.Adapter.ViewPagerAdapter_LeftMenu;
 import com.example.listenmusic.widget.CustomViewPager;
 import com.google.ai.client.generativeai.java.ChatFutures;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ChatFutures chatModel;
     Dialog dialog;
     public LinearLayout layout_header;
-    public ViewPagerAdapter adapter;
+    public ViewPagerAdapter_Menu adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewpager = findViewById(R.id.viewPager);
         viewpager.setPagingEnabled(false);
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(),
+        adapter = new ViewPagerAdapter_Menu(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, user);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(2);
@@ -160,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 layout_header.setVisibility(View.GONE);
 
                 SearchFragmentAdapter searchadapter = new SearchFragmentAdapter(getSupportFragmentManager(),
-                        FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, MainActivity.this);
+                        FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, MainActivity.this,user);
                 viewpager.setAdapter(searchadapter);
                 viewpager.setCurrentItem(1);
             }

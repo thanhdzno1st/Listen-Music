@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.listenmusic.R;
-import com.example.listenmusic.login5;
-import com.example.listenmusic.register;
+import com.example.listenmusic.Activity.login5;
+import com.example.listenmusic.Activity.register;
 
 /**
  * A simple {@link Fragment} subclass.

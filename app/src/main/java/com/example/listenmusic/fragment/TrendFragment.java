@@ -18,8 +18,8 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.listenmusic.Adapter.TrendAdapter;
+import com.example.listenmusic.Models.BaiHat;
 import com.example.listenmusic.R;
-import com.example.listenmusic.model.Trend;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -30,7 +30,7 @@ import java.util.List;
 public class TrendFragment extends Fragment {
 
     RecyclerView recyclerView;
-    List<Trend> trendList;
+    List<BaiHat.Trend> trendList;
     ImageView trend_img1;
     TextView txt_title;
     TextView txt_subtitle;
@@ -54,7 +54,7 @@ public class TrendFragment extends Fragment {
                     try {
                         if (response.length() > 0) {
                             JSONObject obj = response.getJSONObject(0);
-                            Trend trend = new Trend(
+                            BaiHat.Trend trend = new BaiHat.Trend(
                                     obj.getString("idTrend"),
                                     obj.getString("tenBaiHat"),
                                     obj.getString("hinhBaiHat"),
@@ -82,7 +82,7 @@ public class TrendFragment extends Fragment {
                     try {
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = response.getJSONObject(i);
-                            trendList.add(new Trend(
+                            trendList.add(new BaiHat.Trend(
                                     obj.getString("idTrend"),
                                     obj.getString("tenBaiHat"),
                                     obj.getString("hinhBaiHat"),
