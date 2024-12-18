@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1065057505561",
+    "project_id": "thongbao-84602",
+    "storage_bucket": "thongbao-84602.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065057505561:android:e75274553607596d21b588",
+        "android_client_info": {
+          "package_name": "com.example.listenmusic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGEULSIBNq2gXuIYSXEa_5Tzkd792l_IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

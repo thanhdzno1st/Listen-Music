@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+
+    <!-- Nội dung chính của activity -->
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0F2E4">
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/banner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="#c5ecc1">-->
+<!--        </RelativeLayout>-->
+
+        <LinearLayout
+            android:id="@+id/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            android:background="#16B608">
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:id="@+id/bt_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/bt_menu"
+                    android:layout_width="45dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_menu" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_toRightOf="@id/bt_menu"
+                    android:layout_centerVertical="true"
+                    android:background="#000000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:id="@+id/bt_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/bt_download"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_download" />
+                <TextView
+                    android:id="@+id/content_dowload"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="Nhạc lưu trong máy"
+                    android:layout_centerVertical="true"
+                    android:textColor="#ffff"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/bt_download" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_toRightOf="@id/content_dowload"
+                    android:layout_centerVertical="true"
+                    android:background="#000000" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bt_3"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/bt_online"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_online" />
+                <TextView
+                    android:id="@+id/content_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Online"
+                    android:layout_centerVertical="true"
+                    android:textColor="#ffff"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/bt_online" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_toRightOf="@id/content_online"
+                    android:layout_centerVertical="true"
+                    android:background="#000000" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_search"
+                android:layout_marginHorizontal="5dp" />
+        </LinearLayout>
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showMessageDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/bottom_navigation_bar"
+            android:clickable="true"
+            android:src="@drawable/ic_message"
+            />
+
+        <com.example.listenmusic.widget.CustomViewPager
+            android:layout_below="@+id/layout_header"
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom_navigation_bar"/>
+        <com.example.listenmusic.widget.CustomViewPager
+            android:id="@+id/viewPagerMenuLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_above="@+id/bottom_navigation_bar"/>
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            app:bnbMode="mode_fixed"
+            app:bnbBackgroundStyle="background_style_ripple"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+    </RelativeLayout>
+
+    <!-- NavigationView: Menu bên trái -->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="#16B608"
+        app:itemTextColor="@color/black"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

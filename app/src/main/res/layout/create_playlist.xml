@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/playlist_background"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tạo Playlist"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        />
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/Playlist_name"
+        android:layout_below="@+id/title"
+        android:layout_width="230dp"
+        android:hint="Nhập tên của Playlist"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginLeft="50dp"
+        android:id="@+id/btn_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Playlist_name"
+        android:backgroundTint="#FFFFFF"
+        android:text="Bỏ qua"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:padding="8dp"
+        android:elevation="0dp"
+        />
+    <Button
+        android:id="@+id/btn_accept"
+        android:layout_toRightOf="@+id/btn_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Playlist_name"
+        android:backgroundTint="@android:color/white"
+        android:text="Đồng ý"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:padding="8dp"
+        />
+
+</RelativeLayout>

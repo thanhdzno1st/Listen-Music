@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_dialog">
+    <RelativeLayout
+        android:id="@+id/title_cmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:text="Chatbox TPBmusic"
+            />
+
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logotbp"
+        android:layout_centerInParent="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+
+    <ScrollView
+        android:layout_below="@+id/title_cmt"
+        android:background="#3362FF00"
+        android:id="@+id/scrollView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/chatResponse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/message_dialog"
+        android:layout_below="@+id/scrollView_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_alignParentBottom="true">
+        <ImageView
+            android:id="@+id/logo_chat"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/user"
+            android:layout_centerVertical="true"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:layout_centerInParent="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/querryEditText_chat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/sendMessage_chat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="5dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/baseline_send_24" />
+    </RelativeLayout>
+
+</RelativeLayout>

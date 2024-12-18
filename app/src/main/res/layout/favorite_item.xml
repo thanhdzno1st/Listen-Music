@@ -1,0 +1,246 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <!-- Mục bài hát 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Hình ảnh đại diện của bài hát -->
+        <ImageView
+            android:id="@+id/song_image1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Thông tin bài hát và nghệ sĩ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/song_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lạc Trôi"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/artist_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn Tùng MTP"
+                android:textSize="14sp"
+                android:textColor="#808080" />
+        </LinearLayout>
+
+        <!-- Icon trái tim yêu thích -->
+        <ImageView
+            android:id="@+id/favorite_icon1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/red_heart" />
+    </LinearLayout>
+
+    <!-- Mục bài hát 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Hình ảnh đại diện của bài hát -->
+        <ImageView
+            android:id="@+id/song_image2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image2"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Thông tin bài hát và nghệ sĩ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/song_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nắng Ấm Xa Dần"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/artist_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn Tùng MTP"
+                android:textSize="14sp"
+                android:textColor="#808080" />
+        </LinearLayout>
+
+        <!-- Icon trái tim yêu thích -->
+        <ImageView
+            android:id="@+id/favorite_icon2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/red_heart" />
+    </LinearLayout>
+
+    <!-- Mục bài hát 4 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Hình ảnh đại diện của bài hát -->
+        <ImageView
+            android:id="@+id/song_image4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image3"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Thông tin bài hát và nghệ sĩ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/song_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chúng ta của hiện tại"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/artist_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn Tùng MTP"
+                android:textSize="14sp"
+                android:textColor="#808080" />
+        </LinearLayout>
+
+        <!-- Icon trái tim yêu thích -->
+        <ImageView
+            android:id="@+id/favorite_icon4"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/red_heart" />
+    </LinearLayout>
+    <!-- Mục bài hát 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Hình ảnh đại diện của bài hát -->
+        <ImageView
+            android:id="@+id/song_image4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image4"
+            android:layout_marginEnd="16dp"
+            tools:ignore="DuplicateIds" />
+
+        <!-- Thông tin bài hát và nghệ sĩ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/song_name5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hãy Trao Cho Anh"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/artist_name5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn Tùng MTP"
+                android:textSize="14sp"
+                android:textColor="#808080" />
+        </LinearLayout>
+
+        <!-- Icon trái tim yêu thích -->
+        <ImageView
+            android:id="@+id/favorite_icon5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/red_heart" />
+    </LinearLayout>
+    <!-- Mục bài hát 5 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <!-- Hình ảnh đại diện của bài hát -->
+        <ImageView
+            android:id="@+id/song_image3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image3"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Thông tin bài hát và nghệ sĩ -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/song_name3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hãy Trao Cho Anh"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/artist_name3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn Tùng MTP"
+                android:textSize="14sp"
+                android:textColor="#808080" />
+        </LinearLayout>
+
+        <!-- Icon trái tim yêu thích -->
+        <ImageView
+            android:id="@+id/favorite_icon3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/red_heart" />
+    </LinearLayout>
+</LinearLayout>

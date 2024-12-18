@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Màu nền khi nhấn giữ -->
+    <item android:state_pressed="true" android:drawable="@android:color/darker_gray"/> <!-- Màu tối nhẹ khi nhấn -->
+    <!-- Màu nền mặc định -->
+    <item android:drawable="@android:color/white"/> <!-- Nền trắng khi không nhấn -->
+</selector>

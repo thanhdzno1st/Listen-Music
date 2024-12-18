@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Màu nền cho RelativeLayout -->
+    <solid android:color="#FF0080" />
+
+    <!-- Đặt bán kính bo tròn cho các góc -->
+    <corners android:radius="16dp" />
+
+</shape>

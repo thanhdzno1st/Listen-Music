@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".ApplicationClass"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ListenMusic"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activity.chatboxActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Service.MusicService"
+            android:enabled="true" />
+
+        <activity
+            android:name=".Activity.Chatbox_Activity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Activity.MainActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".Intro_Activity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Download"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.DanhsachbaihatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login4"
+            android:exported="false" />
+        <activity
+            android:name=".login5"
+            android:exported="false" />
+        <activity
+            android:name=".register"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Music_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Login_Activity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".NotificationReceiver"
+            android:enabled="true"
+            android:exported="true"> <!-- Set to true or false as needed -->
+            <intent-filter>
+                <action android:name="actionprevious" />
+                <action android:name="actionnext" />
+                <action android:name="actionplay" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".widget.FirebaseMessager"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

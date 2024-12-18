@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F0F2E4">
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="19dp"
+        />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Thông tin thành viên nhóm TPB" />
+    <TextView
+        android:id="@+id/tv_class"
+        android:layout_below="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        android:layout_centerHorizontal="true"
+        android:text="Lớp học phần: 124LTTD03" />
+    <TextView
+        android:id="@+id/st_1"
+        android:layout_below="@+id/tv_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="normal"
+        android:text="Lê Đại Thành: 22115053122340 (Nhóm trưởng)" />
+    <TextView
+        android:id="@+id/st_2"
+        android:layout_below="@+id/st_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="normal"
+        android:text="Nguyễn Viết Lâm Phong: 22115053122329" />
+    <TextView
+        android:id="@+id/st_3"
+        android:layout_below="@+id/st_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="normal"
+        android:text="Nguyễn Văn Bảo: 22115053122303" />
+</RelativeLayout>
+

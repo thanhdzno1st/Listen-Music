@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_music">
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/rotate"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="29dp"
+            app:shapeAppearance="@style/circular"
+            app:srcCompat="@drawable/noinaycoanh_retangle">
+        </com.google.android.material.imageview.ShapeableImageView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/rotate"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/name_music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nơi này có anh"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sơn tùng MTP"
+                android:textColor="#80FFFFFF"
+                android:layout_below="@+id/name_music"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true">
+            </TextView>
+        </LinearLayout>
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="550dp"
+        android:layout_below="@+id/layout_title"
+        android:scrollbars="none">
+        <TextView
+            android:id="@+id/lyric"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="37dp"
+            android:layout_height="wrap_content"
+            android:textColor="#B3FFFFFF"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:text="Em là ai từ đâu bước đến nơi đây dịu dàng chân phương\n\nEm là ai tựa như ánh nắng ban mai ngọt ngào trong sương\n\nNgắm em thật lâu con tim anh yếu mềm\n\nĐắm say từ phút đó từng giây trôi yêu thêm.\n\nBao ngày qua bình minh đánh thức xua tan bộn bề nơi anh\n\nBao ngày qua niềm thương nỗi nhớ bay theo bầu trời trong xanh\n\nLiếc đôi hàng mi mong manh anh thẫn thờ\n\nMuốn hôn nhẹ mái tóc bờ môi em, anh mơ.\n\n[ĐK:]\n\nCầm tay anh, dựa vai anh\n\nKề bên anh nơi này có anh\n\nGió mang câu tình ca\n\nNgàn ánh sao vụt qua nhẹ ôm lấy em\n\n(Yêu em thương em con tim anh chân thành).\n\nCầm tay anh, dựa vai anh\n\nKề bên anh nơi này có anh\n\nKhép đôi mi thật lâu\n\nNguyện mãi bên cạnh nhau\n\nYêu say đắm như ngày đầu.\n\nMùa xuân đến bình yên cho anh những giấc mơ\n\nHạ lưu giữ ngày mưa ngọt ngào nên thơ\n\nMùa thu lá vàng rơi đông sang anh nhớ em\n\nTình yêu bé nhỏ xin dành tặng riêng em.\n\n[Rap:]\n\nCòn đó tiếng nói ấy bên tai vấn vương bao ngày qua\n\nÁnh mắt bối rối nhớ thương bao ngày qua\n\nYêu em anh thẫn thờ, con tim bâng khuâng đâu có ngờ\n\nChẳng bao giờ phải mong chờ\n\nĐợi ai trong chiều hoàng hôn mờ\n\nĐắm chìm hòa vào vần thơ\n\nNgắm nhìn khờ dại mộng mơ\n\nĐừng bước vội vàng rồi làm ngơ\n\nLạnh lùng đó làm bộ dạng thờ ơ\n\nNhìn anh đi em nha\n\nHướng nụ cười cho riêng anh nha\n\nĐơn giản là yêu con tim anh lên tiếng thôi.\n\n* Uhhhhhhhh nhớ thương em\n\nUhhhhhhhh nhớ thương em lắm\n\nAhhhhhhh phía sau chân trời\n\nCó ai băng qua lối về cùng em đi trên đoạn đường dài.">
+        </TextView>
+    </ScrollView>
+
+</RelativeLayout>
