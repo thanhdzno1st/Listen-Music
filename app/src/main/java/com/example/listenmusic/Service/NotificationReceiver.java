@@ -1,14 +1,12 @@
-package com.example.listenmusic;
+package com.example.listenmusic.Service;
 
-import static com.example.listenmusic.ApplicationClass.ACTION_NEXT;
-import static com.example.listenmusic.ApplicationClass.ACTION_PLAY;
-import static com.example.listenmusic.ApplicationClass.ACTION_PREVIOUS;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_NEXT;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_PLAY;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_PREVIOUS;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
-import com.example.listenmusic.Service.MusicService;
 
 public class NotificationReceiver extends BroadcastReceiver {
 

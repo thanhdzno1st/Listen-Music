@@ -1,4 +1,4 @@
-package com.example.listenmusic;
+package com.example.listenmusic.Firebase_cloud_message;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.example.listenmusic.Activity.MainActivity;
+import com.example.listenmusic.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

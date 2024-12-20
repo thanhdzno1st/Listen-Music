@@ -1,9 +1,5 @@
 package com.example.listenmusic.Activity;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,9 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.listenmusic.GeminiResp;
+import com.example.listenmusic.Chatbot.GeminiResp;
 import com.example.listenmusic.R;
-import com.example.listenmusic.ResponseCallback;
+import com.example.listenmusic.Chatbot.ResponseCallback;
 import com.google.ai.client.generativeai.java.ChatFutures;
 import com.google.ai.client.generativeai.java.GenerativeModelFutures;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

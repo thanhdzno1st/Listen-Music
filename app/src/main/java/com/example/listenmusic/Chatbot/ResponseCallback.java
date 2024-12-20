@@ -1,4 +1,4 @@
-package com.example.listenmusic;
+package com.example.listenmusic.Chatbot;
 
 public interface ResponseCallback {
     void onResponse(String response);

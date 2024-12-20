@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:name=".ApplicationClass"
+        android:name=".Service.ApplicationClass"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".Firebase_cloud_message.MyFirebaseMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -68,7 +68,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".NotificationReceiver"
+            android:name=".Service.NotificationReceiver"
             android:enabled="true"
             android:exported="true"> <!-- Set to true or false as needed -->
             <intent-filter>

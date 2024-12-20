@@ -1,4 +1,4 @@
-package com.example.listenmusic;
+package com.example.listenmusic.Chatbot;
 
 import com.google.ai.client.generativeai.GenerativeModel;
 import com.google.ai.client.generativeai.java.ChatFutures;
@@ -39,7 +39,7 @@ public class GeminiResp {
         },executor);
     }
     public GenerativeModelFutures getModel(){
-        String apiKey  =BuidConfig.apiKey;
+        String apiKey  = BuidConfig.apiKey;
         SafetySetting harassmentSafety = new SafetySetting(HarmCategory.HARASSMENT, BlockThreshold.ONLY_HIGH);
         GenerationConfig.Builder configBuilder = new GenerationConfig.Builder();
         configBuilder.temperature=0.9f;

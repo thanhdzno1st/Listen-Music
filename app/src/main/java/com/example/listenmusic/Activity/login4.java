@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.listenmusic.R;
-import com.example.listenmusic.login_4.ViewPagerAdapter;
+import com.example.listenmusic.Adapter.ViewPagerAdapter_login_2;
 
 public class login4 extends AppCompatActivity {
     ViewPager viewpager;
@@ -28,7 +28,7 @@ public class login4 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.login_4);
         viewpager = findViewById(R.id.login_4_viewpager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapter_login_2 adapter = new ViewPagerAdapter_login_2(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewpager.setAdapter(adapter);
         viewpager.setCurrentItem(0);
         btnEmail = findViewById(R.id.btnEmail);

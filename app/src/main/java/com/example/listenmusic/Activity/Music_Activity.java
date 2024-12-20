@@ -1,9 +1,9 @@
 package com.example.listenmusic.Activity;
 
-import static com.example.listenmusic.ApplicationClass.ACTION_NEXT;
-import static com.example.listenmusic.ApplicationClass.ACTION_PLAY;
-import static com.example.listenmusic.ApplicationClass.ACTION_PREVIOUS;
-import static com.example.listenmusic.ApplicationClass.CHANNEL_ID_2;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_NEXT;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_PLAY;
+import static com.example.listenmusic.Service.ApplicationClass.ACTION_PREVIOUS;
+import static com.example.listenmusic.Service.ApplicationClass.CHANNEL_ID_2;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -72,7 +72,7 @@ import com.example.listenmusic.fragment.Fragment_lyrics;
 import com.example.listenmusic.fragment.Fragment_music;
 import com.example.listenmusic.Models.Song;
 import com.example.listenmusic.Models.User;
-import com.example.listenmusic.NotificationReceiver;
+import com.example.listenmusic.Service.NotificationReceiver;
 import com.example.listenmusic.R;
 import com.example.listenmusic.Service.ActionPlaying;
 import com.example.listenmusic.Service.MusicService;
