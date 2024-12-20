@@ -5,18 +5,22 @@ import static com.example.listenmusic.Service.ApplicationClass.ACTION_PLAY;
 import static com.example.listenmusic.Service.ApplicationClass.ACTION_PREVIOUS;
 import static com.example.listenmusic.Service.ApplicationClass.CHANNEL_ID_2;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -27,8 +31,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -57,7 +63,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -297,9 +305,80 @@ public class Music_Activity extends AppCompatActivity implements MediaPlayer.OnC
         }
         Log.d("DEBUG", "Thong tin User: " + user);
         eventClick();
+        // Kiểm tra quyền WRITE_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Nếu chưa có quyền, yêu cầu quyền từ người dùng
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        } else {
+            // Nếu đã có quyền, thiết lập sự kiện click cho nút tải xuống
+            setDownloadClickListener();
+        }
+    }
+    // Thiết lập sự kiện click cho nút tải xuống
+    private void setDownloadClickListener() {
+        btn_dow.setOnClickListener(view -> {
+            if (song != null) {
+                // Kiểm tra lại quyền ở đây nữa, để đảm bảo luôn có quyền trước khi tải xuống
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    // Nếu đã cấp quyền, gọi phương thức tải xuống
+                    startDownload();
+                } else {
+                    // Nếu chưa cấp quyền, yêu cầu quyền từ người dùng
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                }
+            } else {
+                Toast.makeText(this, "Không có bài hát nào được chọn để tải xuống.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    // Phương thức tải xuống bài hát
+    private void startDownload() {
+        if (song != null) {
+            String downloadUrl = song.getLinkBaiHat(); // Lấy đường dẫn bài hát
+            String fileName = song.getTenBaiHat() + ".mp3"; // Tên file bài hát
 
+            DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+
+            if (downloadManager != null) {
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(downloadUrl));
+                request.setTitle(song.getTenBaiHat()); // Tiêu đề tải xuống
+                request.setDescription("Đang tải bài hát...");
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_MUSIC, fileName); // Lưu trong thư mục Music
+
+                try {
+                    downloadManager.enqueue(request); // Bắt đầu tải xuống
+                    Toast.makeText(this, "Đang tải bài hát: " + song.getTenBaiHat(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("Lỗi khi tải bài hát: ", e.getMessage());
+                    Toast.makeText(this, "Lỗi khi tải bài hát: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Không thể khởi tạo trình quản lý tải xuống.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Không có bài hát nào được chọn để tải xuống.", Toast.LENGTH_SHORT).show();
+        }
     }
 
+    // Phương thức xử lý kết quả quyền
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Nếu quyền được cấp, bắt đầu tải xuống
+                startDownload();
+            } else {
+                // Nếu quyền bị từ chối, hiển thị thông báo
+                Toast.makeText(this, "Cần quyền ghi vào bộ nhớ để tải bài hát.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 
     private void eventClick() {
