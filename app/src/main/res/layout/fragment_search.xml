@@ -21,14 +21,23 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/edt_search"
-            android:layout_width="320dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/search_view_bg"
             app:iconifiedByDefault="false"
             app:queryHint="Tìm kiếm bài hát ..">
         </androidx.appcompat.widget.SearchView>
+        <ImageButton
+            android:id="@+id/btn_voice_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center_vertical|end"
+            android:src="@drawable/baseline_mic_24"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"

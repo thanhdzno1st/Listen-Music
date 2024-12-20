@@ -1,6 +1,7 @@
 package com.example.listenmusic.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchFragment extends Fragment {
     private static final String ARG_USER = "user"; // Key cho User
@@ -38,6 +41,8 @@ public class SearchFragment extends Fragment {
     private ImageView btn_back;
     private String mParam1;
     private String mParam2;
+    private static final int VOICE_SEARCH_REQUEST_CODE = 1; // Request code for voice search
+    private ImageView btn_voice_search; // Nút voice search
 
     public SearchFragment() {
         // Required empty public constructor
@@ -113,6 +118,7 @@ public class SearchFragment extends Fragment {
         }
 
         // Tìm và thiết lập RecyclerView
+        btn_voice_search = view.findViewById(R.id.btn_voice_search);
         recyclerView = view.findViewById(R.id.recycler_search);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         search_view = view.findViewById(R.id.edt_search);
@@ -149,10 +155,36 @@ public class SearchFragment extends Fragment {
                 mainActivity.layout_header.setVisibility(View.VISIBLE);
             }
         });
+        btn_voice_search.setOnClickListener(v -> startVoiceSearch());
 
         return view;
     }
+    // Phương thức để khởi động Voice Search
+    private void startVoiceSearch() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something to search...");
 
+        try {
+            startActivityForResult(intent, VOICE_SEARCH_REQUEST_CODE);
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Your device does not support voice search.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    // Nhận kết quả từ Voice Search
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == VOICE_SEARCH_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (result != null && !result.isEmpty()) {
+                String voiceQuery = result.get(0);
+                search_view.setQuery(voiceQuery, true); // Thiết lập từ khóa vào SearchView và tìm kiếm
+            }
+        }
+    }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
